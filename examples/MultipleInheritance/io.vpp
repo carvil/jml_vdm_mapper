@@ -1,0 +1,14 @@
+class IO
+
+operations 
+
+public read : seq of nat  ==> nat
+read(b) == is subclass responsibility;
+
+public write : seq of nat  ==> ()
+write(b) == is subclass responsibility;
+
+public close : () ==> ()
+close() == is subclass responsibility;
+
+end IO

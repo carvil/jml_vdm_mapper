@@ -1,0 +1,522 @@
+class DiamondProblem
+
+values
+
+diamondproblem : OmlSpecifications = new OmlSpecifications([
+    new OmlClass(
+      "IO",
+      [
+        
+      ],
+      nil,
+      [
+        new OmlTypeDefinitions([
+          new OmlTypeDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,5,1),
+              5,
+              1
+            ),
+            new OmlSimpleType(
+              "byte",
+              new OmlNatType(5,15),
+              nil,
+              5,
+              15
+            ),
+            5,
+            8
+          )
+        ],3,1),
+        new OmlOperationDefinitions([
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,9,1),
+              9,
+              1
+            ),
+            new OmlExplicitOperation(
+              "read",
+              new OmlOperationType(
+                new OmlSeq0Type(new OmlTypeName(new OmlName(
+                  nil,
+                  "byte",
+                  9,
+                  22
+                ),9,22),9,15),
+                new OmlNatType(9,32),
+                9,
+                15
+              ),
+              [
+                new OmlPatternIdentifier("b",10,6)
+              ],
+              new OmlOperationBody(
+                nil,
+                false,
+                true,
+                10,
+                12
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              9,
+              8
+            ),
+            9,
+            8
+          ),
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,12,1),
+              12,
+              1
+            ),
+            new OmlExplicitOperation(
+              "write",
+              new OmlOperationType(
+                new OmlSeq0Type(new OmlTypeName(new OmlName(
+                  nil,
+                  "byte",
+                  12,
+                  23
+                ),12,23),12,16),
+                new OmlEmptyType(12,33),
+                12,
+                16
+              ),
+              [
+                new OmlPatternIdentifier("b",13,7)
+              ],
+              new OmlOperationBody(
+                nil,
+                false,
+                true,
+                13,
+                13
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              12,
+              8
+            ),
+            12,
+            8
+          ),
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,15,1),
+              15,
+              1
+            ),
+            new OmlExplicitOperation(
+              "close",
+              new OmlOperationType(
+                new OmlEmptyType(15,16),
+                new OmlEmptyType(15,23),
+                15,
+                16
+              ),
+              [
+                
+              ],
+              new OmlOperationBody(
+                nil,
+                false,
+                true,
+                16,
+                12
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              15,
+              8
+            ),
+            15,
+            8
+          )
+        ],7,1)
+      ],
+      false,
+      1,
+      1
+    ),
+    new OmlClass(
+      "OutputStream",
+      [
+        
+      ],
+      new OmlInheritanceClause([
+        "IO"
+      ],20,20),
+      [
+        new OmlOperationDefinitions([
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,24,1),
+              24,
+              1
+            ),
+            new OmlExplicitOperation(
+              "write",
+              new OmlOperationType(
+                new OmlSeq0Type(new OmlTypeName(new OmlName(
+                  nil,
+                  "byte",
+                  24,
+                  23
+                ),24,23),24,16),
+                new OmlEmptyType(24,32),
+                24,
+                16
+              ),
+              [
+                new OmlPatternIdentifier("b",25,7)
+              ],
+              new OmlOperationBody(
+                nil,
+                true,
+                false,
+                25,
+                13
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              24,
+              8
+            ),
+            24,
+            8
+          ),
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,27,1),
+              27,
+              1
+            ),
+            new OmlExplicitOperation(
+              "close",
+              new OmlOperationType(
+                new OmlEmptyType(27,16),
+                new OmlEmptyType(27,23),
+                27,
+                16
+              ),
+              [
+                
+              ],
+              new OmlOperationBody(
+                nil,
+                true,
+                false,
+                28,
+                12
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              27,
+              8
+            ),
+            27,
+            8
+          )
+        ],22,1)
+      ],
+      false,
+      20,
+      1
+    ),
+    new OmlClass(
+      "InputStream",
+      [
+        
+      ],
+      new OmlInheritanceClause([
+        "IO"
+      ],32,19),
+      [
+        new OmlOperationDefinitions([
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,36,1),
+              36,
+              1
+            ),
+            new OmlExplicitOperation(
+              "read",
+              new OmlOperationType(
+                new OmlSeq0Type(new OmlTypeName(new OmlName(
+                  nil,
+                  "byte",
+                  36,
+                  22
+                ),36,22),36,15),
+                new OmlNatType(36,31),
+                36,
+                15
+              ),
+              [
+                new OmlPatternIdentifier("b",37,6)
+              ],
+              new OmlOperationBody(
+                nil,
+                true,
+                false,
+                37,
+                12
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              36,
+              8
+            ),
+            36,
+            8
+          ),
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,39,1),
+              39,
+              1
+            ),
+            new OmlExplicitOperation(
+              "close",
+              new OmlOperationType(
+                new OmlEmptyType(39,16),
+                new OmlEmptyType(39,23),
+                39,
+                16
+              ),
+              [
+                
+              ],
+              new OmlOperationBody(
+                nil,
+                true,
+                false,
+                40,
+                12
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              39,
+              8
+            ),
+            39,
+            8
+          )
+        ],34,1)
+      ],
+      false,
+      32,
+      1
+    ),
+    new OmlClass(
+      "IOStream",
+      [
+        
+      ],
+      new OmlInheritanceClause([
+        "InputStream",
+        "OutputStream"
+      ],46,16),
+      [
+        new OmlOperationDefinitions([
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,50,1),
+              50,
+              1
+            ),
+            new OmlExplicitOperation(
+              "read",
+              new OmlOperationType(
+                new OmlSeq0Type(new OmlTypeName(new OmlName(
+                  nil,
+                  "byte",
+                  50,
+                  22
+                ),50,22),50,15),
+                new OmlNatType(50,31),
+                50,
+                15
+              ),
+              [
+                new OmlPatternIdentifier("b",51,6)
+              ],
+              new OmlOperationBody(
+                nil,
+                true,
+                false,
+                51,
+                12
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              50,
+              8
+            ),
+            50,
+            8
+          ),
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,53,1),
+              53,
+              1
+            ),
+            new OmlExplicitOperation(
+              "write",
+              new OmlOperationType(
+                new OmlSeq0Type(new OmlTypeName(new OmlName(
+                  nil,
+                  "byte",
+                  53,
+                  23
+                ),53,23),53,16),
+                new OmlEmptyType(53,33),
+                53,
+                16
+              ),
+              [
+                new OmlPatternIdentifier("b",54,7)
+              ],
+              new OmlOperationBody(
+                nil,
+                false,
+                true,
+                54,
+                13
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              53,
+              8
+            ),
+            53,
+            8
+          ),
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,56,1),
+              56,
+              1
+            ),
+            new OmlExplicitOperation(
+              "close",
+              new OmlOperationType(
+                new OmlEmptyType(56,16),
+                new OmlEmptyType(56,23),
+                56,
+                16
+              ),
+              [
+                
+              ],
+              new OmlOperationBody(
+                nil,
+                true,
+                false,
+                57,
+                12
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              56,
+              8
+            ),
+            56,
+            8
+          )
+        ],48,1)
+      ],
+      false,
+      46,
+      1
+    )
+  ],0,0);
+
+
+end DiamondProblem

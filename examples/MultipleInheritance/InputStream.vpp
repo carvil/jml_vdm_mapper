@@ -1,0 +1,12 @@
+class InputStream is subclass of IO
+
+operations
+
+public read : seq of nat ==> nat
+read(b) == is not yet specified;
+
+public close : () ==> ()
+close() == is not yet specified;
+
+
+end InputStream

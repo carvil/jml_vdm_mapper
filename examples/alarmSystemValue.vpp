@@ -1,0 +1,1520 @@
+class AlarmSystemValue
+
+values
+
+
+alarmsystem : OmlSpecifications = new OmlSpecifications([
+    new OmlClass(
+      "Alarm",
+      [
+        
+      ],
+      nil,
+      [
+        new OmlTypeDefinitions([
+          
+        ],3,1),
+        new OmlTypeDefinitions([
+          new OmlTypeDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,7,1),
+              7,
+              1
+            ),
+            new OmlSimpleType(
+              "String",
+              new OmlSeq0Type(new OmlCharType(7,24),7,17),
+              nil,
+              7,
+              17
+            ),
+            7,
+            8
+          )
+        ],5,1),
+        new OmlInstanceVariableDefinitions([
+          new OmlInstanceVariable(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(3,11,1),
+              0,
+              0
+            ),
+            new OmlAssignmentDefinition(
+              "descr",
+              new OmlTypeName(new OmlName(
+                nil,
+                "String",
+                11,
+                12
+              ),11,12),
+              nil,
+              11,
+              1
+            ),
+            0,
+            0
+          ),
+          new OmlInstanceVariable(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(3,12,1),
+              0,
+              0
+            ),
+            new OmlAssignmentDefinition(
+              "reqQuali",
+              new OmlTypeName(new OmlName(
+                "Expert",
+                "Qualification",
+                12,
+                12
+              ),12,12),
+              nil,
+              12,
+              1
+            ),
+            0,
+            0
+          )
+        ],9,1),
+        new OmlOperationDefinitions([
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,16,1),
+              16,
+              1
+            ),
+            new OmlExplicitOperation(
+              "Alarm",
+              new OmlOperationType(
+                new OmlProductType(
+                  new OmlTypeName(new OmlName(
+                    "Expert",
+                    "Qualification",
+                    16,
+                    15
+                  ),16,15),
+                  new OmlTypeName(new OmlName(
+                    nil,
+                    "String",
+                    16,
+                    38
+                  ),16,38),
+                  16,
+                  36
+                ),
+                new OmlTypeName(new OmlName(
+                  nil,
+                  "Alarm",
+                  16,
+                  49
+                ),16,49),
+                16,
+                36
+              ),
+              [
+                new OmlPatternIdentifier("quali",17,7),
+                new OmlPatternIdentifier("str",17,13)
+              ],
+              new OmlOperationBody(
+                new OmlBlockStatement(
+                  [
+                    
+                  ],
+                  [
+                    new OmlAssignStatement(
+                      new OmlStateDesignatorName(new OmlName(
+                        nil,
+                        "descr",
+                        18,
+                        3
+                      ),18,3),
+                      new OmlName(
+                        nil,
+                        "str",
+                        18,
+                        12
+                      ),
+                      18,
+                      9
+                    ),
+                    new OmlAssignStatement(
+                      new OmlStateDesignatorName(new OmlName(
+                        nil,
+                        "reqQuali",
+                        19,
+                        3
+                      ),19,3),
+                      new OmlName(
+                        nil,
+                        "quali",
+                        19,
+                        15
+                      ),
+                      19,
+                      12
+                    )
+                  ],
+                  18,
+                  1
+                ),
+                false,
+                false,
+                18,
+                1
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              16,
+              8
+            ),
+            16,
+            8
+          ),
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,22,1),
+              22,
+              1
+            ),
+            new OmlExplicitOperation(
+              "GetReqQuali",
+              new OmlOperationType(
+                new OmlEmptyType(22,21),
+                new OmlTypeName(new OmlName(
+                  "Expert",
+                  "Qualification",
+                  22,
+                  28
+                ),22,28),
+                22,
+                21
+              ),
+              [
+                
+              ],
+              new OmlOperationBody(
+                new OmlReturnStatement(new OmlName(
+                  nil,
+                  "reqQuali",
+                  24,
+                  10
+                ),24,3),
+                false,
+                false,
+                24,
+                3
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              22,
+              8
+            ),
+            22,
+            8
+          )
+        ],14,1)
+      ],
+      false,
+      1,
+      1
+    ),
+    new OmlClass(
+      "Expert",
+      [
+        
+      ],
+      nil,
+      [
+        new OmlInstanceVariableDefinitions([
+          new OmlInstanceVariable(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(3,33,1),
+              0,
+              0
+            ),
+            new OmlAssignmentDefinition(
+              "quali",
+              new OmlSetType(new OmlTypeName(new OmlName(
+                nil,
+                "Qualification",
+                33,
+                16
+              ),33,16),33,9),
+              nil,
+              33,
+              1
+            ),
+            0,
+            0
+          ),
+          new OmlInstanceVariableInvariant(new OmlApplyExpression(
+            new OmlName(
+              nil,
+              "ExpertInv",
+              34,
+              5
+            ),
+            [
+              new OmlName(
+                nil,
+                "quali",
+                34,
+                15
+              )
+            ],
+            34,
+            14
+          ),34,1)
+        ],31,1),
+        new OmlFunctionDefinitions([
+          new OmlFunctionDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(3,37,1),
+              0,
+              0
+            ),
+            new OmlExplicitFunction(
+              "ExpertInv",
+              [
+                
+              ],
+              new OmlPartialFunctionType(
+                new OmlSetType(new OmlTypeName(new OmlName(
+                  nil,
+                  "Qualification",
+                  37,
+                  20
+                ),37,20),37,13),
+                new OmlBoolType(38,14),
+                37,
+                13
+              ),
+              [
+                new OmlParameter([
+                  new OmlPatternIdentifier("s",39,11)
+                ],39,10)
+              ],
+              new OmlFunctionBody(
+                new OmlBinaryExpression(
+                  new OmlName(
+                    nil,
+                    "s",
+                    39,
+                    17
+                  ),
+                  new OmlBinaryOperator(33,39,19),
+                  new OmlSetEnumeration([
+                    
+                  ],39,22),
+                  39,
+                  19
+                ),
+                false,
+                false,
+                39,
+                19
+              ),
+              new OmlFunctionTrailer(
+                nil,
+                nil,
+                0,
+                0
+              ),
+              37,
+              1
+            ),
+            37,
+            1
+          )
+        ],36,1),
+        new OmlTypeDefinitions([
+          new OmlTypeDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,42,1),
+              42,
+              1
+            ),
+            new OmlSimpleType(
+              "Qualification",
+              new OmlUnionType(
+                new OmlUnionType(
+                  new OmlUnionType(
+                    new OmlQuoteType(new OmlQuoteLiteral("Mech",43,6),43,6),
+                    new OmlQuoteType(new OmlQuoteLiteral("Chem",44,3),44,3),
+                    43,
+                    13
+                  ),
+                  new OmlQuoteType(new OmlQuoteLiteral("Bio",45,3),45,3),
+                  44,
+                  10
+                ),
+                new OmlQuoteType(new OmlQuoteLiteral("Elec",46,3),46,3),
+                45,
+                9
+              ),
+              nil,
+              45,
+              9
+            ),
+            42,
+            8
+          )
+        ],41,1),
+        new OmlOperationDefinitions([
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,49,1),
+              49,
+              1
+            ),
+            new OmlExplicitOperation(
+              "Expert",
+              new OmlOperationType(
+                new OmlSetType(new OmlTypeName(new OmlName(
+                  nil,
+                  "Qualification",
+                  49,
+                  23
+                ),49,23),49,16),
+                new OmlTypeName(new OmlName(
+                  nil,
+                  "Expert",
+                  50,
+                  18
+                ),50,18),
+                49,
+                16
+              ),
+              [
+                new OmlPatternIdentifier("qs",51,8)
+              ],
+              new OmlOperationBody(
+                new OmlAssignStatement(
+                  new OmlStateDesignatorName(new OmlName(
+                    nil,
+                    "quali",
+                    51,
+                    15
+                  ),51,15),
+                  new OmlName(
+                    nil,
+                    "qs",
+                    51,
+                    24
+                  ),
+                  51,
+                  21
+                ),
+                false,
+                false,
+                51,
+                21
+              ),
+              new OmlOperationTrailer(
+                nil,
+                new OmlApplyExpression(
+                  new OmlName(
+                    nil,
+                    "ExpertInv",
+                    52,
+                    5
+                  ),
+                  [
+                    new OmlName(
+                      nil,
+                      "qs",
+                      52,
+                      15
+                    )
+                  ],
+                  52,
+                  14
+                ),
+                nil,
+                nil,
+                52,
+                14
+              ),
+              49,
+              8
+            ),
+            49,
+            8
+          ),
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,54,1),
+              54,
+              1
+            ),
+            new OmlExplicitOperation(
+              "GetQuali",
+              new OmlOperationType(
+                new OmlEmptyType(54,18),
+                new OmlSetType(new OmlTypeName(new OmlName(
+                  nil,
+                  "Qualification",
+                  55,
+                  22
+                ),55,22),55,15),
+                54,
+                18
+              ),
+              [
+                
+              ],
+              new OmlOperationBody(
+                new OmlReturnStatement(new OmlName(
+                  nil,
+                  "quali",
+                  56,
+                  22
+                ),56,15),
+                false,
+                false,
+                56,
+                15
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              54,
+              8
+            ),
+            54,
+            8
+          )
+        ],48,1)
+      ],
+      false,
+      29,
+      1
+    ),
+    new OmlClass(
+      "Plant",
+      [
+        
+      ],
+      nil,
+      [
+        new OmlInstanceVariableDefinitions([
+          new OmlInstanceVariable(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(3,65,1),
+              0,
+              0
+            ),
+            new OmlAssignmentDefinition(
+              "alarms",
+              new OmlSetType(new OmlTypeName(new OmlName(
+                nil,
+                "Alarm",
+                65,
+                19
+              ),65,19),65,12),
+              nil,
+              65,
+              1
+            ),
+            0,
+            0
+          ),
+          new OmlInstanceVariable(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(3,66,1),
+              0,
+              0
+            ),
+            new OmlAssignmentDefinition(
+              "schedule",
+              new OmlGeneralMapType(
+                new OmlTypeName(new OmlName(
+                  nil,
+                  "Period",
+                  66,
+                  16
+                ),66,16),
+                new OmlSetType(new OmlTypeName(new OmlName(
+                  nil,
+                  "Expert",
+                  66,
+                  33
+                ),66,33),66,26),
+                66,
+                12
+              ),
+              nil,
+              66,
+              1
+            ),
+            0,
+            0
+          ),
+          new OmlInstanceVariableInvariant(new OmlApplyExpression(
+            new OmlName(
+              nil,
+              "PlantInv",
+              67,
+              5
+            ),
+            [
+              new OmlName(
+                nil,
+                "alarms",
+                67,
+                14
+              ),
+              new OmlName(
+                nil,
+                "schedule",
+                67,
+                21
+              )
+            ],
+            67,
+            13
+          ),67,1)
+        ],63,1),
+        new OmlFunctionDefinitions([
+          new OmlFunctionDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(3,71,1),
+              0,
+              0
+            ),
+            new OmlExplicitFunction(
+              "PlantInv",
+              [
+                
+              ],
+              new OmlPartialFunctionType(
+                new OmlProductType(
+                  new OmlSetType(new OmlTypeName(new OmlName(
+                    nil,
+                    "Alarm",
+                    71,
+                    18
+                  ),71,18),71,11),
+                  new OmlGeneralMapType(
+                    new OmlTypeName(new OmlName(
+                      nil,
+                      "Period",
+                      71,
+                      30
+                    ),71,30),
+                    new OmlSetType(new OmlTypeName(new OmlName(
+                      nil,
+                      "Expert",
+                      71,
+                      47
+                    ),71,47),71,40),
+                    71,
+                    26
+                  ),
+                  71,
+                  24
+                ),
+                new OmlBoolType(72,11),
+                71,
+                24
+              ),
+              [
+                new OmlParameter([
+                  new OmlPatternIdentifier("as",73,10),
+                  new OmlPatternIdentifier("sch",73,13)
+                ],73,9)
+              ],
+              new OmlFunctionBody(
+                new OmlBinaryExpression(
+                  new OmlBracketedExpression(new OmlForAllExpression(
+                    [
+                      new OmlSetBind(
+                        [
+                          new OmlPatternIdentifier("p",74,11)
+                        ],
+                        new OmlUnaryExpression(
+                          new OmlUnaryOperator(11,74,20),
+                          new OmlName(
+                            nil,
+                            "sch",
+                            74,
+                            24
+                          ),
+                          74,
+                          20
+                        ),
+                        74,
+                        13
+                      )
+                    ],
+                    new OmlBinaryExpression(
+                      new OmlApplyExpression(
+                        new OmlName(
+                          nil,
+                          "sch",
+                          74,
+                          30
+                        ),
+                        [
+                          new OmlName(
+                            nil,
+                            "p",
+                            74,
+                            34
+                          )
+                        ],
+                        74,
+                        33
+                      ),
+                      new OmlBinaryOperator(33,74,37),
+                      new OmlSetEnumeration([
+                        
+                      ],74,40),
+                      74,
+                      37
+                    ),
+                    74,
+                    4
+                  ),74,3),
+                  new OmlBinaryOperator(10,74,44),
+                  new OmlBracketedExpression(new OmlForAllExpression(
+                    [
+                      new OmlSetBind(
+                        [
+                          new OmlPatternIdentifier("a",75,11)
+                        ],
+                        new OmlName(
+                          nil,
+                          "as",
+                          75,
+                          20
+                        ),
+                        75,
+                        13
+                      )
+                    ],
+                    new OmlForAllExpression(
+                      [
+                        new OmlSetBind(
+                          [
+                            new OmlPatternIdentifier("p",76,13)
+                          ],
+                          new OmlUnaryExpression(
+                            new OmlUnaryOperator(11,76,22),
+                            new OmlName(
+                              nil,
+                              "sch",
+                              76,
+                              26
+                            ),
+                            76,
+                            22
+                          ),
+                          76,
+                          15
+                        )
+                      ],
+                      new OmlExistsExpression(
+                        [
+                          new OmlSetBind(
+                            [
+                              new OmlPatternIdentifier("expert",77,15)
+                            ],
+                            new OmlApplyExpression(
+                              new OmlName(
+                                nil,
+                                "sch",
+                                77,
+                                29
+                              ),
+                              [
+                                new OmlName(
+                                  nil,
+                                  "p",
+                                  77,
+                                  33
+                                )
+                              ],
+                              77,
+                              32
+                            ),
+                            77,
+                            22
+                          )
+                        ],
+                        new OmlBinaryExpression(
+                          new OmlApplyExpression(
+                            new OmlFieldSelect(
+                              new OmlName(
+                                nil,
+                                "a",
+                                78,
+                                10
+                              ),
+                              new OmlName(
+                                nil,
+                                "GetReqQuali",
+                                78,
+                                12
+                              ),
+                              78,
+                              11
+                            ),
+                            [
+                              
+                            ],
+                            78,
+                            23
+                          ),
+                          new OmlBinaryOperator(12,78,26),
+                          new OmlApplyExpression(
+                            new OmlFieldSelect(
+                              new OmlName(
+                                nil,
+                                "expert",
+                                78,
+                                33
+                              ),
+                              new OmlName(
+                                nil,
+                                "GetQuali",
+                                78,
+                                40
+                              ),
+                              78,
+                              39
+                            ),
+                            [
+                              
+                            ],
+                            78,
+                            48
+                          ),
+                          78,
+                          26
+                        ),
+                        77,
+                        8
+                      ),
+                      76,
+                      6
+                    ),
+                    75,
+                    4
+                  ),75,3),
+                  74,
+                  44
+                ),
+                false,
+                false,
+                74,
+                44
+              ),
+              new OmlFunctionTrailer(
+                nil,
+                nil,
+                0,
+                0
+              ),
+              71,
+              1
+            ),
+            71,
+            1
+          )
+        ],69,1),
+        new OmlTypeDefinitions([
+          new OmlTypeDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,82,1),
+              82,
+              1
+            ),
+            new OmlSimpleType(
+              "Period",
+              new OmlTokenType(82,17),
+              nil,
+              82,
+              17
+            ),
+            82,
+            8
+          )
+        ],80,1),
+        new OmlOperationDefinitions([
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,86,1),
+              86,
+              1
+            ),
+            new OmlExplicitOperation(
+              "ExpertToPage",
+              new OmlOperationType(
+                new OmlProductType(
+                  new OmlTypeName(new OmlName(
+                    nil,
+                    "Alarm",
+                    86,
+                    22
+                  ),86,22),
+                  new OmlTypeName(new OmlName(
+                    nil,
+                    "Period",
+                    86,
+                    30
+                  ),86,30),
+                  86,
+                  28
+                ),
+                new OmlTypeName(new OmlName(
+                  nil,
+                  "Expert",
+                  86,
+                  41
+                ),86,41),
+                86,
+                28
+              ),
+              [
+                new OmlPatternIdentifier("a",87,14),
+                new OmlPatternIdentifier("p",87,17)
+              ],
+              new OmlOperationBody(
+                new OmlLetBeStatement(
+                  new OmlSetBind(
+                    [
+                      new OmlPatternIdentifier("expert",88,7)
+                    ],
+                    new OmlApplyExpression(
+                      new OmlName(
+                        nil,
+                        "schedule",
+                        88,
+                        21
+                      ),
+                      [
+                        new OmlName(
+                          nil,
+                          "p",
+                          88,
+                          30
+                        )
+                      ],
+                      88,
+                      29
+                    ),
+                    88,
+                    14
+                  ),
+                  new OmlBinaryExpression(
+                    new OmlApplyExpression(
+                      new OmlFieldSelect(
+                        new OmlName(
+                          nil,
+                          "a",
+                          89,
+                          7
+                        ),
+                        new OmlName(
+                          nil,
+                          "GetReqQuali",
+                          89,
+                          9
+                        ),
+                        89,
+                        8
+                      ),
+                      [
+                        
+                      ],
+                      89,
+                      20
+                    ),
+                    new OmlBinaryOperator(12,89,23),
+                    new OmlApplyExpression(
+                      new OmlFieldSelect(
+                        new OmlName(
+                          nil,
+                          "expert",
+                          89,
+                          30
+                        ),
+                        new OmlName(
+                          nil,
+                          "GetQuali",
+                          89,
+                          37
+                        ),
+                        89,
+                        36
+                      ),
+                      [
+                        
+                      ],
+                      89,
+                      45
+                    ),
+                    89,
+                    23
+                  ),
+                  new OmlReturnStatement(new OmlName(
+                    nil,
+                    "expert",
+                    91,
+                    12
+                  ),91,5),
+                  88,
+                  3
+                ),
+                false,
+                false,
+                88,
+                3
+              ),
+              new OmlOperationTrailer(
+                nil,
+                new OmlBinaryExpression(
+                  new OmlBinaryExpression(
+                    new OmlName(
+                      nil,
+                      "a",
+                      92,
+                      5
+                    ),
+                    new OmlBinaryOperator(12,92,7),
+                    new OmlName(
+                      nil,
+                      "alarms",
+                      92,
+                      14
+                    ),
+                    92,
+                    7
+                  ),
+                  new OmlBinaryOperator(10,92,21),
+                  new OmlBinaryExpression(
+                    new OmlName(
+                      nil,
+                      "p",
+                      93,
+                      5
+                    ),
+                    new OmlBinaryOperator(12,93,7),
+                    new OmlUnaryExpression(
+                      new OmlUnaryOperator(11,93,14),
+                      new OmlName(
+                        nil,
+                        "schedule",
+                        93,
+                        18
+                      ),
+                      93,
+                      14
+                    ),
+                    93,
+                    7
+                  ),
+                  92,
+                  21
+                ),
+                new OmlLetExpression(
+                  [
+                    new OmlValueShape(
+                      new OmlPatternIdentifier("expert",94,10),
+                      nil,
+                      new OmlName(
+                        nil,
+                        "RESULT",
+                        94,
+                        19
+                      ),
+                      94,
+                      10
+                    )
+                  ],
+                  new OmlBinaryExpression(
+                    new OmlBinaryExpression(
+                      new OmlName(
+                        nil,
+                        "expert",
+                        96,
+                        8
+                      ),
+                      new OmlBinaryOperator(12,96,15),
+                      new OmlApplyExpression(
+                        new OmlName(
+                          nil,
+                          "schedule",
+                          96,
+                          22
+                        ),
+                        [
+                          new OmlName(
+                            nil,
+                            "p",
+                            96,
+                            31
+                          )
+                        ],
+                        96,
+                        30
+                      ),
+                      96,
+                      15
+                    ),
+                    new OmlBinaryOperator(10,96,34),
+                    new OmlBinaryExpression(
+                      new OmlApplyExpression(
+                        new OmlFieldSelect(
+                          new OmlName(
+                            nil,
+                            "a",
+                            97,
+                            8
+                          ),
+                          new OmlName(
+                            nil,
+                            "GetReqQuali",
+                            97,
+                            10
+                          ),
+                          97,
+                          9
+                        ),
+                        [
+                          
+                        ],
+                        97,
+                        21
+                      ),
+                      new OmlBinaryOperator(12,97,24),
+                      new OmlApplyExpression(
+                        new OmlFieldSelect(
+                          new OmlName(
+                            nil,
+                            "expert",
+                            97,
+                            31
+                          ),
+                          new OmlName(
+                            nil,
+                            "GetQuali",
+                            97,
+                            38
+                          ),
+                          97,
+                          37
+                        ),
+                        [
+                          
+                        ],
+                        97,
+                        46
+                      ),
+                      97,
+                      24
+                    ),
+                    96,
+                    34
+                  ),
+                  94,
+                  6
+                ),
+                nil,
+                92,
+                21
+              ),
+              86,
+              8
+            ),
+            86,
+            8
+          ),
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,99,1),
+              99,
+              1
+            ),
+            new OmlExplicitOperation(
+              "NumberOfExperts",
+              new OmlOperationType(
+                new OmlTypeName(new OmlName(
+                  nil,
+                  "Period",
+                  99,
+                  25
+                ),99,25),
+                new OmlNatType(99,36),
+                99,
+                25
+              ),
+              [
+                new OmlPatternIdentifier("p",100,17)
+              ],
+              new OmlOperationBody(
+                new OmlReturnStatement(new OmlUnaryExpression(
+                  new OmlUnaryOperator(6,101,10),
+                  new OmlApplyExpression(
+                    new OmlName(
+                      nil,
+                      "schedule",
+                      101,
+                      15
+                    ),
+                    [
+                      new OmlName(
+                        nil,
+                        "p",
+                        101,
+                        24
+                      )
+                    ],
+                    101,
+                    23
+                  ),
+                  101,
+                  10
+                ),101,3),
+                false,
+                false,
+                101,
+                3
+              ),
+              new OmlOperationTrailer(
+                nil,
+                new OmlBinaryExpression(
+                  new OmlName(
+                    nil,
+                    "p",
+                    102,
+                    5
+                  ),
+                  new OmlBinaryOperator(12,102,7),
+                  new OmlUnaryExpression(
+                    new OmlUnaryOperator(11,102,14),
+                    new OmlName(
+                      nil,
+                      "schedule",
+                      102,
+                      18
+                    ),
+                    102,
+                    14
+                  ),
+                  102,
+                  7
+                ),
+                nil,
+                nil,
+                102,
+                7
+              ),
+              99,
+              8
+            ),
+            99,
+            8
+          ),
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,104,1),
+              104,
+              1
+            ),
+            new OmlExplicitOperation(
+              "ExpertIsOnDuty",
+              new OmlOperationType(
+                new OmlTypeName(new OmlName(
+                  nil,
+                  "Expert",
+                  104,
+                  24
+                ),104,24),
+                new OmlSetType(new OmlTypeName(new OmlName(
+                  nil,
+                  "Period",
+                  104,
+                  42
+                ),104,42),104,35),
+                104,
+                24
+              ),
+              [
+                new OmlPatternIdentifier("ex",105,16)
+              ],
+              new OmlOperationBody(
+                new OmlReturnStatement(new OmlSetComprehension(
+                  new OmlName(
+                    nil,
+                    "p",
+                    106,
+                    11
+                  ),
+                  [
+                    new OmlSetBind(
+                      [
+                        new OmlPatternIdentifier("p",106,15)
+                      ],
+                      new OmlUnaryExpression(
+                        new OmlUnaryOperator(11,106,24),
+                        new OmlName(
+                          nil,
+                          "schedule",
+                          106,
+                          28
+                        ),
+                        106,
+                        24
+                      ),
+                      106,
+                      17
+                    )
+                  ],
+                  new OmlBinaryExpression(
+                    new OmlName(
+                      nil,
+                      "ex",
+                      107,
+                      15
+                    ),
+                    new OmlBinaryOperator(12,107,18),
+                    new OmlApplyExpression(
+                      new OmlName(
+                        nil,
+                        "schedule",
+                        107,
+                        25
+                      ),
+                      [
+                        new OmlName(
+                          nil,
+                          "p",
+                          107,
+                          34
+                        )
+                      ],
+                      107,
+                      33
+                    ),
+                    107,
+                    18
+                  ),
+                  106,
+                  10
+                ),106,3),
+                false,
+                false,
+                106,
+                3
+              ),
+              new OmlOperationTrailer(
+                nil,
+                nil,
+                nil,
+                nil,
+                0,
+                0
+              ),
+              104,
+              8
+            ),
+            104,
+            8
+          ),
+          new OmlOperationDefinition(
+            new OmlAccessDefinition(
+              false,
+              false,
+              new OmlScope(2,109,1),
+              109,
+              1
+            ),
+            new OmlExplicitOperation(
+              "Plant",
+              new OmlOperationType(
+                new OmlProductType(
+                  new OmlSetType(new OmlTypeName(new OmlName(
+                    nil,
+                    "Alarm",
+                    109,
+                    22
+                  ),109,22),109,15),
+                  new OmlGeneralMapType(
+                    new OmlTypeName(new OmlName(
+                      nil,
+                      "Period",
+                      110,
+                      19
+                    ),110,19),
+                    new OmlSetType(new OmlTypeName(new OmlName(
+                      nil,
+                      "Expert",
+                      110,
+                      36
+                    ),110,36),110,29),
+                    110,
+                    15
+                  ),
+                  109,
+                  28
+                ),
+                new OmlTypeName(new OmlName(
+                  nil,
+                  "Plant",
+                  110,
+                  47
+                ),110,47),
+                109,
+                28
+              ),
+              [
+                new OmlPatternIdentifier("als",111,7),
+                new OmlPatternIdentifier("sch",111,11)
+              ],
+              new OmlOperationBody(
+                new OmlBlockStatement(
+                  [
+                    
+                  ],
+                  [
+                    new OmlAssignStatement(
+                      new OmlStateDesignatorName(new OmlName(
+                        nil,
+                        "alarms",
+                        112,
+                        3
+                      ),112,3),
+                      new OmlName(
+                        nil,
+                        "als",
+                        112,
+                        13
+                      ),
+                      112,
+                      10
+                    ),
+                    new OmlAssignStatement(
+                      new OmlStateDesignatorName(new OmlName(
+                        nil,
+                        "schedule",
+                        113,
+                        3
+                      ),113,3),
+                      new OmlName(
+                        nil,
+                        "sch",
+                        113,
+                        15
+                      ),
+                      113,
+                      12
+                    )
+                  ],
+                  112,
+                  1
+                ),
+                false,
+                false,
+                112,
+                1
+              ),
+              new OmlOperationTrailer(
+                nil,
+                new OmlApplyExpression(
+                  new OmlName(
+                    nil,
+                    "PlantInv",
+                    115,
+                    5
+                  ),
+                  [
+                    new OmlName(
+                      nil,
+                      "als",
+                      115,
+                      14
+                    ),
+                    new OmlName(
+                      nil,
+                      "sch",
+                      115,
+                      18
+                    )
+                  ],
+                  115,
+                  13
+                ),
+                nil,
+                nil,
+                115,
+                13
+              ),
+              109,
+              8
+            ),
+            109,
+            8
+          )
+        ],84,1)
+      ],
+      false,
+      61,
+      1
+    )
+  ],0,0);
+
+
+end AlarmSystemValue

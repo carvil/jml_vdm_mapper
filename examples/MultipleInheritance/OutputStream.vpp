@@ -1,0 +1,11 @@
+class OutputStream is subclass of IO
+
+operations
+
+public write : seq of nat ==> ()
+write(b) == is not yet specified;
+
+public close : () ==> ()
+close() == is not yet specified;
+
+end OutputStream

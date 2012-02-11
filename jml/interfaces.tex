@@ -1,0 +1,1769 @@
+\begin{vdm_al}
+class IJmlAccessDefinition
+ is subclass of IJmlNode
+
+operations
+  public getScope: () ==> IJmlScope
+  getScope() == is subclass responsibility;
+
+end IJmlAccessDefinition
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlApplyExpression
+ is subclass of IJmlExpression
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == is subclass responsibility;
+
+operations
+  public getExpressionList: () ==> seq of IJmlExpression
+  getExpressionList() == is subclass responsibility;
+
+end IJmlApplyExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlAssignableClause
+ is subclass of IJmlTrailers
+
+operations
+  public getAssignableList: () ==> seq of seq of char
+  getAssignableList() == is subclass responsibility;
+
+end IJmlAssignableClause
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlBehaviourSpec
+ is subclass of IJmlOperationTrailer
+
+operations
+  public getPrivacy: () ==> IJmlScope
+  getPrivacy() == is subclass responsibility;
+
+operations
+  public getList: () ==> seq of IJmlTrailers
+  getList() == is subclass responsibility;
+
+end IJmlBehaviourSpec
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlBinaryExpression
+ is subclass of IJmlExpression
+
+operations
+  public getLhsExpression: () ==> IJmlExpression
+  getLhsExpression() == is subclass responsibility;
+
+operations
+  public getOperator: () ==> IJmlBinaryOperator
+  getOperator() == is subclass responsibility;
+
+operations
+  public getRhsExpression: () ==> IJmlExpression
+  getRhsExpression() == is subclass responsibility;
+
+end IJmlBinaryExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlBinaryOperator
+ is subclass of IJmlNode
+
+operations
+  public getValue: () ==> nat
+  getValue () == is subclass responsibility;
+
+  public getStringValue: () ==> seq of char
+  getStringValue() == is subclass responsibility
+
+end IJmlBinaryOperator
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlBlockExpression
+ is subclass of IJmlExpression
+
+operations
+  public getBind: () ==> seq of IJmlValueShape
+  getBind() == is subclass responsibility;
+
+operations
+  public getReturnExpr: () ==> IJmlExpression
+  getReturnExpr() == is subclass responsibility;
+
+end IJmlBlockExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlBody
+ is subclass of IJmlNode
+
+operations
+  public getBody: () ==> seq of char
+  getBody() == is subclass responsibility;
+
+end IJmlBody
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlBoolType
+ is subclass of IJmlType
+
+end IJmlBoolType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlBooleanLiteral
+ is subclass of IJmlLiteral
+
+operations
+  public getVal: () ==> bool
+  getVal() == is subclass responsibility;
+
+end IJmlBooleanLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlBoundModifiers
+ is subclass of IJmlNode
+
+operations
+  public getValue: () ==> nat
+  getValue () == is subclass responsibility;
+
+  public getStringValue: () ==> seq of char
+  getStringValue() == is subclass responsibility
+
+end IJmlBoundModifiers
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlBracketedExpression
+ is subclass of IJmlExpression
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == is subclass responsibility;
+
+end IJmlBracketedExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlCharType
+ is subclass of IJmlType
+
+end IJmlCharType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlCharacterLiteral
+ is subclass of IJmlLiteral
+
+operations
+  public getVal: () ==> char
+  getVal() == is subclass responsibility;
+
+end IJmlCharacterLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlClass
+ is subclass of IJmlNode
+
+operations
+  public getAccess: () ==> IJmlAccessDefinition
+  getAccess() == is subclass responsibility;
+
+operations
+  public getKind: () ==> IJmlClassKind
+  getKind() == is subclass responsibility;
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == is subclass responsibility;
+
+operations
+  public getInheritanceClause: () ==> IJmlClassInheritanceClause
+  getInheritanceClause() == is subclass responsibility;
+
+  public hasInheritanceClause: () ==> bool
+  hasInheritanceClause () == is subclass responsibility;
+
+operations
+  public getInterfaceInheritance: () ==> IJmlInterfaceInheritanceClause
+  getInterfaceInheritance() == is subclass responsibility;
+
+  public hasInterfaceInheritance: () ==> bool
+  hasInterfaceInheritance () == is subclass responsibility;
+
+operations
+  public getClassBody: () ==> seq of IJmlDefinitionBlock
+  getClassBody() == is subclass responsibility;
+
+end IJmlClass
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlClassInheritanceClause
+ is subclass of IJmlNode
+
+operations
+  public getIdentifierList: () ==> seq of char
+  getIdentifierList() == is subclass responsibility;
+
+end IJmlClassInheritanceClause
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlClassKeyword
+ is subclass of IJmlPrimarySuffix
+
+end IJmlClassKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlClassKind
+ is subclass of IJmlNode
+
+operations
+  public getValue: () ==> nat
+  getValue () == is subclass responsibility;
+
+  public getStringValue: () ==> seq of char
+  getStringValue() == is subclass responsibility
+
+end IJmlClassKind
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlClassName
+ is subclass of IJmlType
+
+operations
+  public getId: () ==> IJmlName
+  getId() == is subclass responsibility;
+
+end IJmlClassName
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlClassType
+ is subclass of IJmlType
+
+operations
+  public getId: () ==> seq of char
+  getId() == is subclass responsibility;
+
+operations
+  public getFieldList: () ==> seq of IJmlField
+  getFieldList() == is subclass responsibility;
+
+end IJmlClassType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlDefinitionBlock
+ is subclass of IJmlNode
+
+end IJmlDefinitionBlock
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlDocument
+
+operations
+  public getFilename: () ==> seq of char
+  getFilename () == is subclass responsibility;
+
+  public hasSpecifications: () ==> bool
+  hasSpecifications () == is subclass responsibility;
+
+  public getSpecifications: () ==> IJmlSpecifications
+  getSpecifications () == is subclass responsibility;
+
+  public getLexems: () ==> seq of IJmlLexem
+  getLexems () == is subclass responsibility;
+
+  public toVdmSlValue: () ==> seq of char
+  toVdmSlValue () == is subclass responsibility;
+
+  public toVdmPpValue: () ==> seq of char
+  toVdmPpValue () == is subclass responsibility;
+
+  public accept: IJmlVisitor ==> ()
+  accept (-) == is subclass responsibility
+
+end IJmlDocument
+\end{vdm_al}
+\begin{vdm_al}
+class IJmlEnsuresClause
+ is subclass of IJmlTrailers
+
+operations
+  public getEnsuresExpression: () ==> IJmlExpression
+  getEnsuresExpression() == is subclass responsibility;
+
+end IJmlEnsuresClause
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlEnumLiteral
+ is subclass of IJmlLiteral
+
+operations
+  public getVal: () ==> seq of char
+  getVal() == is subclass responsibility;
+
+end IJmlEnumLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlEnumerationType
+ is subclass of IJmlType
+
+operations
+  public getEnumLiteral: () ==> IJmlEnumLiteral
+  getEnumLiteral() == is subclass responsibility;
+
+end IJmlEnumerationType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlException
+ is subclass of IJmlNode
+
+operations
+  public getType: () ==> IJmlExceptionType
+  getType() == is subclass responsibility;
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == is subclass responsibility;
+
+end IJmlException
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlExceptionType
+ is subclass of IJmlNode
+
+operations
+  public getType: () ==> seq of char
+  getType() == is subclass responsibility;
+
+end IJmlExceptionType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlExceptionalSpec
+ is subclass of IJmlOperationTrailer
+
+operations
+  public getPrivacy: () ==> IJmlScope
+  getPrivacy() == is subclass responsibility;
+
+operations
+  public getList: () ==> seq of IJmlTrailers
+  getList() == is subclass responsibility;
+
+end IJmlExceptionalSpec
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlExistsExpression
+ is subclass of IJmlExpression
+
+operations
+  public getBindList: () ==> IJmlQuantifierDeclaration
+  getBindList() == is subclass responsibility;
+
+operations
+  public getExpression: () ==> seq of IJmlExpression
+  getExpression() == is subclass responsibility;
+
+end IJmlExistsExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlExpression
+ is subclass of IJmlNode
+
+end IJmlExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlExpressionsList
+ is subclass of IJmlPrimarySuffix
+
+operations
+  public getList: () ==> seq of IJmlExpression
+  getList() == is subclass responsibility;
+
+end IJmlExpressionsList
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlField
+ is subclass of IJmlNode
+
+operations
+  public getId: () ==> seq of char
+  getId() == is subclass responsibility;
+
+operations
+  public getType: () ==> IJmlType
+  getType() == is subclass responsibility;
+
+end IJmlField
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlFieldSelectExpression
+ is subclass of IJmlExpression
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == is subclass responsibility;
+
+operations
+  public getName: () ==> IJmlName
+  getName() == is subclass responsibility;
+
+end IJmlFieldSelectExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlFloatLiteral
+ is subclass of IJmlLiteral
+
+operations
+  public getVal: () ==> real
+  getVal() == is subclass responsibility;
+
+end IJmlFloatLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlFloatType
+ is subclass of IJmlType
+
+end IJmlFloatType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlForAllExpression
+ is subclass of IJmlExpression
+
+operations
+  public getBindList: () ==> IJmlQuantifierDeclaration
+  getBindList() == is subclass responsibility;
+
+operations
+  public getExpression: () ==> seq of IJmlExpression
+  getExpression() == is subclass responsibility;
+
+end IJmlForAllExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlIfExpression
+ is subclass of IJmlExpression
+
+operations
+  public getIfExpression: () ==> IJmlExpression
+  getIfExpression() == is subclass responsibility;
+
+operations
+  public getThenExpression: () ==> IJmlExpression
+  getThenExpression() == is subclass responsibility;
+
+operations
+  public getElseExpression: () ==> IJmlExpression
+  getElseExpression() == is subclass responsibility;
+
+end IJmlIfExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlImport
+ is subclass of IJmlNode
+
+operations
+  public getImport: () ==> seq of char
+  getImport() == is subclass responsibility;
+
+end IJmlImport
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlInstanceOfExpression
+ is subclass of IJmlExpression
+
+operations
+  public getType: () ==> IJmlType
+  getType() == is subclass responsibility;
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == is subclass responsibility;
+
+end IJmlInstanceOfExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlInstanceVariableDefinitions
+ is subclass of IJmlDefinitionBlock
+
+operations
+  public getJmlVariables: () ==> seq of IJmlVariable
+  getJmlVariables() == is subclass responsibility;
+
+operations
+  public getJavaVariables: () ==> seq of IJmlVariable
+  getJavaVariables() == is subclass responsibility;
+
+end IJmlInstanceVariableDefinitions
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlIntegerType
+ is subclass of IJmlType
+
+end IJmlIntegerType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlInterfaceInheritanceClause
+ is subclass of IJmlNode
+
+operations
+  public getIdentifierList: () ==> seq of seq of char
+  getIdentifierList() == is subclass responsibility;
+
+end IJmlInterfaceInheritanceClause
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlInvariantDefinition
+ is subclass of IJmlNode
+
+operations
+  public getAccess: () ==> IJmlAccessDefinition
+  getAccess() == is subclass responsibility;
+
+operations
+  public getRedundant: () ==> bool
+  getRedundant() == is subclass responsibility;
+
+operations
+  public getPredicate: () ==> IJmlExpression
+  getPredicate() == is subclass responsibility;
+
+end IJmlInvariantDefinition
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlInvariantDefinitions
+ is subclass of IJmlDefinitionBlock
+
+operations
+  public getInvariantList: () ==> seq of IJmlInvariantDefinition
+  getInvariantList() == is subclass responsibility;
+
+end IJmlInvariantDefinitions
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlLexem
+
+values
+  static public ILEXEMUNKNOWN      : nat = 0;
+  static public ILEXEMKEYWORD      : nat = 1;
+  static public ILEXEMIDENTIFIER   : nat = 2;
+  static public ILEXEMLINECOMMENT  : nat = 3;
+  static public ILEXEMBLOCKCOMMENT : nat = 4
+
+operations
+  public accept: IJmlVisitor ==> ()
+  accept (-) == is subclass responsibility;
+
+  public getLine: () ==> nat
+  getLine () == is subclass responsibility;
+
+  public getColumn: () ==> nat
+  getColumn () == is subclass responsibility;
+
+  public getLexval: () ==> nat
+  getLexval () == is subclass responsibility;
+
+  public getText: () ==> seq of char
+  getText () == is subclass responsibility;
+
+  public getType: () ==> nat
+  getType () == is subclass responsibility;
+
+  public isKeyword: () ==> bool
+  isKeyword () == is subclass responsibility;
+
+  public isIdentifier: () ==> bool
+  isIdentifier () == is subclass responsibility;
+
+  public isComment: () ==> bool
+  isComment () == is subclass responsibility;
+
+  public isLineComment: () ==> bool
+  isLineComment () == is subclass responsibility;
+
+  public isBlockComment: () ==> bool
+  isBlockComment () == is subclass responsibility;
+
+end IJmlLexem
+\end{vdm_al}
+\begin{vdm_al}
+class IJmlLiteral
+ is subclass of IJmlNode
+
+end IJmlLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlLiteralExpression
+ is subclass of IJmlExpression
+
+operations
+  public getLit: () ==> IJmlLiteral
+  getLit() == is subclass responsibility;
+
+end IJmlLiteralExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlMapEnumeration
+ is subclass of IJmlExpression
+
+operations
+  public getList: () ==> seq of IJmlMapLet
+  getList() == is subclass responsibility;
+
+end IJmlMapEnumeration
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlMapLet
+ is subclass of IJmlNode
+
+operations
+  public getDomVal: () ==> IJmlExpression
+  getDomVal() == is subclass responsibility;
+
+operations
+  public getRngVal: () ==> IJmlExpression
+  getRngVal() == is subclass responsibility;
+
+end IJmlMapLet
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlMapValueToValueType
+ is subclass of IJmlType
+
+operations
+  public getDomType: () ==> IJmlType
+  getDomType() == is subclass responsibility;
+
+operations
+  public getRngType: () ==> IJmlType
+  getRngType() == is subclass responsibility;
+
+end IJmlMapValueToValueType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlMethodSpecifications
+ is subclass of IJmlNode
+
+operations
+  public getSpecs: () ==> IJmlSpecs
+  getSpecs() == is subclass responsibility;
+
+operations
+  public getAlso: () ==> IJmlSpecs
+  getAlso() == is subclass responsibility;
+
+end IJmlMethodSpecifications
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlModelImport
+ is subclass of IJmlNode
+
+operations
+  public getModel: () ==> bool
+  getModel() == is subclass responsibility;
+
+operations
+  public getImport: () ==> seq of char
+  getImport() == is subclass responsibility;
+
+end IJmlModelImport
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlName
+ is subclass of IJmlExpression
+
+operations
+  public getClassIdentifier: () ==> seq of char
+  getClassIdentifier() == is subclass responsibility;
+
+  public hasClassIdentifier: () ==> bool
+  hasClassIdentifier () == is subclass responsibility;
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == is subclass responsibility;
+
+end IJmlName
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlNameId
+ is subclass of IJmlPrimaryExpressionOption
+
+operations
+  public getName: () ==> seq of char
+  getName() == is subclass responsibility;
+
+end IJmlNameId
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlNatType
+ is subclass of IJmlType
+
+operations
+  public getLimit: () ==> nat
+  getLimit() == is subclass responsibility;
+
+end IJmlNatType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlNewExpression
+ is subclass of IJmlExpression
+
+operations
+  public getType: () ==> IJmlType
+  getType() == is subclass responsibility;
+
+operations
+  public getExpressionList: () ==> seq of IJmlExpression
+  getExpressionList() == is subclass responsibility;
+
+end IJmlNewExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlNormalSpec
+ is subclass of IJmlOperationTrailer
+
+operations
+  public getPrivacy: () ==> IJmlScope
+  getPrivacy() == is subclass responsibility;
+
+operations
+  public getList: () ==> seq of IJmlTrailers
+  getList() == is subclass responsibility;
+
+end IJmlNormalSpec
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlNotAssignedKeyword
+ is subclass of IJmlPrimaryExpressionOption
+
+end IJmlNotAssignedKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlNotKeywordUnary
+ is subclass of IJmlNode
+
+end IJmlNotKeywordUnary
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlNullKeyword
+ is subclass of IJmlPrimaryExpressionOption
+
+end IJmlNullKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlNullLiteral
+ is subclass of IJmlLiteral
+
+end IJmlNullLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlNumericalLiteral
+ is subclass of IJmlLiteral
+
+operations
+  public getVal: () ==> nat
+  getVal() == is subclass responsibility;
+
+end IJmlNumericalLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlObjectType
+ is subclass of IJmlType
+
+end IJmlObjectType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlOldKeyword
+ is subclass of IJmlPrimaryExpressionOption
+
+end IJmlOldKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlOldKeywordUnary
+ is subclass of IJmlNode
+
+end IJmlOldKeywordUnary
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlOldName
+ is subclass of IJmlExpression
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == is subclass responsibility;
+
+end IJmlOldName
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlOperationDefinition
+ is subclass of IJmlNode
+
+operations
+  public getTrailer: () ==> IJmlMethodSpecifications
+  getTrailer() == is subclass responsibility;
+
+  public hasTrailer: () ==> bool
+  hasTrailer () == is subclass responsibility;
+
+operations
+  public getAccess: () ==> IJmlAccessDefinition
+  getAccess() == is subclass responsibility;
+
+operations
+  public getPure: () ==> bool
+  getPure() == is subclass responsibility;
+
+operations
+  public getStatickeyword: () ==> bool
+  getStatickeyword() == is subclass responsibility;
+
+operations
+  public getFinal: () ==> bool
+  getFinal() == is subclass responsibility;
+
+operations
+  public getReturningType: () ==> IJmlType
+  getReturningType() == is subclass responsibility;
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == is subclass responsibility;
+
+operations
+  public getParameterList: () ==> seq of IJmlParameter
+  getParameterList() == is subclass responsibility;
+
+operations
+  public getBody: () ==> IJmlBody
+  getBody() == is subclass responsibility;
+
+  public hasBody: () ==> bool
+  hasBody () == is subclass responsibility;
+
+end IJmlOperationDefinition
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlOperationDefinitions
+ is subclass of IJmlDefinitionBlock
+
+operations
+  public getOperationList: () ==> seq of IJmlOperationDefinition
+  getOperationList() == is subclass responsibility;
+
+end IJmlOperationDefinitions
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlOperationTrailer
+ is subclass of IJmlNode
+
+end IJmlOperationTrailer
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlOtherDefinitions
+ is subclass of IJmlDefinitionBlock
+
+end IJmlOtherDefinitions
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlParameter
+ is subclass of IJmlNode
+
+operations
+  public getType: () ==> IJmlType
+  getType() == is subclass responsibility;
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == is subclass responsibility;
+
+end IJmlParameter
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlPostfixExpression
+ is subclass of IJmlExpression
+
+operations
+  public getPrimary: () ==> seq of IJmlPrimaryExpressions
+  getPrimary() == is subclass responsibility;
+
+operations
+  public getOperation: () ==> IJmlPostfixOperation
+  getOperation() == is subclass responsibility;
+
+end IJmlPostfixExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlPostfixOperation
+ is subclass of IJmlNode
+
+operations
+  public getValue: () ==> nat
+  getValue () == is subclass responsibility;
+
+  public getStringValue: () ==> seq of char
+  getStringValue() == is subclass responsibility
+
+end IJmlPostfixOperation
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlPrimaryExpression
+ is subclass of IJmlNode
+
+end IJmlPrimaryExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlPrimaryExpressionKeyword
+ is subclass of IJmlPrimaryExpression
+
+operations
+  public getKeyword: () ==> IJmlPrimaryExpressionOption
+  getKeyword() == is subclass responsibility;
+
+end IJmlPrimaryExpressionKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlPrimaryExpressionLiteral
+ is subclass of IJmlPrimaryExpression
+
+operations
+  public getLit: () ==> IJmlLiteral
+  getLit() == is subclass responsibility;
+
+end IJmlPrimaryExpressionLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlPrimaryExpressionOption
+ is subclass of IJmlNode
+
+end IJmlPrimaryExpressionOption
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlPrimaryExpressions
+ is subclass of IJmlNode
+
+operations
+  public getPrimary: () ==> IJmlPrimaryExpression
+  getPrimary() == is subclass responsibility;
+
+operations
+  public getSuffix: () ==> IJmlPrimarySuffix
+  getSuffix() == is subclass responsibility;
+
+  public hasSuffix: () ==> bool
+  hasSuffix () == is subclass responsibility;
+
+end IJmlPrimaryExpressions
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlPrimarySuffix
+ is subclass of IJmlNode
+
+end IJmlPrimarySuffix
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlQuantifierDeclaration
+ is subclass of IJmlNode
+
+operations
+  public getBound: () ==> IJmlBoundModifiers
+  getBound() == is subclass responsibility;
+
+  public hasBound: () ==> bool
+  hasBound () == is subclass responsibility;
+
+operations
+  public getType: () ==> IJmlType
+  getType() == is subclass responsibility;
+
+operations
+  public getVars: () ==> seq of seq of char
+  getVars() == is subclass responsibility;
+
+end IJmlQuantifierDeclaration
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlRequiresClause
+ is subclass of IJmlTrailers
+
+operations
+  public getRequiresExpression: () ==> IJmlExpression
+  getRequiresExpression() == is subclass responsibility;
+
+end IJmlRequiresClause
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlResultKeyword
+ is subclass of IJmlPrimaryExpressionOption
+
+end IJmlResultKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlScope
+ is subclass of IJmlNode
+
+operations
+  public getValue: () ==> nat
+  getValue () == is subclass responsibility;
+
+  public getStringValue: () ==> seq of char
+  getStringValue() == is subclass responsibility
+
+end IJmlScope
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlSeqValueType
+ is subclass of IJmlType
+
+operations
+  public getType: () ==> IJmlType
+  getType() == is subclass responsibility;
+
+operations
+  public getLimit: () ==> nat
+  getLimit() == is subclass responsibility;
+
+end IJmlSeqValueType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlSequenceEnumeration
+ is subclass of IJmlExpression
+
+operations
+  public getList: () ==> seq of IJmlExpression
+  getList() == is subclass responsibility;
+
+end IJmlSequenceEnumeration
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlSetEnumeration
+ is subclass of IJmlExpression
+
+operations
+  public getList: () ==> seq of IJmlExpression
+  getList() == is subclass responsibility;
+
+end IJmlSetEnumeration
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlSetValueType
+ is subclass of IJmlType
+
+operations
+  public getType: () ==> IJmlType
+  getType() == is subclass responsibility;
+
+end IJmlSetValueType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlSignalsClause
+ is subclass of IJmlTrailers
+
+operations
+  public getException: () ==> IJmlException
+  getException() == is subclass responsibility;
+
+operations
+  public getPredicate: () ==> IJmlExpression
+  getPredicate() == is subclass responsibility;
+
+end IJmlSignalsClause
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlSpecifications
+ is subclass of IJmlNode
+
+operations
+  public getClassList: () ==> seq of IJmlWrappedJmlClass
+  getClassList() == is subclass responsibility;
+
+end IJmlSpecifications
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlSpecs
+ is subclass of IJmlNode
+
+operations
+  public getList: () ==> seq of IJmlOperationTrailer
+  getList() == is subclass responsibility;
+
+end IJmlSpecs
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlStarKeyword
+ is subclass of IJmlNode
+
+end IJmlStarKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlStringLiteral
+ is subclass of IJmlLiteral
+
+operations
+  public getVal: () ==> seq of char
+  getVal() == is subclass responsibility;
+
+end IJmlStringLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlSuperKeyword
+ is subclass of IJmlPrimaryExpressionOption
+
+end IJmlSuperKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlSuperKeywordSuffix
+ is subclass of IJmlPrimarySuffix
+
+end IJmlSuperKeywordSuffix
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlThisExpression
+ is subclass of IJmlExpression
+
+end IJmlThisExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlThisKeyword
+ is subclass of IJmlPrimaryExpressionOption
+
+end IJmlThisKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlThisKeywordSuffix
+ is subclass of IJmlPrimarySuffix
+
+end IJmlThisKeywordSuffix
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlThrowExpression
+ is subclass of IJmlNode
+
+operations
+  public getException: () ==> seq of char
+  getException() == is subclass responsibility;
+
+operations
+  public getParams: () ==> seq of IJmlParameter
+  getParams() == is subclass responsibility;
+
+end IJmlThrowExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlTrailers
+ is subclass of IJmlNode
+
+end IJmlTrailers
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlTupleType
+ is subclass of IJmlType
+
+operations
+  public getVals: () ==> seq of IJmlType
+  getVals() == is subclass responsibility;
+
+end IJmlTupleType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlType
+ is subclass of IJmlNode
+
+end IJmlType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlUnaryExpression
+ is subclass of IJmlExpression
+
+operations
+  public getOperator: () ==> IJmlUnaryOperator
+  getOperator() == is subclass responsibility;
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == is subclass responsibility;
+
+end IJmlUnaryExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlUnaryOperator
+ is subclass of IJmlNode
+
+operations
+  public getValue: () ==> nat
+  getValue () == is subclass responsibility;
+
+  public getStringValue: () ==> seq of char
+  getStringValue() == is subclass responsibility
+
+end IJmlUnaryOperator
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlUndefinedExpression
+ is subclass of IJmlExpression
+
+end IJmlUndefinedExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlValueDefinition
+ is subclass of IJmlNode
+
+operations
+  public getAccess: () ==> IJmlAccessDefinition
+  getAccess() == is subclass responsibility;
+
+operations
+  public getStaticMod: () ==> bool
+  getStaticMod() == is subclass responsibility;
+
+operations
+  public getFinalMod: () ==> bool
+  getFinalMod() == is subclass responsibility;
+
+operations
+  public getShape: () ==> IJmlValueShape
+  getShape() == is subclass responsibility;
+
+end IJmlValueDefinition
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlValueDefinitions
+ is subclass of IJmlDefinitionBlock
+
+operations
+  public getValueList: () ==> seq of IJmlValueDefinition
+  getValueList() == is subclass responsibility;
+
+end IJmlValueDefinitions
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlValueShape
+ is subclass of IJmlNode
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == is subclass responsibility;
+
+operations
+  public getType: () ==> IJmlType
+  getType() == is subclass responsibility;
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == is subclass responsibility;
+
+end IJmlValueShape
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlVariable
+ is subclass of IJmlNode
+
+operations
+  public getAccess: () ==> IJmlAccessDefinition
+  getAccess() == is subclass responsibility;
+
+operations
+  public getModel: () ==> bool
+  getModel() == is subclass responsibility;
+
+operations
+  public getStatickeyword: () ==> bool
+  getStatickeyword() == is subclass responsibility;
+
+operations
+  public getFinal: () ==> bool
+  getFinal() == is subclass responsibility;
+
+operations
+  public getType: () ==> IJmlType
+  getType() == is subclass responsibility;
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == is subclass responsibility;
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == is subclass responsibility;
+
+  public hasExpression: () ==> bool
+  hasExpression () == is subclass responsibility;
+
+end IJmlVariable
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlVisitor
+operations
+  public visitDocument: IJmlDocument ==> ()
+  visitDocument (-) == is subclass responsibility;
+
+  public visitLexem: IJmlLexem ==> ()
+  visitLexem (-) == is subclass responsibility;
+
+  public visitThisExpression: IJmlThisExpression ==> ()
+  visitThisExpression (-) == is subclass responsibility;
+
+  public visitPrimaryExpressionKeyword: IJmlPrimaryExpressionKeyword ==> ()
+  visitPrimaryExpressionKeyword (-) == is subclass responsibility;
+
+  public visitModelImport: IJmlModelImport ==> ()
+  visitModelImport (-) == is subclass responsibility;
+
+  public visitClass: IJmlClass ==> ()
+  visitClass (-) == is subclass responsibility;
+
+  public visitSpecifications: IJmlSpecifications ==> ()
+  visitSpecifications (-) == is subclass responsibility;
+
+  public visitMapValueToValueType: IJmlMapValueToValueType ==> ()
+  visitMapValueToValueType (-) == is subclass responsibility;
+
+  public visitMapLet: IJmlMapLet ==> ()
+  visitMapLet (-) == is subclass responsibility;
+
+  public visitValueShape: IJmlValueShape ==> ()
+  visitValueShape (-) == is subclass responsibility;
+
+  public visitNotKeywordUnary: IJmlNotKeywordUnary ==> ()
+  visitNotKeywordUnary (-) == is subclass responsibility;
+
+  public visitBinaryExpression: IJmlBinaryExpression ==> ()
+  visitBinaryExpression (-) == is subclass responsibility;
+
+  public visitThisKeyword: IJmlThisKeyword ==> ()
+  visitThisKeyword (-) == is subclass responsibility;
+
+  public visitOperationDefinitions: IJmlOperationDefinitions ==> ()
+  visitOperationDefinitions (-) == is subclass responsibility;
+
+  public visitClassType: IJmlClassType ==> ()
+  visitClassType (-) == is subclass responsibility;
+
+  public visitInstanceVariableDefinitions: IJmlInstanceVariableDefinitions ==> ()
+  visitInstanceVariableDefinitions (-) == is subclass responsibility;
+
+  public visitEnsuresClause: IJmlEnsuresClause ==> ()
+  visitEnsuresClause (-) == is subclass responsibility;
+
+  public visitExpressionsList: IJmlExpressionsList ==> ()
+  visitExpressionsList (-) == is subclass responsibility;
+
+  public visitFieldSelectExpression: IJmlFieldSelectExpression ==> ()
+  visitFieldSelectExpression (-) == is subclass responsibility;
+
+  public visitEnumerationType: IJmlEnumerationType ==> ()
+  visitEnumerationType (-) == is subclass responsibility;
+
+  public visitUndefinedExpression: IJmlUndefinedExpression ==> ()
+  visitUndefinedExpression (-) == is subclass responsibility;
+
+  public visitFloatLiteral: IJmlFloatLiteral ==> ()
+  visitFloatLiteral (-) == is subclass responsibility;
+
+  public visitSuperKeyword: IJmlSuperKeyword ==> ()
+  visitSuperKeyword (-) == is subclass responsibility;
+
+  public visitClassKeyword: IJmlClassKeyword ==> ()
+  visitClassKeyword (-) == is subclass responsibility;
+
+  public visitRequiresClause: IJmlRequiresClause ==> ()
+  visitRequiresClause (-) == is subclass responsibility;
+
+  public visitExceptionType: IJmlExceptionType ==> ()
+  visitExceptionType (-) == is subclass responsibility;
+
+  public visitMapEnumeration: IJmlMapEnumeration ==> ()
+  visitMapEnumeration (-) == is subclass responsibility;
+
+  public visitThrowExpression: IJmlThrowExpression ==> ()
+  visitThrowExpression (-) == is subclass responsibility;
+
+  public visitNameId: IJmlNameId ==> ()
+  visitNameId (-) == is subclass responsibility;
+
+  public visitOtherDefinitions: IJmlOtherDefinitions ==> ()
+  visitOtherDefinitions (-) == is subclass responsibility;
+
+  public visitSetValueType: IJmlSetValueType ==> ()
+  visitSetValueType (-) == is subclass responsibility;
+
+  public visitStarKeyword: IJmlStarKeyword ==> ()
+  visitStarKeyword (-) == is subclass responsibility;
+
+  public visitPrimaryExpressions: IJmlPrimaryExpressions ==> ()
+  visitPrimaryExpressions (-) == is subclass responsibility;
+
+  public visitOldName: IJmlOldName ==> ()
+  visitOldName (-) == is subclass responsibility;
+
+  public visitAssignableClause: IJmlAssignableClause ==> ()
+  visitAssignableClause (-) == is subclass responsibility;
+
+  public visitForAllExpression: IJmlForAllExpression ==> ()
+  visitForAllExpression (-) == is subclass responsibility;
+
+  public visitNumericalLiteral: IJmlNumericalLiteral ==> ()
+  visitNumericalLiteral (-) == is subclass responsibility;
+
+  public visitLiteralExpression: IJmlLiteralExpression ==> ()
+  visitLiteralExpression (-) == is subclass responsibility;
+
+  public visitIfExpression: IJmlIfExpression ==> ()
+  visitIfExpression (-) == is subclass responsibility;
+
+  public visitVariable: IJmlVariable ==> ()
+  visitVariable (-) == is subclass responsibility;
+
+  public visitInvariantDefinition: IJmlInvariantDefinition ==> ()
+  visitInvariantDefinition (-) == is subclass responsibility;
+
+  public visitValueDefinition: IJmlValueDefinition ==> ()
+  visitValueDefinition (-) == is subclass responsibility;
+
+  public visitUnaryExpression: IJmlUnaryExpression ==> ()
+  visitUnaryExpression (-) == is subclass responsibility;
+
+  public visitApplyExpression: IJmlApplyExpression ==> ()
+  visitApplyExpression (-) == is subclass responsibility;
+
+  public visitExceptionalSpec: IJmlExceptionalSpec ==> ()
+  visitExceptionalSpec (-) == is subclass responsibility;
+
+  public visitNatType: IJmlNatType ==> ()
+  visitNatType (-) == is subclass responsibility;
+
+  public visitOldKeywordUnary: IJmlOldKeywordUnary ==> ()
+  visitOldKeywordUnary (-) == is subclass responsibility;
+
+  public visitSetEnumeration: IJmlSetEnumeration ==> ()
+  visitSetEnumeration (-) == is subclass responsibility;
+
+  public visitQuantifierDeclaration: IJmlQuantifierDeclaration ==> ()
+  visitQuantifierDeclaration (-) == is subclass responsibility;
+
+  public visitTupleType: IJmlTupleType ==> ()
+  visitTupleType (-) == is subclass responsibility;
+
+  public visitEnumLiteral: IJmlEnumLiteral ==> ()
+  visitEnumLiteral (-) == is subclass responsibility;
+
+  public visitImport: IJmlImport ==> ()
+  visitImport (-) == is subclass responsibility;
+
+  public visitPostfixExpression: IJmlPostfixExpression ==> ()
+  visitPostfixExpression (-) == is subclass responsibility;
+
+  public visitCharType: IJmlCharType ==> ()
+  visitCharType (-) == is subclass responsibility;
+
+  public visitCharacterLiteral: IJmlCharacterLiteral ==> ()
+  visitCharacterLiteral (-) == is subclass responsibility;
+
+  public visitNullLiteral: IJmlNullLiteral ==> ()
+  visitNullLiteral (-) == is subclass responsibility;
+
+  public visitValueDefinitions: IJmlValueDefinitions ==> ()
+  visitValueDefinitions (-) == is subclass responsibility;
+
+  public visitBracketedExpression: IJmlBracketedExpression ==> ()
+  visitBracketedExpression (-) == is subclass responsibility;
+
+  public visitNotAssignedKeyword: IJmlNotAssignedKeyword ==> ()
+  visitNotAssignedKeyword (-) == is subclass responsibility;
+
+  public visitStringLiteral: IJmlStringLiteral ==> ()
+  visitStringLiteral (-) == is subclass responsibility;
+
+  public visitSpecs: IJmlSpecs ==> ()
+  visitSpecs (-) == is subclass responsibility;
+
+  public visitAccessDefinition: IJmlAccessDefinition ==> ()
+  visitAccessDefinition (-) == is subclass responsibility;
+
+  public visitNewExpression: IJmlNewExpression ==> ()
+  visitNewExpression (-) == is subclass responsibility;
+
+  public visitBehaviourSpec: IJmlBehaviourSpec ==> ()
+  visitBehaviourSpec (-) == is subclass responsibility;
+
+  public visitInstanceOfExpression: IJmlInstanceOfExpression ==> ()
+  visitInstanceOfExpression (-) == is subclass responsibility;
+
+  public visitName: IJmlName ==> ()
+  visitName (-) == is subclass responsibility;
+
+  public visitInvariantDefinitions: IJmlInvariantDefinitions ==> ()
+  visitInvariantDefinitions (-) == is subclass responsibility;
+
+  public visitSuperKeywordSuffix: IJmlSuperKeywordSuffix ==> ()
+  visitSuperKeywordSuffix (-) == is subclass responsibility;
+
+  public visitFloatType: IJmlFloatType ==> ()
+  visitFloatType (-) == is subclass responsibility;
+
+  public visitBooleanLiteral: IJmlBooleanLiteral ==> ()
+  visitBooleanLiteral (-) == is subclass responsibility;
+
+  public visitObjectType: IJmlObjectType ==> ()
+  visitObjectType (-) == is subclass responsibility;
+
+  public visitVoidType: IJmlVoidType ==> ()
+  visitVoidType (-) == is subclass responsibility;
+
+  public visitExistsExpression: IJmlExistsExpression ==> ()
+  visitExistsExpression (-) == is subclass responsibility;
+
+  public visitOldKeyword: IJmlOldKeyword ==> ()
+  visitOldKeyword (-) == is subclass responsibility;
+
+  public visitClassInheritanceClause: IJmlClassInheritanceClause ==> ()
+  visitClassInheritanceClause (-) == is subclass responsibility;
+
+  public visitBody: IJmlBody ==> ()
+  visitBody (-) == is subclass responsibility;
+
+  public visitField: IJmlField ==> ()
+  visitField (-) == is subclass responsibility;
+
+  public visitNullKeyword: IJmlNullKeyword ==> ()
+  visitNullKeyword (-) == is subclass responsibility;
+
+  public visitInterfaceInheritanceClause: IJmlInterfaceInheritanceClause ==> ()
+  visitInterfaceInheritanceClause (-) == is subclass responsibility;
+
+  public visitMethodSpecifications: IJmlMethodSpecifications ==> ()
+  visitMethodSpecifications (-) == is subclass responsibility;
+
+  public visitException: IJmlException ==> ()
+  visitException (-) == is subclass responsibility;
+
+  public visitNormalSpec: IJmlNormalSpec ==> ()
+  visitNormalSpec (-) == is subclass responsibility;
+
+  public visitPrimaryExpressionLiteral: IJmlPrimaryExpressionLiteral ==> ()
+  visitPrimaryExpressionLiteral (-) == is subclass responsibility;
+
+  public visitIntegerType: IJmlIntegerType ==> ()
+  visitIntegerType (-) == is subclass responsibility;
+
+  public visitSeqValueType: IJmlSeqValueType ==> ()
+  visitSeqValueType (-) == is subclass responsibility;
+
+  public visitBlockExpression: IJmlBlockExpression ==> ()
+  visitBlockExpression (-) == is subclass responsibility;
+
+  public visitSignalsClause: IJmlSignalsClause ==> ()
+  visitSignalsClause (-) == is subclass responsibility;
+
+  public visitParameter: IJmlParameter ==> ()
+  visitParameter (-) == is subclass responsibility;
+
+  public visitSequenceEnumeration: IJmlSequenceEnumeration ==> ()
+  visitSequenceEnumeration (-) == is subclass responsibility;
+
+  public visitResultKeyword: IJmlResultKeyword ==> ()
+  visitResultKeyword (-) == is subclass responsibility;
+
+  public visitClassName: IJmlClassName ==> ()
+  visitClassName (-) == is subclass responsibility;
+
+  public visitBoolType: IJmlBoolType ==> ()
+  visitBoolType (-) == is subclass responsibility;
+
+  public visitOperationDefinition: IJmlOperationDefinition ==> ()
+  visitOperationDefinition (-) == is subclass responsibility;
+
+  public visitWrappedJmlClass: IJmlWrappedJmlClass ==> ()
+  visitWrappedJmlClass (-) == is subclass responsibility;
+
+  public visitThisKeywordSuffix: IJmlThisKeywordSuffix ==> ()
+  visitThisKeywordSuffix (-) == is subclass responsibility;
+
+  public visitContextInfo: IJmlContextInfo ==> ()
+  visitContextInfo (-) == is subclass responsibility;
+
+  public visitNode: IJmlNode ==> ()
+  visitNode (-) == is subclass responsibility;
+
+  public visitType: IJmlType ==> ()
+  visitType (-) == is subclass responsibility;
+
+  public visitPrimaryExpressionOption: IJmlPrimaryExpressionOption ==> ()
+  visitPrimaryExpressionOption (-) == is subclass responsibility;
+
+  public visitTrailers: IJmlTrailers ==> ()
+  visitTrailers (-) == is subclass responsibility;
+
+  public visitDefinitionBlock: IJmlDefinitionBlock ==> ()
+  visitDefinitionBlock (-) == is subclass responsibility;
+
+  public visitPostfixOperation: IJmlPostfixOperation ==> ()
+  visitPostfixOperation (-) == is subclass responsibility;
+
+  public visitBinaryOperator: IJmlBinaryOperator ==> ()
+  visitBinaryOperator (-) == is subclass responsibility;
+
+  public visitExpression: IJmlExpression ==> ()
+  visitExpression (-) == is subclass responsibility;
+
+  public visitLiteral: IJmlLiteral ==> ()
+  visitLiteral (-) == is subclass responsibility;
+
+  public visitPrimaryExpression: IJmlPrimaryExpression ==> ()
+  visitPrimaryExpression (-) == is subclass responsibility;
+
+  public visitScope: IJmlScope ==> ()
+  visitScope (-) == is subclass responsibility;
+
+  public visitUnaryOperator: IJmlUnaryOperator ==> ()
+  visitUnaryOperator (-) == is subclass responsibility;
+
+  public visitBoundModifiers: IJmlBoundModifiers ==> ()
+  visitBoundModifiers (-) == is subclass responsibility;
+
+  public visitOperationTrailer: IJmlOperationTrailer ==> ()
+  visitOperationTrailer (-) == is subclass responsibility;
+
+  public visitClassKind: IJmlClassKind ==> ()
+  visitClassKind (-) == is subclass responsibility;
+
+  public visitPrimarySuffix: IJmlPrimarySuffix ==> ()
+  visitPrimarySuffix (-) == is subclass responsibility;
+
+end IJmlVisitor
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlVoidType
+ is subclass of IJmlType
+
+end IJmlVoidType
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlWrappedJmlClass
+ is subclass of IJmlNode
+
+operations
+  public getPackage: () ==> seq of char
+  getPackage() == is subclass responsibility;
+
+operations
+  public getRefine: () ==> seq of char
+  getRefine() == is subclass responsibility;
+
+operations
+  public getImportsJava: () ==> seq of IJmlImport
+  getImportsJava() == is subclass responsibility;
+
+operations
+  public getImportsJml: () ==> seq of IJmlModelImport
+  getImportsJml() == is subclass responsibility;
+
+operations
+  public getClassVal: () ==> IJmlClass
+  getClassVal() == is subclass responsibility;
+
+end IJmlWrappedJmlClass
+\end{vdm_al}
+

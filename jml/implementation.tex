@@ -1,0 +1,5930 @@
+\begin{vdm_al}
+class JmlAccessDefinition is subclass of IJmlAccessDefinition
+operations
+  public identity: () ==> seq of char
+  identity () == return "AccessDefinition";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitAccessDefinition(self);
+
+  public JmlAccessDefinition:
+    (IJmlScope) ==> JmlAccessDefinition
+  JmlAccessDefinition (p1) == 
+    ( setScope(p1) );
+
+  public JmlAccessDefinition:
+    (IJmlScope) *
+    nat *
+    nat ==> JmlAccessDefinition
+  JmlAccessDefinition (p1,line,column) == 
+    ( setScope(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "scope" in
+        if fname in set dom data
+        then setScope(data(fname)) );
+
+instance variables
+  private ivScope : [IJmlScope] := nil
+
+operations
+  public getScope: () ==> IJmlScope
+  getScope() == return ivScope;
+
+  public setScope: IJmlScope ==> ()
+  setScope(parg) == ivScope := parg;
+
+end JmlAccessDefinition
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlApplyExpression is subclass of IJmlApplyExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "ApplyExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitApplyExpression(self);
+
+  public JmlApplyExpression:
+    (IJmlExpression) *
+    (seq of IJmlExpression) ==> JmlApplyExpression
+  JmlApplyExpression (p1,p2) == 
+    ( setExpression(p1);
+      setExpressionList(p2) );
+
+  public JmlApplyExpression:
+    (IJmlExpression) *
+    (seq of IJmlExpression) *
+    nat *
+    nat ==> JmlApplyExpression
+  JmlApplyExpression (p1,p2,line,column) == 
+    ( setExpression(p1);
+      setExpressionList(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "expression" in
+        if fname in set dom data
+        then setExpression(data(fname));
+      let fname = "expression_list" in
+        if fname in set dom data
+        then setExpressionList(data(fname)) );
+
+instance variables
+  private ivExpression : [IJmlExpression] := nil
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == return ivExpression;
+
+  public setExpression: IJmlExpression ==> ()
+  setExpression(parg) == ivExpression := parg;
+
+instance variables
+  private ivExpressionList : seq of IJmlExpression := []
+
+operations
+  public getExpressionList: () ==> seq of IJmlExpression
+  getExpressionList() == return ivExpressionList;
+
+  public setExpressionList: seq of IJmlExpression ==> ()
+  setExpressionList(parg) == ivExpressionList := parg;
+
+  public addExpressionList: IJmlNode ==> ()
+  addExpressionList (parg) == ivExpressionList := ivExpressionList ^ [parg];
+
+end JmlApplyExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlAssignableClause is subclass of IJmlAssignableClause
+operations
+  public identity: () ==> seq of char
+  identity () == return "AssignableClause";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitAssignableClause(self);
+
+  public JmlAssignableClause:
+    (seq of seq of char) ==> JmlAssignableClause
+  JmlAssignableClause (p1) == 
+    ( setAssignableList(p1) );
+
+  public JmlAssignableClause:
+    (seq of seq of char) *
+    nat *
+    nat ==> JmlAssignableClause
+  JmlAssignableClause (p1,line,column) == 
+    ( setAssignableList(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "assignable_list" in
+        if fname in set dom data
+        then setAssignableList(data(fname)) );
+
+instance variables
+  private ivAssignableList : seq of seq of char := []
+
+operations
+  public getAssignableList: () ==> seq of seq of char
+  getAssignableList() == return ivAssignableList;
+
+  public setAssignableList: seq of seq of char ==> ()
+  setAssignableList(parg) == ivAssignableList := parg;
+
+  public addAssignableList: seq of char ==> ()
+  addAssignableList (parg) == ivAssignableList := ivAssignableList ^ [parg];
+
+end JmlAssignableClause
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlBehaviourSpec is subclass of IJmlBehaviourSpec
+operations
+  public identity: () ==> seq of char
+  identity () == return "BehaviourSpec";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitBehaviourSpec(self);
+
+  public JmlBehaviourSpec:
+    (IJmlScope) *
+    (seq of IJmlTrailers) ==> JmlBehaviourSpec
+  JmlBehaviourSpec (p1,p2) == 
+    ( setPrivacy(p1);
+      setList(p2) );
+
+  public JmlBehaviourSpec:
+    (IJmlScope) *
+    (seq of IJmlTrailers) *
+    nat *
+    nat ==> JmlBehaviourSpec
+  JmlBehaviourSpec (p1,p2,line,column) == 
+    ( setPrivacy(p1);
+      setList(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "privacy" in
+        if fname in set dom data
+        then setPrivacy(data(fname));
+      let fname = "list" in
+        if fname in set dom data
+        then setList(data(fname)) );
+
+instance variables
+  private ivPrivacy : [IJmlScope] := nil
+
+operations
+  public getPrivacy: () ==> IJmlScope
+  getPrivacy() == return ivPrivacy;
+
+  public setPrivacy: IJmlScope ==> ()
+  setPrivacy(parg) == ivPrivacy := parg;
+
+instance variables
+  private ivList : seq of IJmlTrailers := []
+
+operations
+  public getList: () ==> seq of IJmlTrailers
+  getList() == return ivList;
+
+  public setList: seq of IJmlTrailers ==> ()
+  setList(parg) == ivList := parg;
+
+  public addList: IJmlNode ==> ()
+  addList (parg) == ivList := ivList ^ [parg];
+
+end JmlBehaviourSpec
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlBinaryExpression is subclass of IJmlBinaryExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "BinaryExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitBinaryExpression(self);
+
+  public JmlBinaryExpression:
+    (IJmlExpression) *
+    (IJmlBinaryOperator) *
+    (IJmlExpression) ==> JmlBinaryExpression
+  JmlBinaryExpression (p1,p2,p3) == 
+    ( setLhsExpression(p1);
+      setOperator(p2);
+      setRhsExpression(p3) );
+
+  public JmlBinaryExpression:
+    (IJmlExpression) *
+    (IJmlBinaryOperator) *
+    (IJmlExpression) *
+    nat *
+    nat ==> JmlBinaryExpression
+  JmlBinaryExpression (p1,p2,p3,line,column) == 
+    ( setLhsExpression(p1);
+      setOperator(p2);
+      setRhsExpression(p3);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "lhs_expression" in
+        if fname in set dom data
+        then setLhsExpression(data(fname));
+      let fname = "operator" in
+        if fname in set dom data
+        then setOperator(data(fname));
+      let fname = "rhs_expression" in
+        if fname in set dom data
+        then setRhsExpression(data(fname)) );
+
+instance variables
+  private ivLhsExpression : [IJmlExpression] := nil
+
+operations
+  public getLhsExpression: () ==> IJmlExpression
+  getLhsExpression() == return ivLhsExpression;
+
+  public setLhsExpression: IJmlExpression ==> ()
+  setLhsExpression(parg) == ivLhsExpression := parg;
+
+instance variables
+  private ivOperator : [IJmlBinaryOperator] := nil
+
+operations
+  public getOperator: () ==> IJmlBinaryOperator
+  getOperator() == return ivOperator;
+
+  public setOperator: IJmlBinaryOperator ==> ()
+  setOperator(parg) == ivOperator := parg;
+
+instance variables
+  private ivRhsExpression : [IJmlExpression] := nil
+
+operations
+  public getRhsExpression: () ==> IJmlExpression
+  getRhsExpression() == return ivRhsExpression;
+
+  public setRhsExpression: IJmlExpression ==> ()
+  setRhsExpression(parg) == ivRhsExpression := parg;
+
+end JmlBinaryExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlBinaryOperator is subclass of IJmlBinaryOperator
+operations
+  public identity: () ==> seq of char
+  identity () == return "BinaryOperator";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitBinaryOperator(self);
+
+  public JmlBinaryOperator: nat ==> JmlBinaryOperator
+  JmlBinaryOperator (pv) == setValue(pv);
+
+  public JmlBinaryOperator: nat * nat * nat ==> JmlBinaryOperator
+  JmlBinaryOperator (pv, pline, pcolumn) == ( setValue(pv); setPosition(pline, pcolumn) );
+
+instance variables
+  private val : [nat] := nil
+
+operations
+  public setValue: nat ==> ()
+  setValue (pval) == val := pval
+    pre val = nil and JmlBinaryOperatorQuotes`validQuote(pval);
+
+  public getValue: () ==> nat
+  getValue () == return val
+    pre val <> nil;
+
+  public getStringValue: () ==> seq of char
+  getStringValue() == return JmlBinaryOperatorQuotes`getQuoteName(val)
+    pre val <> nil;
+
+end JmlBinaryOperator
+\end{vdm_al}
+\begin{vdm_al}
+class JmlBinaryOperatorQuotes
+instance variables
+  static public IQUNION : nat := 0;
+  static public IQMINUS : nat := 1;
+  static public IQLOR : nat := 2;
+  static public IQSUBTYPE : nat := 3;
+  static public IQEQUIV : nat := 4;
+  static public IQPLUSEQ : nat := 5;
+  static public IQNOTINSET : nat := 6;
+  static public IQEQ : nat := 7;
+  static public IQG : nat := 8;
+  static public IQNE : nat := 9;
+  static public IQIMPLYBACK : nat := 10;
+  static public IQMINUSEQ : nat := 11;
+  static public IQINSET : nat := 12;
+  static public IQPROPERSUBSET : nat := 13;
+  static public IQDOMRESTTO : nat := 14;
+  static public IQRNGRESTTO : nat := 15;
+  static public IQLAND : nat := 16;
+  static public IQNOTEQUIV : nat := 17;
+  static public IQGE : nat := 18;
+  static public IQDIVIDE : nat := 19;
+  static public IQMULEQ : nat := 20;
+  static public IQCONCAT : nat := 21;
+  static public IQINTER : nat := 22;
+  static public IQL : nat := 23;
+  static public IQLE : nat := 24;
+  static public IQREMEQ : nat := 25;
+  static public IQINSTANCEOF : nat := 26;
+  static public IQDIVEQ : nat := 27;
+  static public IQSUBSET : nat := 28;
+  static public IQREMAIN : nat := 29;
+  static public IQPLUS : nat := 30;
+  static public IQMUNION : nat := 31;
+  static public IQIMPLY : nat := 32;
+  static public IQCOMP : nat := 33;
+  static public IQMULTIPLY : nat := 34;
+
+  static private qmap : map nat to seq of char :=
+    { IQUNION |-> "<UNION>",
+      IQMINUS |-> "<MINUS>",
+      IQLOR |-> "<LOR>",
+      IQSUBTYPE |-> "<SUBTYPE>",
+      IQEQUIV |-> "<EQUIV>",
+      IQPLUSEQ |-> "<PLUSEQ>",
+      IQNOTINSET |-> "<NOTINSET>",
+      IQEQ |-> "<EQ>",
+      IQG |-> "<G>",
+      IQNE |-> "<NE>",
+      IQIMPLYBACK |-> "<IMPLYBACK>",
+      IQMINUSEQ |-> "<MINUSEQ>",
+      IQINSET |-> "<INSET>",
+      IQPROPERSUBSET |-> "<PROPERSUBSET>",
+      IQDOMRESTTO |-> "<DOMRESTTO>",
+      IQRNGRESTTO |-> "<RNGRESTTO>",
+      IQLAND |-> "<LAND>",
+      IQNOTEQUIV |-> "<NOTEQUIV>",
+      IQGE |-> "<GE>",
+      IQDIVIDE |-> "<DIVIDE>",
+      IQMULEQ |-> "<MULEQ>",
+      IQCONCAT |-> "<CONCAT>",
+      IQINTER |-> "<INTER>",
+      IQL |-> "<L>",
+      IQLE |-> "<LE>",
+      IQREMEQ |-> "<REMEQ>",
+      IQINSTANCEOF |-> "<INSTANCEOF>",
+      IQDIVEQ |-> "<DIVEQ>",
+      IQSUBSET |-> "<SUBSET>",
+      IQREMAIN |-> "<REMAIN>",
+      IQPLUS |-> "<PLUS>",
+      IQMUNION |-> "<MUNION>",
+      IQIMPLY |-> "<IMPLY>",
+      IQCOMP |-> "<COMP>",
+      IQMULTIPLY |-> "<MULTIPLY>" }
+
+operations
+  static public getQuoteName: nat ==> seq of char
+  getQuoteName (pid) ==
+    return qmap(pid)
+    pre validQuote(pid);
+
+  static public validQuote: nat ==> bool
+  validQuote (pid) == return pid in set dom qmap
+
+end JmlBinaryOperatorQuotes
+\end{vdm_al}
+\begin{vdm_al}
+class JmlBlockExpression is subclass of IJmlBlockExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "BlockExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitBlockExpression(self);
+
+  public JmlBlockExpression:
+    (seq of IJmlValueShape) *
+    (IJmlExpression) ==> JmlBlockExpression
+  JmlBlockExpression (p1,p2) == 
+    ( setBind(p1);
+      setReturnExpr(p2) );
+
+  public JmlBlockExpression:
+    (seq of IJmlValueShape) *
+    (IJmlExpression) *
+    nat *
+    nat ==> JmlBlockExpression
+  JmlBlockExpression (p1,p2,line,column) == 
+    ( setBind(p1);
+      setReturnExpr(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "bind" in
+        if fname in set dom data
+        then setBind(data(fname));
+      let fname = "return_expr" in
+        if fname in set dom data
+        then setReturnExpr(data(fname)) );
+
+instance variables
+  private ivBind : seq of IJmlValueShape := []
+
+operations
+  public getBind: () ==> seq of IJmlValueShape
+  getBind() == return ivBind;
+
+  public setBind: seq of IJmlValueShape ==> ()
+  setBind(parg) == ivBind := parg;
+
+  public addBind: IJmlNode ==> ()
+  addBind (parg) == ivBind := ivBind ^ [parg];
+
+instance variables
+  private ivReturnExpr : [IJmlExpression] := nil
+
+operations
+  public getReturnExpr: () ==> IJmlExpression
+  getReturnExpr() == return ivReturnExpr;
+
+  public setReturnExpr: IJmlExpression ==> ()
+  setReturnExpr(parg) == ivReturnExpr := parg;
+
+end JmlBlockExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlBody is subclass of IJmlBody
+operations
+  public identity: () ==> seq of char
+  identity () == return "Body";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitBody(self);
+
+  public JmlBody:
+    (seq of char) ==> JmlBody
+  JmlBody (p1) == 
+    ( setBody(p1) );
+
+  public JmlBody:
+    (seq of char) *
+    nat *
+    nat ==> JmlBody
+  JmlBody (p1,line,column) == 
+    ( setBody(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "body" in
+        if fname in set dom data
+        then setBody(data(fname)) );
+
+instance variables
+  private ivBody : seq of char := []
+
+operations
+  public getBody: () ==> seq of char
+  getBody() == return ivBody;
+
+  public setBody: seq of char ==> ()
+  setBody(parg) == ivBody := parg;
+
+end JmlBody
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlBoolType is subclass of IJmlBoolType
+operations
+  public identity: () ==> seq of char
+  identity () == return "BoolType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitBoolType(self);
+
+  public JmlBoolType:
+    () ==> JmlBoolType
+  JmlBoolType () == 
+    skip;
+
+  public JmlBoolType:
+    nat *
+    nat ==> JmlBoolType
+  JmlBoolType (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlBoolType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlBooleanLiteral is subclass of IJmlBooleanLiteral
+operations
+  public identity: () ==> seq of char
+  identity () == return "BooleanLiteral";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitBooleanLiteral(self);
+
+  public JmlBooleanLiteral:
+    (bool) ==> JmlBooleanLiteral
+  JmlBooleanLiteral (p1) == 
+    ( setVal(p1) );
+
+  public JmlBooleanLiteral:
+    (bool) *
+    nat *
+    nat ==> JmlBooleanLiteral
+  JmlBooleanLiteral (p1,line,column) == 
+    ( setVal(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "val" in
+        if fname in set dom data
+        then setVal(data(fname)) );
+
+instance variables
+  private ivVal : [bool] := nil
+
+operations
+  public getVal: () ==> bool
+  getVal() == return ivVal;
+
+  public setVal: bool ==> ()
+  setVal(parg) == ivVal := parg;
+
+end JmlBooleanLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlBoundModifiers is subclass of IJmlBoundModifiers
+operations
+  public identity: () ==> seq of char
+  identity () == return "BoundModifiers";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitBoundModifiers(self);
+
+  public JmlBoundModifiers: nat ==> JmlBoundModifiers
+  JmlBoundModifiers (pv) == setValue(pv);
+
+  public JmlBoundModifiers: nat * nat * nat ==> JmlBoundModifiers
+  JmlBoundModifiers (pv, pline, pcolumn) == ( setValue(pv); setPosition(pline, pcolumn) );
+
+instance variables
+  private val : [nat] := nil
+
+operations
+  public setValue: nat ==> ()
+  setValue (pval) == val := pval
+    pre val = nil and JmlBoundModifiersQuotes`validQuote(pval);
+
+  public getValue: () ==> nat
+  getValue () == return val
+    pre val <> nil;
+
+  public getStringValue: () ==> seq of char
+  getStringValue() == return JmlBoundModifiersQuotes`getQuoteName(val)
+    pre val <> nil;
+
+end JmlBoundModifiers
+\end{vdm_al}
+\begin{vdm_al}
+class JmlBoundModifiersQuotes
+instance variables
+  static public IQNULLABLE : nat := 0;
+  static public IQNONNULL : nat := 1;
+
+  static private qmap : map nat to seq of char :=
+    { IQNULLABLE |-> "<NULLABLE>",
+      IQNONNULL |-> "<NONNULL>" }
+
+operations
+  static public getQuoteName: nat ==> seq of char
+  getQuoteName (pid) ==
+    return qmap(pid)
+    pre validQuote(pid);
+
+  static public validQuote: nat ==> bool
+  validQuote (pid) == return pid in set dom qmap
+
+end JmlBoundModifiersQuotes
+\end{vdm_al}
+\begin{vdm_al}
+class JmlBracketedExpression is subclass of IJmlBracketedExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "BracketedExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitBracketedExpression(self);
+
+  public JmlBracketedExpression:
+    (IJmlExpression) ==> JmlBracketedExpression
+  JmlBracketedExpression (p1) == 
+    ( setExpression(p1) );
+
+  public JmlBracketedExpression:
+    (IJmlExpression) *
+    nat *
+    nat ==> JmlBracketedExpression
+  JmlBracketedExpression (p1,line,column) == 
+    ( setExpression(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "expression" in
+        if fname in set dom data
+        then setExpression(data(fname)) );
+
+instance variables
+  private ivExpression : [IJmlExpression] := nil
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == return ivExpression;
+
+  public setExpression: IJmlExpression ==> ()
+  setExpression(parg) == ivExpression := parg;
+
+end JmlBracketedExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlCharType is subclass of IJmlCharType
+operations
+  public identity: () ==> seq of char
+  identity () == return "CharType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitCharType(self);
+
+  public JmlCharType:
+    () ==> JmlCharType
+  JmlCharType () == 
+    skip;
+
+  public JmlCharType:
+    nat *
+    nat ==> JmlCharType
+  JmlCharType (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlCharType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlCharacterLiteral is subclass of IJmlCharacterLiteral
+operations
+  public identity: () ==> seq of char
+  identity () == return "CharacterLiteral";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitCharacterLiteral(self);
+
+  public JmlCharacterLiteral:
+    (char) ==> JmlCharacterLiteral
+  JmlCharacterLiteral (p1) == 
+    ( setVal(p1) );
+
+  public JmlCharacterLiteral:
+    (char) *
+    nat *
+    nat ==> JmlCharacterLiteral
+  JmlCharacterLiteral (p1,line,column) == 
+    ( setVal(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "val" in
+        if fname in set dom data
+        then setVal(data(fname)) );
+
+instance variables
+  private ivVal : [char] := nil
+
+operations
+  public getVal: () ==> char
+  getVal() == return ivVal;
+
+  public setVal: char ==> ()
+  setVal(parg) == ivVal := parg;
+
+end JmlCharacterLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlClass is subclass of IJmlClass
+operations
+  public identity: () ==> seq of char
+  identity () == return "Class";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitClass(self);
+
+  public JmlClass:
+    (IJmlAccessDefinition) *
+    (IJmlClassKind) *
+    (seq of char) *
+    [IJmlClassInheritanceClause] *
+    [IJmlInterfaceInheritanceClause] *
+    (seq of IJmlDefinitionBlock) ==> JmlClass
+  JmlClass (p1,p2,p3,p4,p5,p6) == 
+    ( setAccess(p1);
+      setKind(p2);
+      setIdentifier(p3);
+      setInheritanceClause(p4);
+      setInterfaceInheritance(p5);
+      setClassBody(p6) );
+
+  public JmlClass:
+    (IJmlAccessDefinition) *
+    (IJmlClassKind) *
+    (seq of char) *
+    [IJmlClassInheritanceClause] *
+    [IJmlInterfaceInheritanceClause] *
+    (seq of IJmlDefinitionBlock) *
+    nat *
+    nat ==> JmlClass
+  JmlClass (p1,p2,p3,p4,p5,p6,line,column) == 
+    ( setAccess(p1);
+      setKind(p2);
+      setIdentifier(p3);
+      setInheritanceClause(p4);
+      setInterfaceInheritance(p5);
+      setClassBody(p6);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "access" in
+        if fname in set dom data
+        then setAccess(data(fname));
+      let fname = "kind" in
+        if fname in set dom data
+        then setKind(data(fname));
+      let fname = "identifier" in
+        if fname in set dom data
+        then setIdentifier(data(fname));
+      let fname = "inheritance_clause" in
+        if fname in set dom data
+        then setInheritanceClause(data(fname));
+      let fname = "interface_inheritance" in
+        if fname in set dom data
+        then setInterfaceInheritance(data(fname));
+      let fname = "class_body" in
+        if fname in set dom data
+        then setClassBody(data(fname)) );
+
+instance variables
+  private ivAccess : [IJmlAccessDefinition] := nil
+
+operations
+  public getAccess: () ==> IJmlAccessDefinition
+  getAccess() == return ivAccess;
+
+  public setAccess: IJmlAccessDefinition ==> ()
+  setAccess(parg) == ivAccess := parg;
+
+instance variables
+  private ivKind : [IJmlClassKind] := nil
+
+operations
+  public getKind: () ==> IJmlClassKind
+  getKind() == return ivKind;
+
+  public setKind: IJmlClassKind ==> ()
+  setKind(parg) == ivKind := parg;
+
+instance variables
+  private ivIdentifier : seq of char := []
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == return ivIdentifier;
+
+  public setIdentifier: seq of char ==> ()
+  setIdentifier(parg) == ivIdentifier := parg;
+
+instance variables
+  private ivInheritanceClause : [IJmlClassInheritanceClause] := nil
+
+operations
+  public getInheritanceClause: () ==> IJmlClassInheritanceClause
+  getInheritanceClause() == return ivInheritanceClause
+    pre hasInheritanceClause();
+
+  public hasInheritanceClause: () ==> bool
+  hasInheritanceClause () == return ivInheritanceClause <> nil;
+
+  public setInheritanceClause: [ IJmlClassInheritanceClause ] ==> ()
+  setInheritanceClause(parg) == ivInheritanceClause := parg;
+
+instance variables
+  private ivInterfaceInheritance : [IJmlInterfaceInheritanceClause] := nil
+
+operations
+  public getInterfaceInheritance: () ==> IJmlInterfaceInheritanceClause
+  getInterfaceInheritance() == return ivInterfaceInheritance
+    pre hasInterfaceInheritance();
+
+  public hasInterfaceInheritance: () ==> bool
+  hasInterfaceInheritance () == return ivInterfaceInheritance <> nil;
+
+  public setInterfaceInheritance: [ IJmlInterfaceInheritanceClause ] ==> ()
+  setInterfaceInheritance(parg) == ivInterfaceInheritance := parg;
+
+instance variables
+  private ivClassBody : seq of IJmlDefinitionBlock := []
+
+operations
+  public getClassBody: () ==> seq of IJmlDefinitionBlock
+  getClassBody() == return ivClassBody;
+
+  public setClassBody: seq of IJmlDefinitionBlock ==> ()
+  setClassBody(parg) == ivClassBody := parg;
+
+  public addClassBody: IJmlNode ==> ()
+  addClassBody (parg) == ivClassBody := ivClassBody ^ [parg];
+
+end JmlClass
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlClassInheritanceClause is subclass of IJmlClassInheritanceClause
+operations
+  public identity: () ==> seq of char
+  identity () == return "ClassInheritanceClause";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitClassInheritanceClause(self);
+
+  public JmlClassInheritanceClause:
+    (seq of char) ==> JmlClassInheritanceClause
+  JmlClassInheritanceClause (p1) == 
+    ( setIdentifierList(p1) );
+
+  public JmlClassInheritanceClause:
+    (seq of char) *
+    nat *
+    nat ==> JmlClassInheritanceClause
+  JmlClassInheritanceClause (p1,line,column) == 
+    ( setIdentifierList(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "identifier_list" in
+        if fname in set dom data
+        then setIdentifierList(data(fname)) );
+
+instance variables
+  private ivIdentifierList : seq of char := []
+
+operations
+  public getIdentifierList: () ==> seq of char
+  getIdentifierList() == return ivIdentifierList;
+
+  public setIdentifierList: seq of char ==> ()
+  setIdentifierList(parg) == ivIdentifierList := parg;
+
+end JmlClassInheritanceClause
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlClassKeyword is subclass of IJmlClassKeyword
+operations
+  public identity: () ==> seq of char
+  identity () == return "ClassKeyword";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitClassKeyword(self);
+
+  public JmlClassKeyword:
+    () ==> JmlClassKeyword
+  JmlClassKeyword () == 
+    skip;
+
+  public JmlClassKeyword:
+    nat *
+    nat ==> JmlClassKeyword
+  JmlClassKeyword (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlClassKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlClassKind is subclass of IJmlClassKind
+operations
+  public identity: () ==> seq of char
+  identity () == return "ClassKind";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitClassKind(self);
+
+  public JmlClassKind: nat ==> JmlClassKind
+  JmlClassKind (pv) == setValue(pv);
+
+  public JmlClassKind: nat * nat * nat ==> JmlClassKind
+  JmlClassKind (pv, pline, pcolumn) == ( setValue(pv); setPosition(pline, pcolumn) );
+
+instance variables
+  private val : [nat] := nil
+
+operations
+  public setValue: nat ==> ()
+  setValue (pval) == val := pval
+    pre val = nil and JmlClassKindQuotes`validQuote(pval);
+
+  public getValue: () ==> nat
+  getValue () == return val
+    pre val <> nil;
+
+  public getStringValue: () ==> seq of char
+  getStringValue() == return JmlClassKindQuotes`getQuoteName(val)
+    pre val <> nil;
+
+end JmlClassKind
+\end{vdm_al}
+\begin{vdm_al}
+class JmlClassKindQuotes
+instance variables
+  static public IQCLASS : nat := 0;
+  static public IQINTERFACE : nat := 1;
+  static public IQABSTRACT : nat := 2;
+
+  static private qmap : map nat to seq of char :=
+    { IQCLASS |-> "<CLASS>",
+      IQINTERFACE |-> "<INTERFACE>",
+      IQABSTRACT |-> "<ABSTRACT>" }
+
+operations
+  static public getQuoteName: nat ==> seq of char
+  getQuoteName (pid) ==
+    return qmap(pid)
+    pre validQuote(pid);
+
+  static public validQuote: nat ==> bool
+  validQuote (pid) == return pid in set dom qmap
+
+end JmlClassKindQuotes
+\end{vdm_al}
+\begin{vdm_al}
+class JmlClassName is subclass of IJmlClassName
+operations
+  public identity: () ==> seq of char
+  identity () == return "ClassName";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitClassName(self);
+
+  public JmlClassName:
+    (IJmlName) ==> JmlClassName
+  JmlClassName (p1) == 
+    ( setId(p1) );
+
+  public JmlClassName:
+    (IJmlName) *
+    nat *
+    nat ==> JmlClassName
+  JmlClassName (p1,line,column) == 
+    ( setId(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "id" in
+        if fname in set dom data
+        then setId(data(fname)) );
+
+instance variables
+  private ivId : [IJmlName] := nil
+
+operations
+  public getId: () ==> IJmlName
+  getId() == return ivId;
+
+  public setId: IJmlName ==> ()
+  setId(parg) == ivId := parg;
+
+end JmlClassName
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlClassType is subclass of IJmlClassType
+operations
+  public identity: () ==> seq of char
+  identity () == return "ClassType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitClassType(self);
+
+  public JmlClassType:
+    (seq of char) *
+    (seq of IJmlField) ==> JmlClassType
+  JmlClassType (p1,p2) == 
+    ( setId(p1);
+      setFieldList(p2) );
+
+  public JmlClassType:
+    (seq of char) *
+    (seq of IJmlField) *
+    nat *
+    nat ==> JmlClassType
+  JmlClassType (p1,p2,line,column) == 
+    ( setId(p1);
+      setFieldList(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "id" in
+        if fname in set dom data
+        then setId(data(fname));
+      let fname = "field_list" in
+        if fname in set dom data
+        then setFieldList(data(fname)) );
+
+instance variables
+  private ivId : seq of char := []
+
+operations
+  public getId: () ==> seq of char
+  getId() == return ivId;
+
+  public setId: seq of char ==> ()
+  setId(parg) == ivId := parg;
+
+instance variables
+  private ivFieldList : seq of IJmlField := []
+
+operations
+  public getFieldList: () ==> seq of IJmlField
+  getFieldList() == return ivFieldList;
+
+  public setFieldList: seq of IJmlField ==> ()
+  setFieldList(parg) == ivFieldList := parg;
+
+  public addFieldList: IJmlNode ==> ()
+  addFieldList (parg) == ivFieldList := ivFieldList ^ [parg];
+
+end JmlClassType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlDefinitionBlock is subclass of IJmlDefinitionBlock
+operations
+  public identity: () ==> seq of char
+  identity () == return "DefinitionBlock";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitDefinitionBlock(self);
+
+end JmlDefinitionBlock
+\end{vdm_al}
+\begin{vdm_al}
+class JmlDocument is subclass of IJmlDocument
+
+instance variables
+  private ivFilename : seq of char := []
+
+operations
+  public getFilename: () ==> seq of char
+  getFilename () == return ivFilename;
+
+  public setFilename: seq of char ==> ()
+  setFilename (pfilename) == ivFilename := pfilename;
+
+instance variables
+  private ivTopNode : [ IJmlNode ] := nil
+
+operations
+  public hasSpecifications: () ==> bool
+  hasSpecifications () == return isofclass(IJmlSpecifications,ivTopNode);
+
+  public getSpecifications: () ==> IJmlSpecifications
+  getSpecifications () == return ivTopNode
+    pre hasSpecifications();
+
+  public setSpecifications: IJmlSpecifications ==> ()
+  setSpecifications (pNode) == ivTopNode := pNode
+    pre ivTopNode = nil;
+
+instance variables
+  private ivLexems : seq of IJmlLexem := []
+
+operations
+  public getLexems : () ==> seq of IJmlLexem
+  getLexems () == return ivLexems;
+
+  public setLexems : seq of IJmlLexem ==> ()
+  setLexems (plexems) == ivLexems := plexems;
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitDocument(self);
+
+  public toVdmSlValue: () ==> seq of char
+  toVdmSlValue () ==
+    ( dcl visitor : JmlSlVisitor := new JmlSlVisitor();
+      accept(visitor);
+      return visitor.result );
+
+  public toVdmPpValue: () ==> seq of char
+  toVdmPpValue () ==
+    ( dcl visitor : JmlPpVisitor := new JmlPpVisitor();
+      accept(visitor);
+      return visitor.result );
+
+  public JmlDocument: seq of char * IJmlNode * seq of IJmlLexem ==> JmlDocument
+  JmlDocument (pfilename, pnode, plexems) ==
+    ( setFilename(pfilename);
+      ivTopNode := pnode;
+      setLexems(plexems) )
+    pre isofclass(IJmlSpecifications,pnode)
+
+end JmlDocument
+\end{vdm_al}
+\begin{vdm_al}
+class JmlEnsuresClause is subclass of IJmlEnsuresClause
+operations
+  public identity: () ==> seq of char
+  identity () == return "EnsuresClause";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitEnsuresClause(self);
+
+  public JmlEnsuresClause:
+    (IJmlExpression) ==> JmlEnsuresClause
+  JmlEnsuresClause (p1) == 
+    ( setEnsuresExpression(p1) );
+
+  public JmlEnsuresClause:
+    (IJmlExpression) *
+    nat *
+    nat ==> JmlEnsuresClause
+  JmlEnsuresClause (p1,line,column) == 
+    ( setEnsuresExpression(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "ensures_expression" in
+        if fname in set dom data
+        then setEnsuresExpression(data(fname)) );
+
+instance variables
+  private ivEnsuresExpression : [IJmlExpression] := nil
+
+operations
+  public getEnsuresExpression: () ==> IJmlExpression
+  getEnsuresExpression() == return ivEnsuresExpression;
+
+  public setEnsuresExpression: IJmlExpression ==> ()
+  setEnsuresExpression(parg) == ivEnsuresExpression := parg;
+
+end JmlEnsuresClause
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlEnumLiteral is subclass of IJmlEnumLiteral
+operations
+  public identity: () ==> seq of char
+  identity () == return "EnumLiteral";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitEnumLiteral(self);
+
+  public JmlEnumLiteral:
+    (seq of char) ==> JmlEnumLiteral
+  JmlEnumLiteral (p1) == 
+    ( setVal(p1) );
+
+  public JmlEnumLiteral:
+    (seq of char) *
+    nat *
+    nat ==> JmlEnumLiteral
+  JmlEnumLiteral (p1,line,column) == 
+    ( setVal(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "val" in
+        if fname in set dom data
+        then setVal(data(fname)) );
+
+instance variables
+  private ivVal : seq of char := []
+
+operations
+  public getVal: () ==> seq of char
+  getVal() == return ivVal;
+
+  public setVal: seq of char ==> ()
+  setVal(parg) == ivVal := parg;
+
+end JmlEnumLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlEnumerationType is subclass of IJmlEnumerationType
+operations
+  public identity: () ==> seq of char
+  identity () == return "EnumerationType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitEnumerationType(self);
+
+  public JmlEnumerationType:
+    (IJmlEnumLiteral) ==> JmlEnumerationType
+  JmlEnumerationType (p1) == 
+    ( setEnumLiteral(p1) );
+
+  public JmlEnumerationType:
+    (IJmlEnumLiteral) *
+    nat *
+    nat ==> JmlEnumerationType
+  JmlEnumerationType (p1,line,column) == 
+    ( setEnumLiteral(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "enum_literal" in
+        if fname in set dom data
+        then setEnumLiteral(data(fname)) );
+
+instance variables
+  private ivEnumLiteral : [IJmlEnumLiteral] := nil
+
+operations
+  public getEnumLiteral: () ==> IJmlEnumLiteral
+  getEnumLiteral() == return ivEnumLiteral;
+
+  public setEnumLiteral: IJmlEnumLiteral ==> ()
+  setEnumLiteral(parg) == ivEnumLiteral := parg;
+
+end JmlEnumerationType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlException is subclass of IJmlException
+operations
+  public identity: () ==> seq of char
+  identity () == return "Exception";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitException(self);
+
+  public JmlException:
+    (IJmlExceptionType) *
+    (seq of char) ==> JmlException
+  JmlException (p1,p2) == 
+    ( setType(p1);
+      setIdentifier(p2) );
+
+  public JmlException:
+    (IJmlExceptionType) *
+    (seq of char) *
+    nat *
+    nat ==> JmlException
+  JmlException (p1,p2,line,column) == 
+    ( setType(p1);
+      setIdentifier(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "type" in
+        if fname in set dom data
+        then setType(data(fname));
+      let fname = "identifier" in
+        if fname in set dom data
+        then setIdentifier(data(fname)) );
+
+instance variables
+  private ivType : [IJmlExceptionType] := nil
+
+operations
+  public getType: () ==> IJmlExceptionType
+  getType() == return ivType;
+
+  public setType: IJmlExceptionType ==> ()
+  setType(parg) == ivType := parg;
+
+instance variables
+  private ivIdentifier : seq of char := []
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == return ivIdentifier;
+
+  public setIdentifier: seq of char ==> ()
+  setIdentifier(parg) == ivIdentifier := parg;
+
+end JmlException
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlExceptionType is subclass of IJmlExceptionType
+operations
+  public identity: () ==> seq of char
+  identity () == return "ExceptionType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitExceptionType(self);
+
+  public JmlExceptionType:
+    (seq of char) ==> JmlExceptionType
+  JmlExceptionType (p1) == 
+    ( setType(p1) );
+
+  public JmlExceptionType:
+    (seq of char) *
+    nat *
+    nat ==> JmlExceptionType
+  JmlExceptionType (p1,line,column) == 
+    ( setType(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "type" in
+        if fname in set dom data
+        then setType(data(fname)) );
+
+instance variables
+  private ivType : seq of char := []
+
+operations
+  public getType: () ==> seq of char
+  getType() == return ivType;
+
+  public setType: seq of char ==> ()
+  setType(parg) == ivType := parg;
+
+end JmlExceptionType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlExceptionalSpec is subclass of IJmlExceptionalSpec
+operations
+  public identity: () ==> seq of char
+  identity () == return "ExceptionalSpec";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitExceptionalSpec(self);
+
+  public JmlExceptionalSpec:
+    (IJmlScope) *
+    (seq of IJmlTrailers) ==> JmlExceptionalSpec
+  JmlExceptionalSpec (p1,p2) == 
+    ( setPrivacy(p1);
+      setList(p2) );
+
+  public JmlExceptionalSpec:
+    (IJmlScope) *
+    (seq of IJmlTrailers) *
+    nat *
+    nat ==> JmlExceptionalSpec
+  JmlExceptionalSpec (p1,p2,line,column) == 
+    ( setPrivacy(p1);
+      setList(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "privacy" in
+        if fname in set dom data
+        then setPrivacy(data(fname));
+      let fname = "list" in
+        if fname in set dom data
+        then setList(data(fname)) );
+
+instance variables
+  private ivPrivacy : [IJmlScope] := nil
+
+operations
+  public getPrivacy: () ==> IJmlScope
+  getPrivacy() == return ivPrivacy;
+
+  public setPrivacy: IJmlScope ==> ()
+  setPrivacy(parg) == ivPrivacy := parg;
+
+instance variables
+  private ivList : seq of IJmlTrailers := []
+
+operations
+  public getList: () ==> seq of IJmlTrailers
+  getList() == return ivList;
+
+  public setList: seq of IJmlTrailers ==> ()
+  setList(parg) == ivList := parg;
+
+  public addList: IJmlNode ==> ()
+  addList (parg) == ivList := ivList ^ [parg];
+
+end JmlExceptionalSpec
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlExistsExpression is subclass of IJmlExistsExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "ExistsExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitExistsExpression(self);
+
+  public JmlExistsExpression:
+    (IJmlQuantifierDeclaration) *
+    (seq of IJmlExpression) ==> JmlExistsExpression
+  JmlExistsExpression (p1,p2) == 
+    ( setBindList(p1);
+      setExpression(p2) );
+
+  public JmlExistsExpression:
+    (IJmlQuantifierDeclaration) *
+    (seq of IJmlExpression) *
+    nat *
+    nat ==> JmlExistsExpression
+  JmlExistsExpression (p1,p2,line,column) == 
+    ( setBindList(p1);
+      setExpression(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "bind_list" in
+        if fname in set dom data
+        then setBindList(data(fname));
+      let fname = "expression" in
+        if fname in set dom data
+        then setExpression(data(fname)) );
+
+instance variables
+  private ivBindList : [IJmlQuantifierDeclaration] := nil
+
+operations
+  public getBindList: () ==> IJmlQuantifierDeclaration
+  getBindList() == return ivBindList;
+
+  public setBindList: IJmlQuantifierDeclaration ==> ()
+  setBindList(parg) == ivBindList := parg;
+
+instance variables
+  private ivExpression : seq of IJmlExpression := []
+
+operations
+  public getExpression: () ==> seq of IJmlExpression
+  getExpression() == return ivExpression;
+
+  public setExpression: seq of IJmlExpression ==> ()
+  setExpression(parg) == ivExpression := parg;
+
+  public addExpression: IJmlNode ==> ()
+  addExpression (parg) == ivExpression := ivExpression ^ [parg];
+
+end JmlExistsExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlExpression is subclass of IJmlExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "Expression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitExpression(self);
+
+end JmlExpression
+\end{vdm_al}
+\begin{vdm_al}
+class JmlExpressionsList is subclass of IJmlExpressionsList
+operations
+  public identity: () ==> seq of char
+  identity () == return "ExpressionsList";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitExpressionsList(self);
+
+  public JmlExpressionsList:
+    (seq of IJmlExpression) ==> JmlExpressionsList
+  JmlExpressionsList (p1) == 
+    ( setList(p1) );
+
+  public JmlExpressionsList:
+    (seq of IJmlExpression) *
+    nat *
+    nat ==> JmlExpressionsList
+  JmlExpressionsList (p1,line,column) == 
+    ( setList(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "list" in
+        if fname in set dom data
+        then setList(data(fname)) );
+
+instance variables
+  private ivList : seq of IJmlExpression := []
+
+operations
+  public getList: () ==> seq of IJmlExpression
+  getList() == return ivList;
+
+  public setList: seq of IJmlExpression ==> ()
+  setList(parg) == ivList := parg;
+
+  public addList: IJmlNode ==> ()
+  addList (parg) == ivList := ivList ^ [parg];
+
+end JmlExpressionsList
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlField is subclass of IJmlField
+operations
+  public identity: () ==> seq of char
+  identity () == return "Field";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitField(self);
+
+  public JmlField:
+    (seq of char) *
+    (IJmlType) ==> JmlField
+  JmlField (p1,p2) == 
+    ( setId(p1);
+      setType(p2) );
+
+  public JmlField:
+    (seq of char) *
+    (IJmlType) *
+    nat *
+    nat ==> JmlField
+  JmlField (p1,p2,line,column) == 
+    ( setId(p1);
+      setType(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "id" in
+        if fname in set dom data
+        then setId(data(fname));
+      let fname = "type" in
+        if fname in set dom data
+        then setType(data(fname)) );
+
+instance variables
+  private ivId : seq of char := []
+
+operations
+  public getId: () ==> seq of char
+  getId() == return ivId;
+
+  public setId: seq of char ==> ()
+  setId(parg) == ivId := parg;
+
+instance variables
+  private ivType : [IJmlType] := nil
+
+operations
+  public getType: () ==> IJmlType
+  getType() == return ivType;
+
+  public setType: IJmlType ==> ()
+  setType(parg) == ivType := parg;
+
+end JmlField
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlFieldSelectExpression is subclass of IJmlFieldSelectExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "FieldSelectExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitFieldSelectExpression(self);
+
+  public JmlFieldSelectExpression:
+    (IJmlExpression) *
+    (IJmlName) ==> JmlFieldSelectExpression
+  JmlFieldSelectExpression (p1,p2) == 
+    ( setExpression(p1);
+      setName(p2) );
+
+  public JmlFieldSelectExpression:
+    (IJmlExpression) *
+    (IJmlName) *
+    nat *
+    nat ==> JmlFieldSelectExpression
+  JmlFieldSelectExpression (p1,p2,line,column) == 
+    ( setExpression(p1);
+      setName(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "expression" in
+        if fname in set dom data
+        then setExpression(data(fname));
+      let fname = "name" in
+        if fname in set dom data
+        then setName(data(fname)) );
+
+instance variables
+  private ivExpression : [IJmlExpression] := nil
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == return ivExpression;
+
+  public setExpression: IJmlExpression ==> ()
+  setExpression(parg) == ivExpression := parg;
+
+instance variables
+  private ivName : [IJmlName] := nil
+
+operations
+  public getName: () ==> IJmlName
+  getName() == return ivName;
+
+  public setName: IJmlName ==> ()
+  setName(parg) == ivName := parg;
+
+end JmlFieldSelectExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlFloatLiteral is subclass of IJmlFloatLiteral
+operations
+  public identity: () ==> seq of char
+  identity () == return "FloatLiteral";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitFloatLiteral(self);
+
+  public JmlFloatLiteral:
+    (real) ==> JmlFloatLiteral
+  JmlFloatLiteral (p1) == 
+    ( setVal(p1) );
+
+  public JmlFloatLiteral:
+    (real) *
+    nat *
+    nat ==> JmlFloatLiteral
+  JmlFloatLiteral (p1,line,column) == 
+    ( setVal(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "val" in
+        if fname in set dom data
+        then setVal(data(fname)) );
+
+instance variables
+  private ivVal : [real] := nil
+
+operations
+  public getVal: () ==> real
+  getVal() == return ivVal;
+
+  public setVal: real ==> ()
+  setVal(parg) == ivVal := parg;
+
+end JmlFloatLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlFloatType is subclass of IJmlFloatType
+operations
+  public identity: () ==> seq of char
+  identity () == return "FloatType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitFloatType(self);
+
+  public JmlFloatType:
+    () ==> JmlFloatType
+  JmlFloatType () == 
+    skip;
+
+  public JmlFloatType:
+    nat *
+    nat ==> JmlFloatType
+  JmlFloatType (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlFloatType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlForAllExpression is subclass of IJmlForAllExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "ForAllExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitForAllExpression(self);
+
+  public JmlForAllExpression:
+    (IJmlQuantifierDeclaration) *
+    (seq of IJmlExpression) ==> JmlForAllExpression
+  JmlForAllExpression (p1,p2) == 
+    ( setBindList(p1);
+      setExpression(p2) );
+
+  public JmlForAllExpression:
+    (IJmlQuantifierDeclaration) *
+    (seq of IJmlExpression) *
+    nat *
+    nat ==> JmlForAllExpression
+  JmlForAllExpression (p1,p2,line,column) == 
+    ( setBindList(p1);
+      setExpression(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "bind_list" in
+        if fname in set dom data
+        then setBindList(data(fname));
+      let fname = "expression" in
+        if fname in set dom data
+        then setExpression(data(fname)) );
+
+instance variables
+  private ivBindList : [IJmlQuantifierDeclaration] := nil
+
+operations
+  public getBindList: () ==> IJmlQuantifierDeclaration
+  getBindList() == return ivBindList;
+
+  public setBindList: IJmlQuantifierDeclaration ==> ()
+  setBindList(parg) == ivBindList := parg;
+
+instance variables
+  private ivExpression : seq of IJmlExpression := []
+
+operations
+  public getExpression: () ==> seq of IJmlExpression
+  getExpression() == return ivExpression;
+
+  public setExpression: seq of IJmlExpression ==> ()
+  setExpression(parg) == ivExpression := parg;
+
+  public addExpression: IJmlNode ==> ()
+  addExpression (parg) == ivExpression := ivExpression ^ [parg];
+
+end JmlForAllExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlIfExpression is subclass of IJmlIfExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "IfExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitIfExpression(self);
+
+  public JmlIfExpression:
+    (IJmlExpression) *
+    (IJmlExpression) *
+    (IJmlExpression) ==> JmlIfExpression
+  JmlIfExpression (p1,p2,p3) == 
+    ( setIfExpression(p1);
+      setThenExpression(p2);
+      setElseExpression(p3) );
+
+  public JmlIfExpression:
+    (IJmlExpression) *
+    (IJmlExpression) *
+    (IJmlExpression) *
+    nat *
+    nat ==> JmlIfExpression
+  JmlIfExpression (p1,p2,p3,line,column) == 
+    ( setIfExpression(p1);
+      setThenExpression(p2);
+      setElseExpression(p3);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "if_expression" in
+        if fname in set dom data
+        then setIfExpression(data(fname));
+      let fname = "then_expression" in
+        if fname in set dom data
+        then setThenExpression(data(fname));
+      let fname = "else_expression" in
+        if fname in set dom data
+        then setElseExpression(data(fname)) );
+
+instance variables
+  private ivIfExpression : [IJmlExpression] := nil
+
+operations
+  public getIfExpression: () ==> IJmlExpression
+  getIfExpression() == return ivIfExpression;
+
+  public setIfExpression: IJmlExpression ==> ()
+  setIfExpression(parg) == ivIfExpression := parg;
+
+instance variables
+  private ivThenExpression : [IJmlExpression] := nil
+
+operations
+  public getThenExpression: () ==> IJmlExpression
+  getThenExpression() == return ivThenExpression;
+
+  public setThenExpression: IJmlExpression ==> ()
+  setThenExpression(parg) == ivThenExpression := parg;
+
+instance variables
+  private ivElseExpression : [IJmlExpression] := nil
+
+operations
+  public getElseExpression: () ==> IJmlExpression
+  getElseExpression() == return ivElseExpression;
+
+  public setElseExpression: IJmlExpression ==> ()
+  setElseExpression(parg) == ivElseExpression := parg;
+
+end JmlIfExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlImport is subclass of IJmlImport
+operations
+  public identity: () ==> seq of char
+  identity () == return "Import";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitImport(self);
+
+  public JmlImport:
+    (seq of char) ==> JmlImport
+  JmlImport (p1) == 
+    ( setImport(p1) );
+
+  public JmlImport:
+    (seq of char) *
+    nat *
+    nat ==> JmlImport
+  JmlImport (p1,line,column) == 
+    ( setImport(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "import" in
+        if fname in set dom data
+        then setImport(data(fname)) );
+
+instance variables
+  private ivImport : seq of char := []
+
+operations
+  public getImport: () ==> seq of char
+  getImport() == return ivImport;
+
+  public setImport: seq of char ==> ()
+  setImport(parg) == ivImport := parg;
+
+end JmlImport
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlInstanceOfExpression is subclass of IJmlInstanceOfExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "InstanceOfExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitInstanceOfExpression(self);
+
+  public JmlInstanceOfExpression:
+    (IJmlType) *
+    (IJmlExpression) ==> JmlInstanceOfExpression
+  JmlInstanceOfExpression (p1,p2) == 
+    ( setType(p1);
+      setExpression(p2) );
+
+  public JmlInstanceOfExpression:
+    (IJmlType) *
+    (IJmlExpression) *
+    nat *
+    nat ==> JmlInstanceOfExpression
+  JmlInstanceOfExpression (p1,p2,line,column) == 
+    ( setType(p1);
+      setExpression(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "type" in
+        if fname in set dom data
+        then setType(data(fname));
+      let fname = "expression" in
+        if fname in set dom data
+        then setExpression(data(fname)) );
+
+instance variables
+  private ivType : [IJmlType] := nil
+
+operations
+  public getType: () ==> IJmlType
+  getType() == return ivType;
+
+  public setType: IJmlType ==> ()
+  setType(parg) == ivType := parg;
+
+instance variables
+  private ivExpression : [IJmlExpression] := nil
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == return ivExpression;
+
+  public setExpression: IJmlExpression ==> ()
+  setExpression(parg) == ivExpression := parg;
+
+end JmlInstanceOfExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlInstanceVariableDefinitions is subclass of IJmlInstanceVariableDefinitions
+operations
+  public identity: () ==> seq of char
+  identity () == return "InstanceVariableDefinitions";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitInstanceVariableDefinitions(self);
+
+  public JmlInstanceVariableDefinitions:
+    (seq of IJmlVariable) *
+    (seq of IJmlVariable) ==> JmlInstanceVariableDefinitions
+  JmlInstanceVariableDefinitions (p1,p2) == 
+    ( setJmlVariables(p1);
+      setJavaVariables(p2) );
+
+  public JmlInstanceVariableDefinitions:
+    (seq of IJmlVariable) *
+    (seq of IJmlVariable) *
+    nat *
+    nat ==> JmlInstanceVariableDefinitions
+  JmlInstanceVariableDefinitions (p1,p2,line,column) == 
+    ( setJmlVariables(p1);
+      setJavaVariables(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "jml_variables" in
+        if fname in set dom data
+        then setJmlVariables(data(fname));
+      let fname = "java_variables" in
+        if fname in set dom data
+        then setJavaVariables(data(fname)) );
+
+instance variables
+  private ivJmlVariables : seq of IJmlVariable := []
+
+operations
+  public getJmlVariables: () ==> seq of IJmlVariable
+  getJmlVariables() == return ivJmlVariables;
+
+  public setJmlVariables: seq of IJmlVariable ==> ()
+  setJmlVariables(parg) == ivJmlVariables := parg;
+
+  public addJmlVariables: IJmlNode ==> ()
+  addJmlVariables (parg) == ivJmlVariables := ivJmlVariables ^ [parg];
+
+instance variables
+  private ivJavaVariables : seq of IJmlVariable := []
+
+operations
+  public getJavaVariables: () ==> seq of IJmlVariable
+  getJavaVariables() == return ivJavaVariables;
+
+  public setJavaVariables: seq of IJmlVariable ==> ()
+  setJavaVariables(parg) == ivJavaVariables := parg;
+
+  public addJavaVariables: IJmlNode ==> ()
+  addJavaVariables (parg) == ivJavaVariables := ivJavaVariables ^ [parg];
+
+end JmlInstanceVariableDefinitions
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlIntegerType is subclass of IJmlIntegerType
+operations
+  public identity: () ==> seq of char
+  identity () == return "IntegerType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitIntegerType(self);
+
+  public JmlIntegerType:
+    () ==> JmlIntegerType
+  JmlIntegerType () == 
+    skip;
+
+  public JmlIntegerType:
+    nat *
+    nat ==> JmlIntegerType
+  JmlIntegerType (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlIntegerType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlInterfaceInheritanceClause is subclass of IJmlInterfaceInheritanceClause
+operations
+  public identity: () ==> seq of char
+  identity () == return "InterfaceInheritanceClause";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitInterfaceInheritanceClause(self);
+
+  public JmlInterfaceInheritanceClause:
+    (seq of seq of char) ==> JmlInterfaceInheritanceClause
+  JmlInterfaceInheritanceClause (p1) == 
+    ( setIdentifierList(p1) );
+
+  public JmlInterfaceInheritanceClause:
+    (seq of seq of char) *
+    nat *
+    nat ==> JmlInterfaceInheritanceClause
+  JmlInterfaceInheritanceClause (p1,line,column) == 
+    ( setIdentifierList(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "identifier_list" in
+        if fname in set dom data
+        then setIdentifierList(data(fname)) );
+
+instance variables
+  private ivIdentifierList : seq of seq of char := []
+
+operations
+  public getIdentifierList: () ==> seq of seq of char
+  getIdentifierList() == return ivIdentifierList;
+
+  public setIdentifierList: seq of seq of char ==> ()
+  setIdentifierList(parg) == ivIdentifierList := parg;
+
+  public addIdentifierList: seq of char ==> ()
+  addIdentifierList (parg) == ivIdentifierList := ivIdentifierList ^ [parg];
+
+end JmlInterfaceInheritanceClause
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlInvariantDefinition is subclass of IJmlInvariantDefinition
+operations
+  public identity: () ==> seq of char
+  identity () == return "InvariantDefinition";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitInvariantDefinition(self);
+
+  public JmlInvariantDefinition:
+    (IJmlAccessDefinition) *
+    (bool) *
+    (IJmlExpression) ==> JmlInvariantDefinition
+  JmlInvariantDefinition (p1,p2,p3) == 
+    ( setAccess(p1);
+      setRedundant(p2);
+      setPredicate(p3) );
+
+  public JmlInvariantDefinition:
+    (IJmlAccessDefinition) *
+    (bool) *
+    (IJmlExpression) *
+    nat *
+    nat ==> JmlInvariantDefinition
+  JmlInvariantDefinition (p1,p2,p3,line,column) == 
+    ( setAccess(p1);
+      setRedundant(p2);
+      setPredicate(p3);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "access" in
+        if fname in set dom data
+        then setAccess(data(fname));
+      let fname = "redundant" in
+        if fname in set dom data
+        then setRedundant(data(fname));
+      let fname = "predicate" in
+        if fname in set dom data
+        then setPredicate(data(fname)) );
+
+instance variables
+  private ivAccess : [IJmlAccessDefinition] := nil
+
+operations
+  public getAccess: () ==> IJmlAccessDefinition
+  getAccess() == return ivAccess;
+
+  public setAccess: IJmlAccessDefinition ==> ()
+  setAccess(parg) == ivAccess := parg;
+
+instance variables
+  private ivRedundant : [bool] := nil
+
+operations
+  public getRedundant: () ==> bool
+  getRedundant() == return ivRedundant;
+
+  public setRedundant: bool ==> ()
+  setRedundant(parg) == ivRedundant := parg;
+
+instance variables
+  private ivPredicate : [IJmlExpression] := nil
+
+operations
+  public getPredicate: () ==> IJmlExpression
+  getPredicate() == return ivPredicate;
+
+  public setPredicate: IJmlExpression ==> ()
+  setPredicate(parg) == ivPredicate := parg;
+
+end JmlInvariantDefinition
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlInvariantDefinitions is subclass of IJmlInvariantDefinitions
+operations
+  public identity: () ==> seq of char
+  identity () == return "InvariantDefinitions";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitInvariantDefinitions(self);
+
+  public JmlInvariantDefinitions:
+    (seq of IJmlInvariantDefinition) ==> JmlInvariantDefinitions
+  JmlInvariantDefinitions (p1) == 
+    ( setInvariantList(p1) );
+
+  public JmlInvariantDefinitions:
+    (seq of IJmlInvariantDefinition) *
+    nat *
+    nat ==> JmlInvariantDefinitions
+  JmlInvariantDefinitions (p1,line,column) == 
+    ( setInvariantList(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "invariant_list" in
+        if fname in set dom data
+        then setInvariantList(data(fname)) );
+
+instance variables
+  private ivInvariantList : seq of IJmlInvariantDefinition := []
+
+operations
+  public getInvariantList: () ==> seq of IJmlInvariantDefinition
+  getInvariantList() == return ivInvariantList;
+
+  public setInvariantList: seq of IJmlInvariantDefinition ==> ()
+  setInvariantList(parg) == ivInvariantList := parg;
+
+  public addInvariantList: IJmlNode ==> ()
+  addInvariantList (parg) == ivInvariantList := ivInvariantList ^ [parg];
+
+end JmlInvariantDefinitions
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlLexem is subclass of IJmlLexem
+
+instance variables
+  private ivLine : nat := 0
+
+operations
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitLexem(self);
+
+  public getLine: () ==> nat
+  getLine () == return ivLine;
+
+  public setLine: nat ==> ()
+  setLine (pline) == ivLine := pline
+
+instance variables
+  private ivColumn : nat := 0
+
+operations
+  public getColumn: () ==> nat
+  getColumn () == return ivColumn;
+
+  public setColumn: nat ==> ()
+  setColumn (pcolumn) == ivColumn := pcolumn
+
+instance variables
+  private ivLexval : nat := 0
+
+operations
+  public getLexval: () ==> nat
+  getLexval () == return ivLexval;
+
+  public setLexval: nat ==> ()
+  setLexval (plexval) == ivLexval := plexval
+
+instance variables
+  private ivText : seq of char := []
+
+operations
+  public getText: () ==> seq of char
+  getText () == return ivText;
+
+  public setText: seq of char ==> ()
+  setText (ptext) == ivText := ptext
+
+instance variables
+  private ivType : nat := ILEXEMUNKNOWN
+
+operations
+  public getType: () ==> nat
+  getType () == return ivType;
+
+  public isKeyword: () ==> bool
+  isKeyword () == return ivType = ILEXEMKEYWORD;
+
+  public isIdentifier: () ==> bool
+  isIdentifier () == return ivType = ILEXEMIDENTIFIER;
+
+  public isComment: () ==> bool
+  isComment () == return (ivType = ILEXEMLINECOMMENT) or (ivType = ILEXEMBLOCKCOMMENT);
+
+  public isLineComment: () ==> bool
+  isLineComment () == return ivType = ILEXEMLINECOMMENT;
+
+  public isBlockComment: () ==> bool
+  isBlockComment () == return ivType = ILEXEMBLOCKCOMMENT;
+
+  public JmlLexem: nat * nat * nat * seq of char * nat ==> JmlLexem
+  JmlLexem (pline, pcolumn, plexval, ptext, ptype) ==
+    ( ivLine := pline;
+      ivColumn := pcolumn;
+      ivLexval := plexval;
+      ivText := ptext;
+      ivType := ptype )
+
+end JmlLexem
+\end{vdm_al}
+\begin{vdm_al}
+class JmlLiteral is subclass of IJmlLiteral
+operations
+  public identity: () ==> seq of char
+  identity () == return "Literal";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitLiteral(self);
+
+end JmlLiteral
+\end{vdm_al}
+\begin{vdm_al}
+class JmlLiteralExpression is subclass of IJmlLiteralExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "LiteralExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitLiteralExpression(self);
+
+  public JmlLiteralExpression:
+    (IJmlLiteral) ==> JmlLiteralExpression
+  JmlLiteralExpression (p1) == 
+    ( setLit(p1) );
+
+  public JmlLiteralExpression:
+    (IJmlLiteral) *
+    nat *
+    nat ==> JmlLiteralExpression
+  JmlLiteralExpression (p1,line,column) == 
+    ( setLit(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "lit" in
+        if fname in set dom data
+        then setLit(data(fname)) );
+
+instance variables
+  private ivLit : [IJmlLiteral] := nil
+
+operations
+  public getLit: () ==> IJmlLiteral
+  getLit() == return ivLit;
+
+  public setLit: IJmlLiteral ==> ()
+  setLit(parg) == ivLit := parg;
+
+end JmlLiteralExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlMapEnumeration is subclass of IJmlMapEnumeration
+operations
+  public identity: () ==> seq of char
+  identity () == return "MapEnumeration";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitMapEnumeration(self);
+
+  public JmlMapEnumeration:
+    (seq of IJmlMapLet) ==> JmlMapEnumeration
+  JmlMapEnumeration (p1) == 
+    ( setList(p1) );
+
+  public JmlMapEnumeration:
+    (seq of IJmlMapLet) *
+    nat *
+    nat ==> JmlMapEnumeration
+  JmlMapEnumeration (p1,line,column) == 
+    ( setList(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "list" in
+        if fname in set dom data
+        then setList(data(fname)) );
+
+instance variables
+  private ivList : seq of IJmlMapLet := []
+
+operations
+  public getList: () ==> seq of IJmlMapLet
+  getList() == return ivList;
+
+  public setList: seq of IJmlMapLet ==> ()
+  setList(parg) == ivList := parg;
+
+  public addList: IJmlNode ==> ()
+  addList (parg) == ivList := ivList ^ [parg];
+
+end JmlMapEnumeration
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlMapLet is subclass of IJmlMapLet
+operations
+  public identity: () ==> seq of char
+  identity () == return "MapLet";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitMapLet(self);
+
+  public JmlMapLet:
+    (IJmlExpression) *
+    (IJmlExpression) ==> JmlMapLet
+  JmlMapLet (p1,p2) == 
+    ( setDomVal(p1);
+      setRngVal(p2) );
+
+  public JmlMapLet:
+    (IJmlExpression) *
+    (IJmlExpression) *
+    nat *
+    nat ==> JmlMapLet
+  JmlMapLet (p1,p2,line,column) == 
+    ( setDomVal(p1);
+      setRngVal(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "dom_val" in
+        if fname in set dom data
+        then setDomVal(data(fname));
+      let fname = "rng_val" in
+        if fname in set dom data
+        then setRngVal(data(fname)) );
+
+instance variables
+  private ivDomVal : [IJmlExpression] := nil
+
+operations
+  public getDomVal: () ==> IJmlExpression
+  getDomVal() == return ivDomVal;
+
+  public setDomVal: IJmlExpression ==> ()
+  setDomVal(parg) == ivDomVal := parg;
+
+instance variables
+  private ivRngVal : [IJmlExpression] := nil
+
+operations
+  public getRngVal: () ==> IJmlExpression
+  getRngVal() == return ivRngVal;
+
+  public setRngVal: IJmlExpression ==> ()
+  setRngVal(parg) == ivRngVal := parg;
+
+end JmlMapLet
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlMapValueToValueType is subclass of IJmlMapValueToValueType
+operations
+  public identity: () ==> seq of char
+  identity () == return "MapValueToValueType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitMapValueToValueType(self);
+
+  public JmlMapValueToValueType:
+    (IJmlType) *
+    (IJmlType) ==> JmlMapValueToValueType
+  JmlMapValueToValueType (p1,p2) == 
+    ( setDomType(p1);
+      setRngType(p2) );
+
+  public JmlMapValueToValueType:
+    (IJmlType) *
+    (IJmlType) *
+    nat *
+    nat ==> JmlMapValueToValueType
+  JmlMapValueToValueType (p1,p2,line,column) == 
+    ( setDomType(p1);
+      setRngType(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "dom_type" in
+        if fname in set dom data
+        then setDomType(data(fname));
+      let fname = "rng_type" in
+        if fname in set dom data
+        then setRngType(data(fname)) );
+
+instance variables
+  private ivDomType : [IJmlType] := nil
+
+operations
+  public getDomType: () ==> IJmlType
+  getDomType() == return ivDomType;
+
+  public setDomType: IJmlType ==> ()
+  setDomType(parg) == ivDomType := parg;
+
+instance variables
+  private ivRngType : [IJmlType] := nil
+
+operations
+  public getRngType: () ==> IJmlType
+  getRngType() == return ivRngType;
+
+  public setRngType: IJmlType ==> ()
+  setRngType(parg) == ivRngType := parg;
+
+end JmlMapValueToValueType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlMethodSpecifications is subclass of IJmlMethodSpecifications
+operations
+  public identity: () ==> seq of char
+  identity () == return "MethodSpecifications";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitMethodSpecifications(self);
+
+  public JmlMethodSpecifications:
+    (IJmlSpecs) *
+    (IJmlSpecs) ==> JmlMethodSpecifications
+  JmlMethodSpecifications (p1,p2) == 
+    ( setSpecs(p1);
+      setAlso(p2) );
+
+  public JmlMethodSpecifications:
+    (IJmlSpecs) *
+    (IJmlSpecs) *
+    nat *
+    nat ==> JmlMethodSpecifications
+  JmlMethodSpecifications (p1,p2,line,column) == 
+    ( setSpecs(p1);
+      setAlso(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "specs" in
+        if fname in set dom data
+        then setSpecs(data(fname));
+      let fname = "also" in
+        if fname in set dom data
+        then setAlso(data(fname)) );
+
+instance variables
+  private ivSpecs : [IJmlSpecs] := nil
+
+operations
+  public getSpecs: () ==> IJmlSpecs
+  getSpecs() == return ivSpecs;
+
+  public setSpecs: IJmlSpecs ==> ()
+  setSpecs(parg) == ivSpecs := parg;
+
+instance variables
+  private ivAlso : [IJmlSpecs] := nil
+
+operations
+  public getAlso: () ==> IJmlSpecs
+  getAlso() == return ivAlso;
+
+  public setAlso: IJmlSpecs ==> ()
+  setAlso(parg) == ivAlso := parg;
+
+end JmlMethodSpecifications
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlModelImport is subclass of IJmlModelImport
+operations
+  public identity: () ==> seq of char
+  identity () == return "ModelImport";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitModelImport(self);
+
+  public JmlModelImport:
+    (bool) *
+    (seq of char) ==> JmlModelImport
+  JmlModelImport (p1,p2) == 
+    ( setModel(p1);
+      setImport(p2) );
+
+  public JmlModelImport:
+    (bool) *
+    (seq of char) *
+    nat *
+    nat ==> JmlModelImport
+  JmlModelImport (p1,p2,line,column) == 
+    ( setModel(p1);
+      setImport(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "model" in
+        if fname in set dom data
+        then setModel(data(fname));
+      let fname = "import" in
+        if fname in set dom data
+        then setImport(data(fname)) );
+
+instance variables
+  private ivModel : [bool] := nil
+
+operations
+  public getModel: () ==> bool
+  getModel() == return ivModel;
+
+  public setModel: bool ==> ()
+  setModel(parg) == ivModel := parg;
+
+instance variables
+  private ivImport : seq of char := []
+
+operations
+  public getImport: () ==> seq of char
+  getImport() == return ivImport;
+
+  public setImport: seq of char ==> ()
+  setImport(parg) == ivImport := parg;
+
+end JmlModelImport
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlName is subclass of IJmlName
+operations
+  public identity: () ==> seq of char
+  identity () == return "Name";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitName(self);
+
+  public JmlName:
+    [seq of char] *
+    (seq of char) ==> JmlName
+  JmlName (p1,p2) == 
+    ( setClassIdentifier(p1);
+      setIdentifier(p2) );
+
+  public JmlName:
+    [seq of char] *
+    (seq of char) *
+    nat *
+    nat ==> JmlName
+  JmlName (p1,p2,line,column) == 
+    ( setClassIdentifier(p1);
+      setIdentifier(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "class_identifier" in
+        if fname in set dom data
+        then setClassIdentifier(data(fname));
+      let fname = "identifier" in
+        if fname in set dom data
+        then setIdentifier(data(fname)) );
+
+instance variables
+  private ivClassIdentifier : [seq of char] := nil
+
+operations
+  public getClassIdentifier: () ==> seq of char
+  getClassIdentifier() == return ivClassIdentifier
+    pre hasClassIdentifier();
+
+  public hasClassIdentifier: () ==> bool
+  hasClassIdentifier () == return ivClassIdentifier <> nil;
+
+  public setClassIdentifier: [ seq of char ] ==> ()
+  setClassIdentifier(parg) == ivClassIdentifier := parg;
+
+instance variables
+  private ivIdentifier : seq of char := []
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == return ivIdentifier;
+
+  public setIdentifier: seq of char ==> ()
+  setIdentifier(parg) == ivIdentifier := parg;
+
+end JmlName
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlNameId is subclass of IJmlNameId
+operations
+  public identity: () ==> seq of char
+  identity () == return "NameId";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitNameId(self);
+
+  public JmlNameId:
+    (seq of char) ==> JmlNameId
+  JmlNameId (p1) == 
+    ( setName(p1) );
+
+  public JmlNameId:
+    (seq of char) *
+    nat *
+    nat ==> JmlNameId
+  JmlNameId (p1,line,column) == 
+    ( setName(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "name" in
+        if fname in set dom data
+        then setName(data(fname)) );
+
+instance variables
+  private ivName : seq of char := []
+
+operations
+  public getName: () ==> seq of char
+  getName() == return ivName;
+
+  public setName: seq of char ==> ()
+  setName(parg) == ivName := parg;
+
+end JmlNameId
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlNatType is subclass of IJmlNatType
+operations
+  public identity: () ==> seq of char
+  identity () == return "NatType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitNatType(self);
+
+  public JmlNatType:
+    (nat) ==> JmlNatType
+  JmlNatType (p1) == 
+    ( setLimit(p1) );
+
+  public JmlNatType:
+    (nat) *
+    nat *
+    nat ==> JmlNatType
+  JmlNatType (p1,line,column) == 
+    ( setLimit(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "limit" in
+        if fname in set dom data
+        then setLimit(data(fname)) );
+
+instance variables
+  private ivLimit : [nat] := nil
+
+operations
+  public getLimit: () ==> nat
+  getLimit() == return ivLimit;
+
+  public setLimit: nat ==> ()
+  setLimit(parg) == ivLimit := parg;
+
+end JmlNatType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlNewExpression is subclass of IJmlNewExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "NewExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitNewExpression(self);
+
+  public JmlNewExpression:
+    (IJmlType) *
+    (seq of IJmlExpression) ==> JmlNewExpression
+  JmlNewExpression (p1,p2) == 
+    ( setType(p1);
+      setExpressionList(p2) );
+
+  public JmlNewExpression:
+    (IJmlType) *
+    (seq of IJmlExpression) *
+    nat *
+    nat ==> JmlNewExpression
+  JmlNewExpression (p1,p2,line,column) == 
+    ( setType(p1);
+      setExpressionList(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "type" in
+        if fname in set dom data
+        then setType(data(fname));
+      let fname = "expression_list" in
+        if fname in set dom data
+        then setExpressionList(data(fname)) );
+
+instance variables
+  private ivType : [IJmlType] := nil
+
+operations
+  public getType: () ==> IJmlType
+  getType() == return ivType;
+
+  public setType: IJmlType ==> ()
+  setType(parg) == ivType := parg;
+
+instance variables
+  private ivExpressionList : seq of IJmlExpression := []
+
+operations
+  public getExpressionList: () ==> seq of IJmlExpression
+  getExpressionList() == return ivExpressionList;
+
+  public setExpressionList: seq of IJmlExpression ==> ()
+  setExpressionList(parg) == ivExpressionList := parg;
+
+  public addExpressionList: IJmlNode ==> ()
+  addExpressionList (parg) == ivExpressionList := ivExpressionList ^ [parg];
+
+end JmlNewExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class IJmlContextInfo
+
+operations
+  public accept: IJmlVisitor ==> ()
+  accept (-) == is subclass responsibility
+
+end IJmlContextInfo
+\end{vdm_al}
+
+\begin{vdm_al}
+-- important note: this class is renamed to JmlNode by the patch script!
+class IJmlNode
+
+values
+  public static prefix : seq of char = "Jml"
+
+types
+  public FieldValue = 
+    bool | char | nat | real | IJmlNode | 
+    seq of FieldValue |
+    set of FieldValue |
+    map FieldValue to FieldValue
+
+instance variables
+  private ivInfo : map nat to IJmlContextInfo := {|->}
+
+operations
+  public identity: () ==> seq of char
+  identity () == return "Node";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitNode(self);
+
+  public getContextInfo: nat ==> IJmlContextInfo
+  getContextInfo (pci) == return ivInfo(pci)
+    pre pci in set dom ivInfo;
+
+  public getContextInfoCount: () ==> nat
+  getContextInfoCount () == return card dom ivInfo;
+
+  public addContextInfo: IJmlContextInfo ==> nat
+  addContextInfo (pci) ==
+    ( dcl res : nat := card dom ivInfo + 1;
+      ivInfo := ivInfo munion {res |-> pci};
+      return res )
+
+instance variables
+  private ivLine : nat := 0;
+  private ivColumn : nat := 0;
+
+operations
+  public getLine : () ==> nat
+  getLine () == return ivLine;
+
+  public setLine : nat ==> ()
+  setLine (pl) == ivLine := pl;
+
+  public getColumn : () ==> nat
+  getColumn () == return ivColumn;
+
+  public setColumn : nat ==> ()
+  setColumn (pc) == ivColumn := pc;
+
+  public setPosition : nat * nat ==> ()
+  setPosition (pl, pc) ==
+    ( setLine(pl); setColumn(pc) );
+
+  public setPosLexem : IJmlLexem ==> ()
+  setPosLexem (pol) ==
+    ( setLine(pol.getLine());
+      setColumn(pol.getColumn()) );
+
+  public setPosNode : IJmlNode ==> ()
+  setPosNode (pnd) ==
+    ( setLine(pnd.getLine());
+      setColumn(pnd.getColumn()) )
+
+end IJmlNode
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlNormalSpec is subclass of IJmlNormalSpec
+operations
+  public identity: () ==> seq of char
+  identity () == return "NormalSpec";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitNormalSpec(self);
+
+  public JmlNormalSpec:
+    (IJmlScope) *
+    (seq of IJmlTrailers) ==> JmlNormalSpec
+  JmlNormalSpec (p1,p2) == 
+    ( setPrivacy(p1);
+      setList(p2) );
+
+  public JmlNormalSpec:
+    (IJmlScope) *
+    (seq of IJmlTrailers) *
+    nat *
+    nat ==> JmlNormalSpec
+  JmlNormalSpec (p1,p2,line,column) == 
+    ( setPrivacy(p1);
+      setList(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "privacy" in
+        if fname in set dom data
+        then setPrivacy(data(fname));
+      let fname = "list" in
+        if fname in set dom data
+        then setList(data(fname)) );
+
+instance variables
+  private ivPrivacy : [IJmlScope] := nil
+
+operations
+  public getPrivacy: () ==> IJmlScope
+  getPrivacy() == return ivPrivacy;
+
+  public setPrivacy: IJmlScope ==> ()
+  setPrivacy(parg) == ivPrivacy := parg;
+
+instance variables
+  private ivList : seq of IJmlTrailers := []
+
+operations
+  public getList: () ==> seq of IJmlTrailers
+  getList() == return ivList;
+
+  public setList: seq of IJmlTrailers ==> ()
+  setList(parg) == ivList := parg;
+
+  public addList: IJmlNode ==> ()
+  addList (parg) == ivList := ivList ^ [parg];
+
+end JmlNormalSpec
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlNotAssignedKeyword is subclass of IJmlNotAssignedKeyword
+operations
+  public identity: () ==> seq of char
+  identity () == return "NotAssignedKeyword";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitNotAssignedKeyword(self);
+
+  public JmlNotAssignedKeyword:
+    () ==> JmlNotAssignedKeyword
+  JmlNotAssignedKeyword () == 
+    skip;
+
+  public JmlNotAssignedKeyword:
+    nat *
+    nat ==> JmlNotAssignedKeyword
+  JmlNotAssignedKeyword (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlNotAssignedKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlNotKeywordUnary is subclass of IJmlNotKeywordUnary
+operations
+  public identity: () ==> seq of char
+  identity () == return "NotKeywordUnary";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitNotKeywordUnary(self);
+
+  public JmlNotKeywordUnary:
+    () ==> JmlNotKeywordUnary
+  JmlNotKeywordUnary () == 
+    skip;
+
+  public JmlNotKeywordUnary:
+    nat *
+    nat ==> JmlNotKeywordUnary
+  JmlNotKeywordUnary (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlNotKeywordUnary
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlNullKeyword is subclass of IJmlNullKeyword
+operations
+  public identity: () ==> seq of char
+  identity () == return "NullKeyword";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitNullKeyword(self);
+
+  public JmlNullKeyword:
+    () ==> JmlNullKeyword
+  JmlNullKeyword () == 
+    skip;
+
+  public JmlNullKeyword:
+    nat *
+    nat ==> JmlNullKeyword
+  JmlNullKeyword (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlNullKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlNullLiteral is subclass of IJmlNullLiteral
+operations
+  public identity: () ==> seq of char
+  identity () == return "NullLiteral";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitNullLiteral(self);
+
+  public JmlNullLiteral:
+    () ==> JmlNullLiteral
+  JmlNullLiteral () == 
+    skip;
+
+  public JmlNullLiteral:
+    nat *
+    nat ==> JmlNullLiteral
+  JmlNullLiteral (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlNullLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlNumericalLiteral is subclass of IJmlNumericalLiteral
+operations
+  public identity: () ==> seq of char
+  identity () == return "NumericalLiteral";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitNumericalLiteral(self);
+
+  public JmlNumericalLiteral:
+    (nat) ==> JmlNumericalLiteral
+  JmlNumericalLiteral (p1) == 
+    ( setVal(p1) );
+
+  public JmlNumericalLiteral:
+    (nat) *
+    nat *
+    nat ==> JmlNumericalLiteral
+  JmlNumericalLiteral (p1,line,column) == 
+    ( setVal(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "val" in
+        if fname in set dom data
+        then setVal(data(fname)) );
+
+instance variables
+  private ivVal : [nat] := nil
+
+operations
+  public getVal: () ==> nat
+  getVal() == return ivVal;
+
+  public setVal: nat ==> ()
+  setVal(parg) == ivVal := parg;
+
+end JmlNumericalLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlObjectType is subclass of IJmlObjectType
+operations
+  public identity: () ==> seq of char
+  identity () == return "ObjectType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitObjectType(self);
+
+  public JmlObjectType:
+    () ==> JmlObjectType
+  JmlObjectType () == 
+    skip;
+
+  public JmlObjectType:
+    nat *
+    nat ==> JmlObjectType
+  JmlObjectType (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlObjectType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlOldKeyword is subclass of IJmlOldKeyword
+operations
+  public identity: () ==> seq of char
+  identity () == return "OldKeyword";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitOldKeyword(self);
+
+  public JmlOldKeyword:
+    () ==> JmlOldKeyword
+  JmlOldKeyword () == 
+    skip;
+
+  public JmlOldKeyword:
+    nat *
+    nat ==> JmlOldKeyword
+  JmlOldKeyword (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlOldKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlOldKeywordUnary is subclass of IJmlOldKeywordUnary
+operations
+  public identity: () ==> seq of char
+  identity () == return "OldKeywordUnary";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitOldKeywordUnary(self);
+
+  public JmlOldKeywordUnary:
+    () ==> JmlOldKeywordUnary
+  JmlOldKeywordUnary () == 
+    skip;
+
+  public JmlOldKeywordUnary:
+    nat *
+    nat ==> JmlOldKeywordUnary
+  JmlOldKeywordUnary (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlOldKeywordUnary
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlOldName is subclass of IJmlOldName
+operations
+  public identity: () ==> seq of char
+  identity () == return "OldName";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitOldName(self);
+
+  public JmlOldName:
+    (seq of char) ==> JmlOldName
+  JmlOldName (p1) == 
+    ( setIdentifier(p1) );
+
+  public JmlOldName:
+    (seq of char) *
+    nat *
+    nat ==> JmlOldName
+  JmlOldName (p1,line,column) == 
+    ( setIdentifier(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "identifier" in
+        if fname in set dom data
+        then setIdentifier(data(fname)) );
+
+instance variables
+  private ivIdentifier : seq of char := []
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == return ivIdentifier;
+
+  public setIdentifier: seq of char ==> ()
+  setIdentifier(parg) == ivIdentifier := parg;
+
+end JmlOldName
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlOperationDefinition is subclass of IJmlOperationDefinition
+operations
+  public identity: () ==> seq of char
+  identity () == return "OperationDefinition";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitOperationDefinition(self);
+
+  public JmlOperationDefinition:
+    [IJmlMethodSpecifications] *
+    (IJmlAccessDefinition) *
+    (bool) *
+    (bool) *
+    (bool) *
+    (IJmlType) *
+    (seq of char) *
+    (seq of IJmlParameter) *
+    [IJmlBody] ==> JmlOperationDefinition
+  JmlOperationDefinition (p1,p2,p3,p4,p5,p6,p7,p8,p9) == 
+    ( setTrailer(p1);
+      setAccess(p2);
+      setPure(p3);
+      setStatickeyword(p4);
+      setFinal(p5);
+      setReturningType(p6);
+      setIdentifier(p7);
+      setParameterList(p8);
+      setBody(p9) );
+
+  public JmlOperationDefinition:
+    [IJmlMethodSpecifications] *
+    (IJmlAccessDefinition) *
+    (bool) *
+    (bool) *
+    (bool) *
+    (IJmlType) *
+    (seq of char) *
+    (seq of IJmlParameter) *
+    [IJmlBody] *
+    nat *
+    nat ==> JmlOperationDefinition
+  JmlOperationDefinition (p1,p2,p3,p4,p5,p6,p7,p8,p9,line,column) == 
+    ( setTrailer(p1);
+      setAccess(p2);
+      setPure(p3);
+      setStatickeyword(p4);
+      setFinal(p5);
+      setReturningType(p6);
+      setIdentifier(p7);
+      setParameterList(p8);
+      setBody(p9);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "trailer" in
+        if fname in set dom data
+        then setTrailer(data(fname));
+      let fname = "access" in
+        if fname in set dom data
+        then setAccess(data(fname));
+      let fname = "pure" in
+        if fname in set dom data
+        then setPure(data(fname));
+      let fname = "statickeyword" in
+        if fname in set dom data
+        then setStatickeyword(data(fname));
+      let fname = "final" in
+        if fname in set dom data
+        then setFinal(data(fname));
+      let fname = "returning_type" in
+        if fname in set dom data
+        then setReturningType(data(fname));
+      let fname = "identifier" in
+        if fname in set dom data
+        then setIdentifier(data(fname));
+      let fname = "parameter_list" in
+        if fname in set dom data
+        then setParameterList(data(fname));
+      let fname = "body" in
+        if fname in set dom data
+        then setBody(data(fname)) );
+
+instance variables
+  private ivTrailer : [IJmlMethodSpecifications] := nil
+
+operations
+  public getTrailer: () ==> IJmlMethodSpecifications
+  getTrailer() == return ivTrailer
+    pre hasTrailer();
+
+  public hasTrailer: () ==> bool
+  hasTrailer () == return ivTrailer <> nil;
+
+  public setTrailer: [ IJmlMethodSpecifications ] ==> ()
+  setTrailer(parg) == ivTrailer := parg;
+
+instance variables
+  private ivAccess : [IJmlAccessDefinition] := nil
+
+operations
+  public getAccess: () ==> IJmlAccessDefinition
+  getAccess() == return ivAccess;
+
+  public setAccess: IJmlAccessDefinition ==> ()
+  setAccess(parg) == ivAccess := parg;
+
+instance variables
+  private ivPure : [bool] := nil
+
+operations
+  public getPure: () ==> bool
+  getPure() == return ivPure;
+
+  public setPure: bool ==> ()
+  setPure(parg) == ivPure := parg;
+
+instance variables
+  private ivStatickeyword : [bool] := nil
+
+operations
+  public getStatickeyword: () ==> bool
+  getStatickeyword() == return ivStatickeyword;
+
+  public setStatickeyword: bool ==> ()
+  setStatickeyword(parg) == ivStatickeyword := parg;
+
+instance variables
+  private ivFinal : [bool] := nil
+
+operations
+  public getFinal: () ==> bool
+  getFinal() == return ivFinal;
+
+  public setFinal: bool ==> ()
+  setFinal(parg) == ivFinal := parg;
+
+instance variables
+  private ivReturningType : [IJmlType] := nil
+
+operations
+  public getReturningType: () ==> IJmlType
+  getReturningType() == return ivReturningType;
+
+  public setReturningType: IJmlType ==> ()
+  setReturningType(parg) == ivReturningType := parg;
+
+instance variables
+  private ivIdentifier : seq of char := []
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == return ivIdentifier;
+
+  public setIdentifier: seq of char ==> ()
+  setIdentifier(parg) == ivIdentifier := parg;
+
+instance variables
+  private ivParameterList : seq of IJmlParameter := []
+
+operations
+  public getParameterList: () ==> seq of IJmlParameter
+  getParameterList() == return ivParameterList;
+
+  public setParameterList: seq of IJmlParameter ==> ()
+  setParameterList(parg) == ivParameterList := parg;
+
+  public addParameterList: IJmlNode ==> ()
+  addParameterList (parg) == ivParameterList := ivParameterList ^ [parg];
+
+instance variables
+  private ivBody : [IJmlBody] := nil
+
+operations
+  public getBody: () ==> IJmlBody
+  getBody() == return ivBody
+    pre hasBody();
+
+  public hasBody: () ==> bool
+  hasBody () == return ivBody <> nil;
+
+  public setBody: [ IJmlBody ] ==> ()
+  setBody(parg) == ivBody := parg;
+
+end JmlOperationDefinition
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlOperationDefinitions is subclass of IJmlOperationDefinitions
+operations
+  public identity: () ==> seq of char
+  identity () == return "OperationDefinitions";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitOperationDefinitions(self);
+
+  public JmlOperationDefinitions:
+    (seq of IJmlOperationDefinition) ==> JmlOperationDefinitions
+  JmlOperationDefinitions (p1) == 
+    ( setOperationList(p1) );
+
+  public JmlOperationDefinitions:
+    (seq of IJmlOperationDefinition) *
+    nat *
+    nat ==> JmlOperationDefinitions
+  JmlOperationDefinitions (p1,line,column) == 
+    ( setOperationList(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "operation_list" in
+        if fname in set dom data
+        then setOperationList(data(fname)) );
+
+instance variables
+  private ivOperationList : seq of IJmlOperationDefinition := []
+
+operations
+  public getOperationList: () ==> seq of IJmlOperationDefinition
+  getOperationList() == return ivOperationList;
+
+  public setOperationList: seq of IJmlOperationDefinition ==> ()
+  setOperationList(parg) == ivOperationList := parg;
+
+  public addOperationList: IJmlNode ==> ()
+  addOperationList (parg) == ivOperationList := ivOperationList ^ [parg];
+
+end JmlOperationDefinitions
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlOperationTrailer is subclass of IJmlOperationTrailer
+operations
+  public identity: () ==> seq of char
+  identity () == return "OperationTrailer";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitOperationTrailer(self);
+
+end JmlOperationTrailer
+\end{vdm_al}
+\begin{vdm_al}
+class JmlOtherDefinitions is subclass of IJmlOtherDefinitions
+operations
+  public identity: () ==> seq of char
+  identity () == return "OtherDefinitions";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitOtherDefinitions(self);
+
+  public JmlOtherDefinitions:
+    () ==> JmlOtherDefinitions
+  JmlOtherDefinitions () == 
+    skip;
+
+  public JmlOtherDefinitions:
+    nat *
+    nat ==> JmlOtherDefinitions
+  JmlOtherDefinitions (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlOtherDefinitions
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlParameter is subclass of IJmlParameter
+operations
+  public identity: () ==> seq of char
+  identity () == return "Parameter";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitParameter(self);
+
+  public JmlParameter:
+    (IJmlType) *
+    (seq of char) ==> JmlParameter
+  JmlParameter (p1,p2) == 
+    ( setType(p1);
+      setIdentifier(p2) );
+
+  public JmlParameter:
+    (IJmlType) *
+    (seq of char) *
+    nat *
+    nat ==> JmlParameter
+  JmlParameter (p1,p2,line,column) == 
+    ( setType(p1);
+      setIdentifier(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "type" in
+        if fname in set dom data
+        then setType(data(fname));
+      let fname = "identifier" in
+        if fname in set dom data
+        then setIdentifier(data(fname)) );
+
+instance variables
+  private ivType : [IJmlType] := nil
+
+operations
+  public getType: () ==> IJmlType
+  getType() == return ivType;
+
+  public setType: IJmlType ==> ()
+  setType(parg) == ivType := parg;
+
+instance variables
+  private ivIdentifier : seq of char := []
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == return ivIdentifier;
+
+  public setIdentifier: seq of char ==> ()
+  setIdentifier(parg) == ivIdentifier := parg;
+
+end JmlParameter
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlPostfixExpression is subclass of IJmlPostfixExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "PostfixExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitPostfixExpression(self);
+
+  public JmlPostfixExpression:
+    (seq of IJmlPrimaryExpressions) *
+    (IJmlPostfixOperation) ==> JmlPostfixExpression
+  JmlPostfixExpression (p1,p2) == 
+    ( setPrimary(p1);
+      setOperation(p2) );
+
+  public JmlPostfixExpression:
+    (seq of IJmlPrimaryExpressions) *
+    (IJmlPostfixOperation) *
+    nat *
+    nat ==> JmlPostfixExpression
+  JmlPostfixExpression (p1,p2,line,column) == 
+    ( setPrimary(p1);
+      setOperation(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "primary" in
+        if fname in set dom data
+        then setPrimary(data(fname));
+      let fname = "operation" in
+        if fname in set dom data
+        then setOperation(data(fname)) );
+
+instance variables
+  private ivPrimary : seq of IJmlPrimaryExpressions := []
+
+operations
+  public getPrimary: () ==> seq of IJmlPrimaryExpressions
+  getPrimary() == return ivPrimary;
+
+  public setPrimary: seq of IJmlPrimaryExpressions ==> ()
+  setPrimary(parg) == ivPrimary := parg;
+
+  public addPrimary: IJmlNode ==> ()
+  addPrimary (parg) == ivPrimary := ivPrimary ^ [parg];
+
+instance variables
+  private ivOperation : [IJmlPostfixOperation] := nil
+
+operations
+  public getOperation: () ==> IJmlPostfixOperation
+  getOperation() == return ivOperation;
+
+  public setOperation: IJmlPostfixOperation ==> ()
+  setOperation(parg) == ivOperation := parg;
+
+end JmlPostfixExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlPostfixOperation is subclass of IJmlPostfixOperation
+operations
+  public identity: () ==> seq of char
+  identity () == return "PostfixOperation";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitPostfixOperation(self);
+
+  public JmlPostfixOperation: nat ==> JmlPostfixOperation
+  JmlPostfixOperation (pv) == setValue(pv);
+
+  public JmlPostfixOperation: nat * nat * nat ==> JmlPostfixOperation
+  JmlPostfixOperation (pv, pline, pcolumn) == ( setValue(pv); setPosition(pline, pcolumn) );
+
+instance variables
+  private val : [nat] := nil
+
+operations
+  public setValue: nat ==> ()
+  setValue (pval) == val := pval
+    pre val = nil and JmlPostfixOperationQuotes`validQuote(pval);
+
+  public getValue: () ==> nat
+  getValue () == return val
+    pre val <> nil;
+
+  public getStringValue: () ==> seq of char
+  getStringValue() == return JmlPostfixOperationQuotes`getQuoteName(val)
+    pre val <> nil;
+
+end JmlPostfixOperation
+\end{vdm_al}
+\begin{vdm_al}
+class JmlPostfixOperationQuotes
+instance variables
+  static public IQINCREMENT : nat := 0;
+  static public IQDECREMENT : nat := 1;
+
+  static private qmap : map nat to seq of char :=
+    { IQINCREMENT |-> "<INCREMENT>",
+      IQDECREMENT |-> "<DECREMENT>" }
+
+operations
+  static public getQuoteName: nat ==> seq of char
+  getQuoteName (pid) ==
+    return qmap(pid)
+    pre validQuote(pid);
+
+  static public validQuote: nat ==> bool
+  validQuote (pid) == return pid in set dom qmap
+
+end JmlPostfixOperationQuotes
+\end{vdm_al}
+\begin{vdm_al}
+class JmlPrimaryExpression is subclass of IJmlPrimaryExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "PrimaryExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitPrimaryExpression(self);
+
+end JmlPrimaryExpression
+\end{vdm_al}
+\begin{vdm_al}
+class JmlPrimaryExpressionKeyword is subclass of IJmlPrimaryExpressionKeyword
+operations
+  public identity: () ==> seq of char
+  identity () == return "PrimaryExpressionKeyword";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitPrimaryExpressionKeyword(self);
+
+  public JmlPrimaryExpressionKeyword:
+    (IJmlPrimaryExpressionOption) ==> JmlPrimaryExpressionKeyword
+  JmlPrimaryExpressionKeyword (p1) == 
+    ( setKeyword(p1) );
+
+  public JmlPrimaryExpressionKeyword:
+    (IJmlPrimaryExpressionOption) *
+    nat *
+    nat ==> JmlPrimaryExpressionKeyword
+  JmlPrimaryExpressionKeyword (p1,line,column) == 
+    ( setKeyword(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "keyword" in
+        if fname in set dom data
+        then setKeyword(data(fname)) );
+
+instance variables
+  private ivKeyword : [IJmlPrimaryExpressionOption] := nil
+
+operations
+  public getKeyword: () ==> IJmlPrimaryExpressionOption
+  getKeyword() == return ivKeyword;
+
+  public setKeyword: IJmlPrimaryExpressionOption ==> ()
+  setKeyword(parg) == ivKeyword := parg;
+
+end JmlPrimaryExpressionKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlPrimaryExpressionLiteral is subclass of IJmlPrimaryExpressionLiteral
+operations
+  public identity: () ==> seq of char
+  identity () == return "PrimaryExpressionLiteral";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitPrimaryExpressionLiteral(self);
+
+  public JmlPrimaryExpressionLiteral:
+    (IJmlLiteral) ==> JmlPrimaryExpressionLiteral
+  JmlPrimaryExpressionLiteral (p1) == 
+    ( setLit(p1) );
+
+  public JmlPrimaryExpressionLiteral:
+    (IJmlLiteral) *
+    nat *
+    nat ==> JmlPrimaryExpressionLiteral
+  JmlPrimaryExpressionLiteral (p1,line,column) == 
+    ( setLit(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "lit" in
+        if fname in set dom data
+        then setLit(data(fname)) );
+
+instance variables
+  private ivLit : [IJmlLiteral] := nil
+
+operations
+  public getLit: () ==> IJmlLiteral
+  getLit() == return ivLit;
+
+  public setLit: IJmlLiteral ==> ()
+  setLit(parg) == ivLit := parg;
+
+end JmlPrimaryExpressionLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlPrimaryExpressionOption is subclass of IJmlPrimaryExpressionOption
+operations
+  public identity: () ==> seq of char
+  identity () == return "PrimaryExpressionOption";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitPrimaryExpressionOption(self);
+
+end JmlPrimaryExpressionOption
+\end{vdm_al}
+\begin{vdm_al}
+class JmlPrimaryExpressions is subclass of IJmlPrimaryExpressions
+operations
+  public identity: () ==> seq of char
+  identity () == return "PrimaryExpressions";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitPrimaryExpressions(self);
+
+  public JmlPrimaryExpressions:
+    (IJmlPrimaryExpression) *
+    [IJmlPrimarySuffix] ==> JmlPrimaryExpressions
+  JmlPrimaryExpressions (p1,p2) == 
+    ( setPrimary(p1);
+      setSuffix(p2) );
+
+  public JmlPrimaryExpressions:
+    (IJmlPrimaryExpression) *
+    [IJmlPrimarySuffix] *
+    nat *
+    nat ==> JmlPrimaryExpressions
+  JmlPrimaryExpressions (p1,p2,line,column) == 
+    ( setPrimary(p1);
+      setSuffix(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "primary" in
+        if fname in set dom data
+        then setPrimary(data(fname));
+      let fname = "suffix" in
+        if fname in set dom data
+        then setSuffix(data(fname)) );
+
+instance variables
+  private ivPrimary : [IJmlPrimaryExpression] := nil
+
+operations
+  public getPrimary: () ==> IJmlPrimaryExpression
+  getPrimary() == return ivPrimary;
+
+  public setPrimary: IJmlPrimaryExpression ==> ()
+  setPrimary(parg) == ivPrimary := parg;
+
+instance variables
+  private ivSuffix : [IJmlPrimarySuffix] := nil
+
+operations
+  public getSuffix: () ==> IJmlPrimarySuffix
+  getSuffix() == return ivSuffix
+    pre hasSuffix();
+
+  public hasSuffix: () ==> bool
+  hasSuffix () == return ivSuffix <> nil;
+
+  public setSuffix: [ IJmlPrimarySuffix ] ==> ()
+  setSuffix(parg) == ivSuffix := parg;
+
+end JmlPrimaryExpressions
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlPrimarySuffix is subclass of IJmlPrimarySuffix
+operations
+  public identity: () ==> seq of char
+  identity () == return "PrimarySuffix";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitPrimarySuffix(self);
+
+end JmlPrimarySuffix
+\end{vdm_al}
+\begin{vdm_al}
+class JmlQuantifierDeclaration is subclass of IJmlQuantifierDeclaration
+operations
+  public identity: () ==> seq of char
+  identity () == return "QuantifierDeclaration";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitQuantifierDeclaration(self);
+
+  public JmlQuantifierDeclaration:
+    [IJmlBoundModifiers] *
+    (IJmlType) *
+    (seq of seq of char) ==> JmlQuantifierDeclaration
+  JmlQuantifierDeclaration (p1,p2,p3) == 
+    ( setBound(p1);
+      setType(p2);
+      setVars(p3) );
+
+  public JmlQuantifierDeclaration:
+    [IJmlBoundModifiers] *
+    (IJmlType) *
+    (seq of seq of char) *
+    nat *
+    nat ==> JmlQuantifierDeclaration
+  JmlQuantifierDeclaration (p1,p2,p3,line,column) == 
+    ( setBound(p1);
+      setType(p2);
+      setVars(p3);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "bound" in
+        if fname in set dom data
+        then setBound(data(fname));
+      let fname = "type" in
+        if fname in set dom data
+        then setType(data(fname));
+      let fname = "vars" in
+        if fname in set dom data
+        then setVars(data(fname)) );
+
+instance variables
+  private ivBound : [IJmlBoundModifiers] := nil
+
+operations
+  public getBound: () ==> IJmlBoundModifiers
+  getBound() == return ivBound
+    pre hasBound();
+
+  public hasBound: () ==> bool
+  hasBound () == return ivBound <> nil;
+
+  public setBound: [ IJmlBoundModifiers ] ==> ()
+  setBound(parg) == ivBound := parg;
+
+instance variables
+  private ivType : [IJmlType] := nil
+
+operations
+  public getType: () ==> IJmlType
+  getType() == return ivType;
+
+  public setType: IJmlType ==> ()
+  setType(parg) == ivType := parg;
+
+instance variables
+  private ivVars : seq of seq of char := []
+
+operations
+  public getVars: () ==> seq of seq of char
+  getVars() == return ivVars;
+
+  public setVars: seq of seq of char ==> ()
+  setVars(parg) == ivVars := parg;
+
+  public addVars: seq of char ==> ()
+  addVars (parg) == ivVars := ivVars ^ [parg];
+
+end JmlQuantifierDeclaration
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlRequiresClause is subclass of IJmlRequiresClause
+operations
+  public identity: () ==> seq of char
+  identity () == return "RequiresClause";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitRequiresClause(self);
+
+  public JmlRequiresClause:
+    (IJmlExpression) ==> JmlRequiresClause
+  JmlRequiresClause (p1) == 
+    ( setRequiresExpression(p1) );
+
+  public JmlRequiresClause:
+    (IJmlExpression) *
+    nat *
+    nat ==> JmlRequiresClause
+  JmlRequiresClause (p1,line,column) == 
+    ( setRequiresExpression(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "requires_expression" in
+        if fname in set dom data
+        then setRequiresExpression(data(fname)) );
+
+instance variables
+  private ivRequiresExpression : [IJmlExpression] := nil
+
+operations
+  public getRequiresExpression: () ==> IJmlExpression
+  getRequiresExpression() == return ivRequiresExpression;
+
+  public setRequiresExpression: IJmlExpression ==> ()
+  setRequiresExpression(parg) == ivRequiresExpression := parg;
+
+end JmlRequiresClause
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlResultKeyword is subclass of IJmlResultKeyword
+operations
+  public identity: () ==> seq of char
+  identity () == return "ResultKeyword";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitResultKeyword(self);
+
+  public JmlResultKeyword:
+    () ==> JmlResultKeyword
+  JmlResultKeyword () == 
+    skip;
+
+  public JmlResultKeyword:
+    nat *
+    nat ==> JmlResultKeyword
+  JmlResultKeyword (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlResultKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlScope is subclass of IJmlScope
+operations
+  public identity: () ==> seq of char
+  identity () == return "Scope";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitScope(self);
+
+  public JmlScope: nat ==> JmlScope
+  JmlScope (pv) == setValue(pv);
+
+  public JmlScope: nat * nat * nat ==> JmlScope
+  JmlScope (pv, pline, pcolumn) == ( setValue(pv); setPosition(pline, pcolumn) );
+
+instance variables
+  private val : [nat] := nil
+
+operations
+  public setValue: nat ==> ()
+  setValue (pval) == val := pval
+    pre val = nil and JmlScopeQuotes`validQuote(pval);
+
+  public getValue: () ==> nat
+  getValue () == return val
+    pre val <> nil;
+
+  public getStringValue: () ==> seq of char
+  getStringValue() == return JmlScopeQuotes`getQuoteName(val)
+    pre val <> nil;
+
+end JmlScope
+\end{vdm_al}
+\begin{vdm_al}
+class JmlScopeQuotes
+instance variables
+  static public IQPROTECTED : nat := 0;
+  static public IQPRIVATE : nat := 1;
+  static public IQDEFAULT : nat := 2;
+  static public IQPUBLIC : nat := 3;
+
+  static private qmap : map nat to seq of char :=
+    { IQPROTECTED |-> "<PROTECTED>",
+      IQPRIVATE |-> "<PRIVATE>",
+      IQDEFAULT |-> "<DEFAULT>",
+      IQPUBLIC |-> "<PUBLIC>" }
+
+operations
+  static public getQuoteName: nat ==> seq of char
+  getQuoteName (pid) ==
+    return qmap(pid)
+    pre validQuote(pid);
+
+  static public validQuote: nat ==> bool
+  validQuote (pid) == return pid in set dom qmap
+
+end JmlScopeQuotes
+\end{vdm_al}
+\begin{vdm_al}
+class JmlSeqValueType is subclass of IJmlSeqValueType
+operations
+  public identity: () ==> seq of char
+  identity () == return "SeqValueType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitSeqValueType(self);
+
+  public JmlSeqValueType:
+    (IJmlType) *
+    (nat) ==> JmlSeqValueType
+  JmlSeqValueType (p1,p2) == 
+    ( setType(p1);
+      setLimit(p2) );
+
+  public JmlSeqValueType:
+    (IJmlType) *
+    (nat) *
+    nat *
+    nat ==> JmlSeqValueType
+  JmlSeqValueType (p1,p2,line,column) == 
+    ( setType(p1);
+      setLimit(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "type" in
+        if fname in set dom data
+        then setType(data(fname));
+      let fname = "limit" in
+        if fname in set dom data
+        then setLimit(data(fname)) );
+
+instance variables
+  private ivType : [IJmlType] := nil
+
+operations
+  public getType: () ==> IJmlType
+  getType() == return ivType;
+
+  public setType: IJmlType ==> ()
+  setType(parg) == ivType := parg;
+
+instance variables
+  private ivLimit : [nat] := nil
+
+operations
+  public getLimit: () ==> nat
+  getLimit() == return ivLimit;
+
+  public setLimit: nat ==> ()
+  setLimit(parg) == ivLimit := parg;
+
+end JmlSeqValueType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlSequenceEnumeration is subclass of IJmlSequenceEnumeration
+operations
+  public identity: () ==> seq of char
+  identity () == return "SequenceEnumeration";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitSequenceEnumeration(self);
+
+  public JmlSequenceEnumeration:
+    (seq of IJmlExpression) ==> JmlSequenceEnumeration
+  JmlSequenceEnumeration (p1) == 
+    ( setList(p1) );
+
+  public JmlSequenceEnumeration:
+    (seq of IJmlExpression) *
+    nat *
+    nat ==> JmlSequenceEnumeration
+  JmlSequenceEnumeration (p1,line,column) == 
+    ( setList(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "list" in
+        if fname in set dom data
+        then setList(data(fname)) );
+
+instance variables
+  private ivList : seq of IJmlExpression := []
+
+operations
+  public getList: () ==> seq of IJmlExpression
+  getList() == return ivList;
+
+  public setList: seq of IJmlExpression ==> ()
+  setList(parg) == ivList := parg;
+
+  public addList: IJmlNode ==> ()
+  addList (parg) == ivList := ivList ^ [parg];
+
+end JmlSequenceEnumeration
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlSetEnumeration is subclass of IJmlSetEnumeration
+operations
+  public identity: () ==> seq of char
+  identity () == return "SetEnumeration";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitSetEnumeration(self);
+
+  public JmlSetEnumeration:
+    (seq of IJmlExpression) ==> JmlSetEnumeration
+  JmlSetEnumeration (p1) == 
+    ( setList(p1) );
+
+  public JmlSetEnumeration:
+    (seq of IJmlExpression) *
+    nat *
+    nat ==> JmlSetEnumeration
+  JmlSetEnumeration (p1,line,column) == 
+    ( setList(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "list" in
+        if fname in set dom data
+        then setList(data(fname)) );
+
+instance variables
+  private ivList : seq of IJmlExpression := []
+
+operations
+  public getList: () ==> seq of IJmlExpression
+  getList() == return ivList;
+
+  public setList: seq of IJmlExpression ==> ()
+  setList(parg) == ivList := parg;
+
+  public addList: IJmlNode ==> ()
+  addList (parg) == ivList := ivList ^ [parg];
+
+end JmlSetEnumeration
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlSetValueType is subclass of IJmlSetValueType
+operations
+  public identity: () ==> seq of char
+  identity () == return "SetValueType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitSetValueType(self);
+
+  public JmlSetValueType:
+    (IJmlType) ==> JmlSetValueType
+  JmlSetValueType (p1) == 
+    ( setType(p1) );
+
+  public JmlSetValueType:
+    (IJmlType) *
+    nat *
+    nat ==> JmlSetValueType
+  JmlSetValueType (p1,line,column) == 
+    ( setType(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "type" in
+        if fname in set dom data
+        then setType(data(fname)) );
+
+instance variables
+  private ivType : [IJmlType] := nil
+
+operations
+  public getType: () ==> IJmlType
+  getType() == return ivType;
+
+  public setType: IJmlType ==> ()
+  setType(parg) == ivType := parg;
+
+end JmlSetValueType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlSignalsClause is subclass of IJmlSignalsClause
+operations
+  public identity: () ==> seq of char
+  identity () == return "SignalsClause";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitSignalsClause(self);
+
+  public JmlSignalsClause:
+    (IJmlException) *
+    (IJmlExpression) ==> JmlSignalsClause
+  JmlSignalsClause (p1,p2) == 
+    ( setException(p1);
+      setPredicate(p2) );
+
+  public JmlSignalsClause:
+    (IJmlException) *
+    (IJmlExpression) *
+    nat *
+    nat ==> JmlSignalsClause
+  JmlSignalsClause (p1,p2,line,column) == 
+    ( setException(p1);
+      setPredicate(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "exception" in
+        if fname in set dom data
+        then setException(data(fname));
+      let fname = "predicate" in
+        if fname in set dom data
+        then setPredicate(data(fname)) );
+
+instance variables
+  private ivException : [IJmlException] := nil
+
+operations
+  public getException: () ==> IJmlException
+  getException() == return ivException;
+
+  public setException: IJmlException ==> ()
+  setException(parg) == ivException := parg;
+
+instance variables
+  private ivPredicate : [IJmlExpression] := nil
+
+operations
+  public getPredicate: () ==> IJmlExpression
+  getPredicate() == return ivPredicate;
+
+  public setPredicate: IJmlExpression ==> ()
+  setPredicate(parg) == ivPredicate := parg;
+
+end JmlSignalsClause
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlSpecifications is subclass of IJmlSpecifications
+operations
+  public identity: () ==> seq of char
+  identity () == return "Specifications";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitSpecifications(self);
+
+  public JmlSpecifications:
+    (seq of IJmlWrappedJmlClass) ==> JmlSpecifications
+  JmlSpecifications (p1) == 
+    ( setClassList(p1) );
+
+  public JmlSpecifications:
+    (seq of IJmlWrappedJmlClass) *
+    nat *
+    nat ==> JmlSpecifications
+  JmlSpecifications (p1,line,column) == 
+    ( setClassList(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "class_list" in
+        if fname in set dom data
+        then setClassList(data(fname)) );
+
+instance variables
+  private ivClassList : seq of IJmlWrappedJmlClass := []
+
+operations
+  public getClassList: () ==> seq of IJmlWrappedJmlClass
+  getClassList() == return ivClassList;
+
+  public setClassList: seq of IJmlWrappedJmlClass ==> ()
+  setClassList(parg) == ivClassList := parg;
+
+  public addClassList: IJmlNode ==> ()
+  addClassList (parg) == ivClassList := ivClassList ^ [parg];
+
+end JmlSpecifications
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlSpecs is subclass of IJmlSpecs
+operations
+  public identity: () ==> seq of char
+  identity () == return "Specs";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitSpecs(self);
+
+  public JmlSpecs:
+    (seq of IJmlOperationTrailer) ==> JmlSpecs
+  JmlSpecs (p1) == 
+    ( setList(p1) );
+
+  public JmlSpecs:
+    (seq of IJmlOperationTrailer) *
+    nat *
+    nat ==> JmlSpecs
+  JmlSpecs (p1,line,column) == 
+    ( setList(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "list" in
+        if fname in set dom data
+        then setList(data(fname)) );
+
+instance variables
+  private ivList : seq of IJmlOperationTrailer := []
+
+operations
+  public getList: () ==> seq of IJmlOperationTrailer
+  getList() == return ivList;
+
+  public setList: seq of IJmlOperationTrailer ==> ()
+  setList(parg) == ivList := parg;
+
+  public addList: IJmlNode ==> ()
+  addList (parg) == ivList := ivList ^ [parg];
+
+end JmlSpecs
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlStarKeyword is subclass of IJmlStarKeyword
+operations
+  public identity: () ==> seq of char
+  identity () == return "StarKeyword";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitStarKeyword(self);
+
+  public JmlStarKeyword:
+    () ==> JmlStarKeyword
+  JmlStarKeyword () == 
+    skip;
+
+  public JmlStarKeyword:
+    nat *
+    nat ==> JmlStarKeyword
+  JmlStarKeyword (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlStarKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlStringLiteral is subclass of IJmlStringLiteral
+operations
+  public identity: () ==> seq of char
+  identity () == return "StringLiteral";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitStringLiteral(self);
+
+  public JmlStringLiteral:
+    (seq of char) ==> JmlStringLiteral
+  JmlStringLiteral (p1) == 
+    ( setVal(p1) );
+
+  public JmlStringLiteral:
+    (seq of char) *
+    nat *
+    nat ==> JmlStringLiteral
+  JmlStringLiteral (p1,line,column) == 
+    ( setVal(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "val" in
+        if fname in set dom data
+        then setVal(data(fname)) );
+
+instance variables
+  private ivVal : seq of char := []
+
+operations
+  public getVal: () ==> seq of char
+  getVal() == return ivVal;
+
+  public setVal: seq of char ==> ()
+  setVal(parg) == ivVal := parg;
+
+end JmlStringLiteral
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlSuperKeyword is subclass of IJmlSuperKeyword
+operations
+  public identity: () ==> seq of char
+  identity () == return "SuperKeyword";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitSuperKeyword(self);
+
+  public JmlSuperKeyword:
+    () ==> JmlSuperKeyword
+  JmlSuperKeyword () == 
+    skip;
+
+  public JmlSuperKeyword:
+    nat *
+    nat ==> JmlSuperKeyword
+  JmlSuperKeyword (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlSuperKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlSuperKeywordSuffix is subclass of IJmlSuperKeywordSuffix
+operations
+  public identity: () ==> seq of char
+  identity () == return "SuperKeywordSuffix";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitSuperKeywordSuffix(self);
+
+  public JmlSuperKeywordSuffix:
+    () ==> JmlSuperKeywordSuffix
+  JmlSuperKeywordSuffix () == 
+    skip;
+
+  public JmlSuperKeywordSuffix:
+    nat *
+    nat ==> JmlSuperKeywordSuffix
+  JmlSuperKeywordSuffix (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlSuperKeywordSuffix
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlThisExpression is subclass of IJmlThisExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "ThisExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitThisExpression(self);
+
+  public JmlThisExpression:
+    () ==> JmlThisExpression
+  JmlThisExpression () == 
+    skip;
+
+  public JmlThisExpression:
+    nat *
+    nat ==> JmlThisExpression
+  JmlThisExpression (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlThisExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlThisKeyword is subclass of IJmlThisKeyword
+operations
+  public identity: () ==> seq of char
+  identity () == return "ThisKeyword";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitThisKeyword(self);
+
+  public JmlThisKeyword:
+    () ==> JmlThisKeyword
+  JmlThisKeyword () == 
+    skip;
+
+  public JmlThisKeyword:
+    nat *
+    nat ==> JmlThisKeyword
+  JmlThisKeyword (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlThisKeyword
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlThisKeywordSuffix is subclass of IJmlThisKeywordSuffix
+operations
+  public identity: () ==> seq of char
+  identity () == return "ThisKeywordSuffix";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitThisKeywordSuffix(self);
+
+  public JmlThisKeywordSuffix:
+    () ==> JmlThisKeywordSuffix
+  JmlThisKeywordSuffix () == 
+    skip;
+
+  public JmlThisKeywordSuffix:
+    nat *
+    nat ==> JmlThisKeywordSuffix
+  JmlThisKeywordSuffix (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlThisKeywordSuffix
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlThrowExpression is subclass of IJmlThrowExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "ThrowExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitThrowExpression(self);
+
+  public JmlThrowExpression:
+    (seq of char) *
+    (seq of IJmlParameter) ==> JmlThrowExpression
+  JmlThrowExpression (p1,p2) == 
+    ( setException(p1);
+      setParams(p2) );
+
+  public JmlThrowExpression:
+    (seq of char) *
+    (seq of IJmlParameter) *
+    nat *
+    nat ==> JmlThrowExpression
+  JmlThrowExpression (p1,p2,line,column) == 
+    ( setException(p1);
+      setParams(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "exception" in
+        if fname in set dom data
+        then setException(data(fname));
+      let fname = "params" in
+        if fname in set dom data
+        then setParams(data(fname)) );
+
+instance variables
+  private ivException : seq of char := []
+
+operations
+  public getException: () ==> seq of char
+  getException() == return ivException;
+
+  public setException: seq of char ==> ()
+  setException(parg) == ivException := parg;
+
+instance variables
+  private ivParams : seq of IJmlParameter := []
+
+operations
+  public getParams: () ==> seq of IJmlParameter
+  getParams() == return ivParams;
+
+  public setParams: seq of IJmlParameter ==> ()
+  setParams(parg) == ivParams := parg;
+
+  public addParams: IJmlNode ==> ()
+  addParams (parg) == ivParams := ivParams ^ [parg];
+
+end JmlThrowExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlTrailers is subclass of IJmlTrailers
+operations
+  public identity: () ==> seq of char
+  identity () == return "Trailers";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitTrailers(self);
+
+end JmlTrailers
+\end{vdm_al}
+\begin{vdm_al}
+class JmlTupleType is subclass of IJmlTupleType
+operations
+  public identity: () ==> seq of char
+  identity () == return "TupleType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitTupleType(self);
+
+  public JmlTupleType:
+    (seq of IJmlType) ==> JmlTupleType
+  JmlTupleType (p1) == 
+    ( setVals(p1) );
+
+  public JmlTupleType:
+    (seq of IJmlType) *
+    nat *
+    nat ==> JmlTupleType
+  JmlTupleType (p1,line,column) == 
+    ( setVals(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "vals" in
+        if fname in set dom data
+        then setVals(data(fname)) );
+
+instance variables
+  private ivVals : seq of IJmlType := []
+
+operations
+  public getVals: () ==> seq of IJmlType
+  getVals() == return ivVals;
+
+  public setVals: seq of IJmlType ==> ()
+  setVals(parg) == ivVals := parg;
+
+  public addVals: IJmlNode ==> ()
+  addVals (parg) == ivVals := ivVals ^ [parg];
+
+end JmlTupleType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlType is subclass of IJmlType
+operations
+  public identity: () ==> seq of char
+  identity () == return "Type";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitType(self);
+
+end JmlType
+\end{vdm_al}
+\begin{vdm_al}
+class JmlUnaryExpression is subclass of IJmlUnaryExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "UnaryExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitUnaryExpression(self);
+
+  public JmlUnaryExpression:
+    (IJmlUnaryOperator) *
+    (IJmlExpression) ==> JmlUnaryExpression
+  JmlUnaryExpression (p1,p2) == 
+    ( setOperator(p1);
+      setExpression(p2) );
+
+  public JmlUnaryExpression:
+    (IJmlUnaryOperator) *
+    (IJmlExpression) *
+    nat *
+    nat ==> JmlUnaryExpression
+  JmlUnaryExpression (p1,p2,line,column) == 
+    ( setOperator(p1);
+      setExpression(p2);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "operator" in
+        if fname in set dom data
+        then setOperator(data(fname));
+      let fname = "expression" in
+        if fname in set dom data
+        then setExpression(data(fname)) );
+
+instance variables
+  private ivOperator : [IJmlUnaryOperator] := nil
+
+operations
+  public getOperator: () ==> IJmlUnaryOperator
+  getOperator() == return ivOperator;
+
+  public setOperator: IJmlUnaryOperator ==> ()
+  setOperator(parg) == ivOperator := parg;
+
+instance variables
+  private ivExpression : [IJmlExpression] := nil
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == return ivExpression;
+
+  public setExpression: IJmlExpression ==> ()
+  setExpression(parg) == ivExpression := parg;
+
+end JmlUnaryExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlUnaryOperator is subclass of IJmlUnaryOperator
+operations
+  public identity: () ==> seq of char
+  identity () == return "UnaryOperator";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitUnaryOperator(self);
+
+  public JmlUnaryOperator: nat ==> JmlUnaryOperator
+  JmlUnaryOperator (pv) == setValue(pv);
+
+  public JmlUnaryOperator: nat * nat * nat ==> JmlUnaryOperator
+  JmlUnaryOperator (pv, pline, pcolumn) == ( setValue(pv); setPosition(pline, pcolumn) );
+
+instance variables
+  private val : [nat] := nil
+
+operations
+  public setValue: nat ==> ()
+  setValue (pval) == val := pval
+    pre val = nil and JmlUnaryOperatorQuotes`validQuote(pval);
+
+  public getValue: () ==> nat
+  getValue () == return val
+    pre val <> nil;
+
+  public getStringValue: () ==> seq of char
+  getStringValue() == return JmlUnaryOperatorQuotes`getQuoteName(val)
+    pre val <> nil;
+
+end JmlUnaryOperator
+\end{vdm_al}
+\begin{vdm_al}
+class JmlUnaryOperatorQuotes
+instance variables
+  static public IQCARD : nat := 0;
+  static public IQMINUS : nat := 1;
+  static public IQTL : nat := 2;
+  static public IQFLOOR : nat := 3;
+  static public IQABS : nat := 4;
+  static public IQINVERSE : nat := 5;
+  static public IQPOWER : nat := 6;
+  static public IQELEMS : nat := 7;
+  static public IQDOM : nat := 8;
+  static public IQOLD : nat := 9;
+  static public IQHD : nat := 10;
+  static public IQINCREMENT : nat := 11;
+  static public IQPLUS : nat := 12;
+  static public IQRNG : nat := 13;
+  static public IQLEN : nat := 14;
+  static public IQNOT : nat := 15;
+  static public IQDECREMENT : nat := 16;
+
+  static private qmap : map nat to seq of char :=
+    { IQCARD |-> "<CARD>",
+      IQMINUS |-> "<MINUS>",
+      IQTL |-> "<TL>",
+      IQFLOOR |-> "<FLOOR>",
+      IQABS |-> "<ABS>",
+      IQINVERSE |-> "<INVERSE>",
+      IQPOWER |-> "<POWER>",
+      IQELEMS |-> "<ELEMS>",
+      IQDOM |-> "<DOM>",
+      IQOLD |-> "<OLD>",
+      IQHD |-> "<HD>",
+      IQINCREMENT |-> "<INCREMENT>",
+      IQPLUS |-> "<PLUS>",
+      IQRNG |-> "<RNG>",
+      IQLEN |-> "<LEN>",
+      IQNOT |-> "<NOT>",
+      IQDECREMENT |-> "<DECREMENT>" }
+
+operations
+  static public getQuoteName: nat ==> seq of char
+  getQuoteName (pid) ==
+    return qmap(pid)
+    pre validQuote(pid);
+
+  static public validQuote: nat ==> bool
+  validQuote (pid) == return pid in set dom qmap
+
+end JmlUnaryOperatorQuotes
+\end{vdm_al}
+\begin{vdm_al}
+class JmlUndefinedExpression is subclass of IJmlUndefinedExpression
+operations
+  public identity: () ==> seq of char
+  identity () == return "UndefinedExpression";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitUndefinedExpression(self);
+
+  public JmlUndefinedExpression:
+    () ==> JmlUndefinedExpression
+  JmlUndefinedExpression () == 
+    skip;
+
+  public JmlUndefinedExpression:
+    nat *
+    nat ==> JmlUndefinedExpression
+  JmlUndefinedExpression (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlUndefinedExpression
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlValueDefinition is subclass of IJmlValueDefinition
+operations
+  public identity: () ==> seq of char
+  identity () == return "ValueDefinition";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitValueDefinition(self);
+
+  public JmlValueDefinition:
+    (IJmlAccessDefinition) *
+    (bool) *
+    (bool) *
+    (IJmlValueShape) ==> JmlValueDefinition
+  JmlValueDefinition (p1,p2,p3,p4) == 
+    ( setAccess(p1);
+      setStaticMod(p2);
+      setFinalMod(p3);
+      setShape(p4) );
+
+  public JmlValueDefinition:
+    (IJmlAccessDefinition) *
+    (bool) *
+    (bool) *
+    (IJmlValueShape) *
+    nat *
+    nat ==> JmlValueDefinition
+  JmlValueDefinition (p1,p2,p3,p4,line,column) == 
+    ( setAccess(p1);
+      setStaticMod(p2);
+      setFinalMod(p3);
+      setShape(p4);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "access" in
+        if fname in set dom data
+        then setAccess(data(fname));
+      let fname = "static_mod" in
+        if fname in set dom data
+        then setStaticMod(data(fname));
+      let fname = "final_mod" in
+        if fname in set dom data
+        then setFinalMod(data(fname));
+      let fname = "shape" in
+        if fname in set dom data
+        then setShape(data(fname)) );
+
+instance variables
+  private ivAccess : [IJmlAccessDefinition] := nil
+
+operations
+  public getAccess: () ==> IJmlAccessDefinition
+  getAccess() == return ivAccess;
+
+  public setAccess: IJmlAccessDefinition ==> ()
+  setAccess(parg) == ivAccess := parg;
+
+instance variables
+  private ivStaticMod : [bool] := nil
+
+operations
+  public getStaticMod: () ==> bool
+  getStaticMod() == return ivStaticMod;
+
+  public setStaticMod: bool ==> ()
+  setStaticMod(parg) == ivStaticMod := parg;
+
+instance variables
+  private ivFinalMod : [bool] := nil
+
+operations
+  public getFinalMod: () ==> bool
+  getFinalMod() == return ivFinalMod;
+
+  public setFinalMod: bool ==> ()
+  setFinalMod(parg) == ivFinalMod := parg;
+
+instance variables
+  private ivShape : [IJmlValueShape] := nil
+
+operations
+  public getShape: () ==> IJmlValueShape
+  getShape() == return ivShape;
+
+  public setShape: IJmlValueShape ==> ()
+  setShape(parg) == ivShape := parg;
+
+end JmlValueDefinition
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlValueDefinitions is subclass of IJmlValueDefinitions
+operations
+  public identity: () ==> seq of char
+  identity () == return "ValueDefinitions";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitValueDefinitions(self);
+
+  public JmlValueDefinitions:
+    (seq of IJmlValueDefinition) ==> JmlValueDefinitions
+  JmlValueDefinitions (p1) == 
+    ( setValueList(p1) );
+
+  public JmlValueDefinitions:
+    (seq of IJmlValueDefinition) *
+    nat *
+    nat ==> JmlValueDefinitions
+  JmlValueDefinitions (p1,line,column) == 
+    ( setValueList(p1);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "value_list" in
+        if fname in set dom data
+        then setValueList(data(fname)) );
+
+instance variables
+  private ivValueList : seq of IJmlValueDefinition := []
+
+operations
+  public getValueList: () ==> seq of IJmlValueDefinition
+  getValueList() == return ivValueList;
+
+  public setValueList: seq of IJmlValueDefinition ==> ()
+  setValueList(parg) == ivValueList := parg;
+
+  public addValueList: IJmlNode ==> ()
+  addValueList (parg) == ivValueList := ivValueList ^ [parg];
+
+end JmlValueDefinitions
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlValueShape is subclass of IJmlValueShape
+operations
+  public identity: () ==> seq of char
+  identity () == return "ValueShape";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitValueShape(self);
+
+  public JmlValueShape:
+    (seq of char) *
+    (IJmlType) *
+    (IJmlExpression) ==> JmlValueShape
+  JmlValueShape (p1,p2,p3) == 
+    ( setIdentifier(p1);
+      setType(p2);
+      setExpression(p3) );
+
+  public JmlValueShape:
+    (seq of char) *
+    (IJmlType) *
+    (IJmlExpression) *
+    nat *
+    nat ==> JmlValueShape
+  JmlValueShape (p1,p2,p3,line,column) == 
+    ( setIdentifier(p1);
+      setType(p2);
+      setExpression(p3);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "identifier" in
+        if fname in set dom data
+        then setIdentifier(data(fname));
+      let fname = "type" in
+        if fname in set dom data
+        then setType(data(fname));
+      let fname = "expression" in
+        if fname in set dom data
+        then setExpression(data(fname)) );
+
+instance variables
+  private ivIdentifier : seq of char := []
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == return ivIdentifier;
+
+  public setIdentifier: seq of char ==> ()
+  setIdentifier(parg) == ivIdentifier := parg;
+
+instance variables
+  private ivType : [IJmlType] := nil
+
+operations
+  public getType: () ==> IJmlType
+  getType() == return ivType;
+
+  public setType: IJmlType ==> ()
+  setType(parg) == ivType := parg;
+
+instance variables
+  private ivExpression : [IJmlExpression] := nil
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == return ivExpression;
+
+  public setExpression: IJmlExpression ==> ()
+  setExpression(parg) == ivExpression := parg;
+
+end JmlValueShape
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlVariable is subclass of IJmlVariable
+operations
+  public identity: () ==> seq of char
+  identity () == return "Variable";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitVariable(self);
+
+  public JmlVariable:
+    (IJmlAccessDefinition) *
+    (bool) *
+    (bool) *
+    (bool) *
+    (IJmlType) *
+    (seq of char) *
+    [IJmlExpression] ==> JmlVariable
+  JmlVariable (p1,p2,p3,p4,p5,p6,p7) == 
+    ( setAccess(p1);
+      setModel(p2);
+      setStatickeyword(p3);
+      setFinal(p4);
+      setType(p5);
+      setIdentifier(p6);
+      setExpression(p7) );
+
+  public JmlVariable:
+    (IJmlAccessDefinition) *
+    (bool) *
+    (bool) *
+    (bool) *
+    (IJmlType) *
+    (seq of char) *
+    [IJmlExpression] *
+    nat *
+    nat ==> JmlVariable
+  JmlVariable (p1,p2,p3,p4,p5,p6,p7,line,column) == 
+    ( setAccess(p1);
+      setModel(p2);
+      setStatickeyword(p3);
+      setFinal(p4);
+      setType(p5);
+      setIdentifier(p6);
+      setExpression(p7);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "access" in
+        if fname in set dom data
+        then setAccess(data(fname));
+      let fname = "model" in
+        if fname in set dom data
+        then setModel(data(fname));
+      let fname = "statickeyword" in
+        if fname in set dom data
+        then setStatickeyword(data(fname));
+      let fname = "final" in
+        if fname in set dom data
+        then setFinal(data(fname));
+      let fname = "type" in
+        if fname in set dom data
+        then setType(data(fname));
+      let fname = "identifier" in
+        if fname in set dom data
+        then setIdentifier(data(fname));
+      let fname = "expression" in
+        if fname in set dom data
+        then setExpression(data(fname)) );
+
+instance variables
+  private ivAccess : [IJmlAccessDefinition] := nil
+
+operations
+  public getAccess: () ==> IJmlAccessDefinition
+  getAccess() == return ivAccess;
+
+  public setAccess: IJmlAccessDefinition ==> ()
+  setAccess(parg) == ivAccess := parg;
+
+instance variables
+  private ivModel : [bool] := nil
+
+operations
+  public getModel: () ==> bool
+  getModel() == return ivModel;
+
+  public setModel: bool ==> ()
+  setModel(parg) == ivModel := parg;
+
+instance variables
+  private ivStatickeyword : [bool] := nil
+
+operations
+  public getStatickeyword: () ==> bool
+  getStatickeyword() == return ivStatickeyword;
+
+  public setStatickeyword: bool ==> ()
+  setStatickeyword(parg) == ivStatickeyword := parg;
+
+instance variables
+  private ivFinal : [bool] := nil
+
+operations
+  public getFinal: () ==> bool
+  getFinal() == return ivFinal;
+
+  public setFinal: bool ==> ()
+  setFinal(parg) == ivFinal := parg;
+
+instance variables
+  private ivType : [IJmlType] := nil
+
+operations
+  public getType: () ==> IJmlType
+  getType() == return ivType;
+
+  public setType: IJmlType ==> ()
+  setType(parg) == ivType := parg;
+
+instance variables
+  private ivIdentifier : seq of char := []
+
+operations
+  public getIdentifier: () ==> seq of char
+  getIdentifier() == return ivIdentifier;
+
+  public setIdentifier: seq of char ==> ()
+  setIdentifier(parg) == ivIdentifier := parg;
+
+instance variables
+  private ivExpression : [IJmlExpression] := nil
+
+operations
+  public getExpression: () ==> IJmlExpression
+  getExpression() == return ivExpression
+    pre hasExpression();
+
+  public hasExpression: () ==> bool
+  hasExpression () == return ivExpression <> nil;
+
+  public setExpression: [ IJmlExpression ] ==> ()
+  setExpression(parg) == ivExpression := parg;
+
+end JmlVariable
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlVisitor is subclass of IJmlVisitor
+operations
+  public visitDocument: IJmlDocument ==> ()
+  visitDocument (-) == skip;
+
+  public visitLexem: IJmlLexem ==> ()
+  visitLexem (-) == skip;
+
+  public visitThisExpression: IJmlThisExpression ==> ()
+  visitThisExpression (-) == skip;
+
+  public visitPrimaryExpressionKeyword: IJmlPrimaryExpressionKeyword ==> ()
+  visitPrimaryExpressionKeyword (-) == skip;
+
+  public visitModelImport: IJmlModelImport ==> ()
+  visitModelImport (-) == skip;
+
+  public visitClass: IJmlClass ==> ()
+  visitClass (-) == skip;
+
+  public visitSpecifications: IJmlSpecifications ==> ()
+  visitSpecifications (-) == skip;
+
+  public visitMapValueToValueType: IJmlMapValueToValueType ==> ()
+  visitMapValueToValueType (-) == skip;
+
+  public visitMapLet: IJmlMapLet ==> ()
+  visitMapLet (-) == skip;
+
+  public visitValueShape: IJmlValueShape ==> ()
+  visitValueShape (-) == skip;
+
+  public visitNotKeywordUnary: IJmlNotKeywordUnary ==> ()
+  visitNotKeywordUnary (-) == skip;
+
+  public visitBinaryExpression: IJmlBinaryExpression ==> ()
+  visitBinaryExpression (-) == skip;
+
+  public visitThisKeyword: IJmlThisKeyword ==> ()
+  visitThisKeyword (-) == skip;
+
+  public visitOperationDefinitions: IJmlOperationDefinitions ==> ()
+  visitOperationDefinitions (-) == skip;
+
+  public visitClassType: IJmlClassType ==> ()
+  visitClassType (-) == skip;
+
+  public visitInstanceVariableDefinitions: IJmlInstanceVariableDefinitions ==> ()
+  visitInstanceVariableDefinitions (-) == skip;
+
+  public visitEnsuresClause: IJmlEnsuresClause ==> ()
+  visitEnsuresClause (-) == skip;
+
+  public visitExpressionsList: IJmlExpressionsList ==> ()
+  visitExpressionsList (-) == skip;
+
+  public visitFieldSelectExpression: IJmlFieldSelectExpression ==> ()
+  visitFieldSelectExpression (-) == skip;
+
+  public visitEnumerationType: IJmlEnumerationType ==> ()
+  visitEnumerationType (-) == skip;
+
+  public visitUndefinedExpression: IJmlUndefinedExpression ==> ()
+  visitUndefinedExpression (-) == skip;
+
+  public visitFloatLiteral: IJmlFloatLiteral ==> ()
+  visitFloatLiteral (-) == skip;
+
+  public visitSuperKeyword: IJmlSuperKeyword ==> ()
+  visitSuperKeyword (-) == skip;
+
+  public visitClassKeyword: IJmlClassKeyword ==> ()
+  visitClassKeyword (-) == skip;
+
+  public visitRequiresClause: IJmlRequiresClause ==> ()
+  visitRequiresClause (-) == skip;
+
+  public visitExceptionType: IJmlExceptionType ==> ()
+  visitExceptionType (-) == skip;
+
+  public visitMapEnumeration: IJmlMapEnumeration ==> ()
+  visitMapEnumeration (-) == skip;
+
+  public visitThrowExpression: IJmlThrowExpression ==> ()
+  visitThrowExpression (-) == skip;
+
+  public visitNameId: IJmlNameId ==> ()
+  visitNameId (-) == skip;
+
+  public visitOtherDefinitions: IJmlOtherDefinitions ==> ()
+  visitOtherDefinitions (-) == skip;
+
+  public visitSetValueType: IJmlSetValueType ==> ()
+  visitSetValueType (-) == skip;
+
+  public visitStarKeyword: IJmlStarKeyword ==> ()
+  visitStarKeyword (-) == skip;
+
+  public visitPrimaryExpressions: IJmlPrimaryExpressions ==> ()
+  visitPrimaryExpressions (-) == skip;
+
+  public visitOldName: IJmlOldName ==> ()
+  visitOldName (-) == skip;
+
+  public visitAssignableClause: IJmlAssignableClause ==> ()
+  visitAssignableClause (-) == skip;
+
+  public visitForAllExpression: IJmlForAllExpression ==> ()
+  visitForAllExpression (-) == skip;
+
+  public visitNumericalLiteral: IJmlNumericalLiteral ==> ()
+  visitNumericalLiteral (-) == skip;
+
+  public visitLiteralExpression: IJmlLiteralExpression ==> ()
+  visitLiteralExpression (-) == skip;
+
+  public visitIfExpression: IJmlIfExpression ==> ()
+  visitIfExpression (-) == skip;
+
+  public visitVariable: IJmlVariable ==> ()
+  visitVariable (-) == skip;
+
+  public visitInvariantDefinition: IJmlInvariantDefinition ==> ()
+  visitInvariantDefinition (-) == skip;
+
+  public visitValueDefinition: IJmlValueDefinition ==> ()
+  visitValueDefinition (-) == skip;
+
+  public visitUnaryExpression: IJmlUnaryExpression ==> ()
+  visitUnaryExpression (-) == skip;
+
+  public visitApplyExpression: IJmlApplyExpression ==> ()
+  visitApplyExpression (-) == skip;
+
+  public visitExceptionalSpec: IJmlExceptionalSpec ==> ()
+  visitExceptionalSpec (-) == skip;
+
+  public visitNatType: IJmlNatType ==> ()
+  visitNatType (-) == skip;
+
+  public visitOldKeywordUnary: IJmlOldKeywordUnary ==> ()
+  visitOldKeywordUnary (-) == skip;
+
+  public visitSetEnumeration: IJmlSetEnumeration ==> ()
+  visitSetEnumeration (-) == skip;
+
+  public visitQuantifierDeclaration: IJmlQuantifierDeclaration ==> ()
+  visitQuantifierDeclaration (-) == skip;
+
+  public visitTupleType: IJmlTupleType ==> ()
+  visitTupleType (-) == skip;
+
+  public visitEnumLiteral: IJmlEnumLiteral ==> ()
+  visitEnumLiteral (-) == skip;
+
+  public visitImport: IJmlImport ==> ()
+  visitImport (-) == skip;
+
+  public visitPostfixExpression: IJmlPostfixExpression ==> ()
+  visitPostfixExpression (-) == skip;
+
+  public visitCharType: IJmlCharType ==> ()
+  visitCharType (-) == skip;
+
+  public visitCharacterLiteral: IJmlCharacterLiteral ==> ()
+  visitCharacterLiteral (-) == skip;
+
+  public visitNullLiteral: IJmlNullLiteral ==> ()
+  visitNullLiteral (-) == skip;
+
+  public visitValueDefinitions: IJmlValueDefinitions ==> ()
+  visitValueDefinitions (-) == skip;
+
+  public visitBracketedExpression: IJmlBracketedExpression ==> ()
+  visitBracketedExpression (-) == skip;
+
+  public visitNotAssignedKeyword: IJmlNotAssignedKeyword ==> ()
+  visitNotAssignedKeyword (-) == skip;
+
+  public visitStringLiteral: IJmlStringLiteral ==> ()
+  visitStringLiteral (-) == skip;
+
+  public visitSpecs: IJmlSpecs ==> ()
+  visitSpecs (-) == skip;
+
+  public visitAccessDefinition: IJmlAccessDefinition ==> ()
+  visitAccessDefinition (-) == skip;
+
+  public visitNewExpression: IJmlNewExpression ==> ()
+  visitNewExpression (-) == skip;
+
+  public visitBehaviourSpec: IJmlBehaviourSpec ==> ()
+  visitBehaviourSpec (-) == skip;
+
+  public visitInstanceOfExpression: IJmlInstanceOfExpression ==> ()
+  visitInstanceOfExpression (-) == skip;
+
+  public visitName: IJmlName ==> ()
+  visitName (-) == skip;
+
+  public visitInvariantDefinitions: IJmlInvariantDefinitions ==> ()
+  visitInvariantDefinitions (-) == skip;
+
+  public visitSuperKeywordSuffix: IJmlSuperKeywordSuffix ==> ()
+  visitSuperKeywordSuffix (-) == skip;
+
+  public visitFloatType: IJmlFloatType ==> ()
+  visitFloatType (-) == skip;
+
+  public visitBooleanLiteral: IJmlBooleanLiteral ==> ()
+  visitBooleanLiteral (-) == skip;
+
+  public visitObjectType: IJmlObjectType ==> ()
+  visitObjectType (-) == skip;
+
+  public visitVoidType: IJmlVoidType ==> ()
+  visitVoidType (-) == skip;
+
+  public visitExistsExpression: IJmlExistsExpression ==> ()
+  visitExistsExpression (-) == skip;
+
+  public visitOldKeyword: IJmlOldKeyword ==> ()
+  visitOldKeyword (-) == skip;
+
+  public visitClassInheritanceClause: IJmlClassInheritanceClause ==> ()
+  visitClassInheritanceClause (-) == skip;
+
+  public visitBody: IJmlBody ==> ()
+  visitBody (-) == skip;
+
+  public visitField: IJmlField ==> ()
+  visitField (-) == skip;
+
+  public visitNullKeyword: IJmlNullKeyword ==> ()
+  visitNullKeyword (-) == skip;
+
+  public visitInterfaceInheritanceClause: IJmlInterfaceInheritanceClause ==> ()
+  visitInterfaceInheritanceClause (-) == skip;
+
+  public visitMethodSpecifications: IJmlMethodSpecifications ==> ()
+  visitMethodSpecifications (-) == skip;
+
+  public visitException: IJmlException ==> ()
+  visitException (-) == skip;
+
+  public visitNormalSpec: IJmlNormalSpec ==> ()
+  visitNormalSpec (-) == skip;
+
+  public visitPrimaryExpressionLiteral: IJmlPrimaryExpressionLiteral ==> ()
+  visitPrimaryExpressionLiteral (-) == skip;
+
+  public visitIntegerType: IJmlIntegerType ==> ()
+  visitIntegerType (-) == skip;
+
+  public visitSeqValueType: IJmlSeqValueType ==> ()
+  visitSeqValueType (-) == skip;
+
+  public visitBlockExpression: IJmlBlockExpression ==> ()
+  visitBlockExpression (-) == skip;
+
+  public visitSignalsClause: IJmlSignalsClause ==> ()
+  visitSignalsClause (-) == skip;
+
+  public visitParameter: IJmlParameter ==> ()
+  visitParameter (-) == skip;
+
+  public visitSequenceEnumeration: IJmlSequenceEnumeration ==> ()
+  visitSequenceEnumeration (-) == skip;
+
+  public visitResultKeyword: IJmlResultKeyword ==> ()
+  visitResultKeyword (-) == skip;
+
+  public visitClassName: IJmlClassName ==> ()
+  visitClassName (-) == skip;
+
+  public visitBoolType: IJmlBoolType ==> ()
+  visitBoolType (-) == skip;
+
+  public visitOperationDefinition: IJmlOperationDefinition ==> ()
+  visitOperationDefinition (-) == skip;
+
+  public visitWrappedJmlClass: IJmlWrappedJmlClass ==> ()
+  visitWrappedJmlClass (-) == skip;
+
+  public visitThisKeywordSuffix: IJmlThisKeywordSuffix ==> ()
+  visitThisKeywordSuffix (-) == skip;
+
+  public visitContextInfo: IJmlContextInfo ==> ()
+  visitContextInfo (-) == skip;
+
+  public visitNode: IJmlNode ==> ()
+  visitNode (pNode) ==
+    ( if isofclass(IJmlPrimaryExpressionKeyword,pNode) then visitPrimaryExpressionKeyword(pNode)
+      elseif isofclass(IJmlClass,pNode) then visitClass(pNode)
+      elseif isofclass(IJmlSpecifications,pNode) then visitSpecifications(pNode)
+      elseif isofclass(IJmlMapLet,pNode) then visitMapLet(pNode)
+      elseif isofclass(IJmlMapValueToValueType,pNode) then visitMapValueToValueType(pNode)
+      elseif isofclass(IJmlBinaryExpression,pNode) then visitBinaryExpression(pNode)
+      elseif isofclass(IJmlValueShape,pNode) then visitValueShape(pNode)
+      elseif isofclass(IJmlThisKeyword,pNode) then visitThisKeyword(pNode)
+      elseif isofclass(IJmlOperationDefinitions,pNode) then visitOperationDefinitions(pNode)
+      elseif isofclass(IJmlClassType,pNode) then visitClassType(pNode)
+      elseif isofclass(IJmlInstanceVariableDefinitions,pNode) then visitInstanceVariableDefinitions(pNode)
+      elseif isofclass(IJmlFieldSelectExpression,pNode) then visitFieldSelectExpression(pNode)
+      elseif isofclass(IJmlExpressionsList,pNode) then visitExpressionsList(pNode)
+      elseif isofclass(IJmlEnumerationType,pNode) then visitEnumerationType(pNode)
+      elseif isofclass(IJmlFloatLiteral,pNode) then visitFloatLiteral(pNode)
+      elseif isofclass(IJmlSuperKeyword,pNode) then visitSuperKeyword(pNode)
+      elseif isofclass(IJmlClassKeyword,pNode) then visitClassKeyword(pNode)
+      elseif isofclass(IJmlMapEnumeration,pNode) then visitMapEnumeration(pNode)
+      elseif isofclass(IJmlExceptionType,pNode) then visitExceptionType(pNode)
+      elseif isofclass(IJmlNameId,pNode) then visitNameId(pNode)
+      elseif isofclass(IJmlThrowExpression,pNode) then visitThrowExpression(pNode)
+      elseif isofclass(IJmlSetValueType,pNode) then visitSetValueType(pNode)
+      elseif isofclass(IJmlPrimaryExpressions,pNode) then visitPrimaryExpressions(pNode)
+      elseif isofclass(IJmlTrailers,pNode) then visitTrailers(pNode)
+      elseif isofclass(IJmlOldName,pNode) then visitOldName(pNode)
+      elseif isofclass(IJmlForAllExpression,pNode) then visitForAllExpression(pNode)
+      elseif isofclass(IJmlLiteralExpression,pNode) then visitLiteralExpression(pNode)
+      elseif isofclass(IJmlPostfixOperation,pNode) then visitPostfixOperation(pNode)
+      elseif isofclass(IJmlVariable,pNode) then visitVariable(pNode)
+      elseif isofclass(IJmlUnaryExpression,pNode) then visitUnaryExpression(pNode)
+      elseif isofclass(IJmlType,pNode) then visitType(pNode)
+      elseif isofclass(IJmlOldKeywordUnary,pNode) then visitOldKeywordUnary(pNode)
+      elseif isofclass(IJmlSetEnumeration,pNode) then visitSetEnumeration(pNode)
+      elseif isofclass(IJmlTupleType,pNode) then visitTupleType(pNode)
+      elseif isofclass(IJmlQuantifierDeclaration,pNode) then visitQuantifierDeclaration(pNode)
+      elseif isofclass(IJmlImport,pNode) then visitImport(pNode)
+      elseif isofclass(IJmlPostfixExpression,pNode) then visitPostfixExpression(pNode)
+      elseif isofclass(IJmlDefinitionBlock,pNode) then visitDefinitionBlock(pNode)
+      elseif isofclass(IJmlNullLiteral,pNode) then visitNullLiteral(pNode)
+      elseif isofclass(IJmlSpecs,pNode) then visitSpecs(pNode)
+      elseif isofclass(IJmlBehaviourSpec,pNode) then visitBehaviourSpec(pNode)
+      elseif isofclass(IJmlName,pNode) then visitName(pNode)
+      elseif isofclass(IJmlOperationTrailer,pNode) then visitOperationTrailer(pNode)
+      elseif isofclass(IJmlFloatType,pNode) then visitFloatType(pNode)
+      elseif isofclass(IJmlBooleanLiteral,pNode) then visitBooleanLiteral(pNode)
+      elseif isofclass(IJmlPrimaryExpressionOption,pNode) then visitPrimaryExpressionOption(pNode)
+      elseif isofclass(IJmlOldKeyword,pNode) then visitOldKeyword(pNode)
+      elseif isofclass(IJmlBody,pNode) then visitBody(pNode)
+      elseif isofclass(IJmlField,pNode) then visitField(pNode)
+      elseif isofclass(IJmlInterfaceInheritanceClause,pNode) then visitInterfaceInheritanceClause(pNode)
+      elseif isofclass(IJmlUnaryOperator,pNode) then visitUnaryOperator(pNode)
+      elseif isofclass(IJmlResultKeyword,pNode) then visitResultKeyword(pNode)
+      elseif isofclass(IJmlParameter,pNode) then visitParameter(pNode)
+      elseif isofclass(IJmlSequenceEnumeration,pNode) then visitSequenceEnumeration(pNode)
+      elseif isofclass(IJmlClassName,pNode) then visitClassName(pNode)
+      elseif isofclass(IJmlOperationDefinition,pNode) then visitOperationDefinition(pNode)
+      elseif isofclass(IJmlWrappedJmlClass,pNode) then visitWrappedJmlClass(pNode)
+      elseif isofclass(IJmlThisExpression,pNode) then visitThisExpression(pNode)
+      elseif isofclass(IJmlModelImport,pNode) then visitModelImport(pNode)
+      elseif isofclass(IJmlNotKeywordUnary,pNode) then visitNotKeywordUnary(pNode)
+      elseif isofclass(IJmlEnsuresClause,pNode) then visitEnsuresClause(pNode)
+      elseif isofclass(IJmlLiteral,pNode) then visitLiteral(pNode)
+      elseif isofclass(IJmlUndefinedExpression,pNode) then visitUndefinedExpression(pNode)
+      elseif isofclass(IJmlRequiresClause,pNode) then visitRequiresClause(pNode)
+      elseif isofclass(IJmlOtherDefinitions,pNode) then visitOtherDefinitions(pNode)
+      elseif isofclass(IJmlStarKeyword,pNode) then visitStarKeyword(pNode)
+      elseif isofclass(IJmlAssignableClause,pNode) then visitAssignableClause(pNode)
+      elseif isofclass(IJmlNumericalLiteral,pNode) then visitNumericalLiteral(pNode)
+      elseif isofclass(IJmlIfExpression,pNode) then visitIfExpression(pNode)
+      elseif isofclass(IJmlInvariantDefinition,pNode) then visitInvariantDefinition(pNode)
+      elseif isofclass(IJmlBoundModifiers,pNode) then visitBoundModifiers(pNode)
+      elseif isofclass(IJmlValueDefinition,pNode) then visitValueDefinition(pNode)
+      elseif isofclass(IJmlClassKind,pNode) then visitClassKind(pNode)
+      elseif isofclass(IJmlExceptionalSpec,pNode) then visitExceptionalSpec(pNode)
+      elseif isofclass(IJmlApplyExpression,pNode) then visitApplyExpression(pNode)
+      elseif isofclass(IJmlNatType,pNode) then visitNatType(pNode)
+      elseif isofclass(IJmlEnumLiteral,pNode) then visitEnumLiteral(pNode)
+      elseif isofclass(IJmlCharType,pNode) then visitCharType(pNode)
+      elseif isofclass(IJmlCharacterLiteral,pNode) then visitCharacterLiteral(pNode)
+      elseif isofclass(IJmlValueDefinitions,pNode) then visitValueDefinitions(pNode)
+      elseif isofclass(IJmlBracketedExpression,pNode) then visitBracketedExpression(pNode)
+      elseif isofclass(IJmlNotAssignedKeyword,pNode) then visitNotAssignedKeyword(pNode)
+      elseif isofclass(IJmlStringLiteral,pNode) then visitStringLiteral(pNode)
+      elseif isofclass(IJmlAccessDefinition,pNode) then visitAccessDefinition(pNode)
+      elseif isofclass(IJmlPrimaryExpression,pNode) then visitPrimaryExpression(pNode)
+      elseif isofclass(IJmlNewExpression,pNode) then visitNewExpression(pNode)
+      elseif isofclass(IJmlInstanceOfExpression,pNode) then visitInstanceOfExpression(pNode)
+      elseif isofclass(IJmlScope,pNode) then visitScope(pNode)
+      elseif isofclass(IJmlInvariantDefinitions,pNode) then visitInvariantDefinitions(pNode)
+      elseif isofclass(IJmlPrimarySuffix,pNode) then visitPrimarySuffix(pNode)
+      elseif isofclass(IJmlSuperKeywordSuffix,pNode) then visitSuperKeywordSuffix(pNode)
+      elseif isofclass(IJmlObjectType,pNode) then visitObjectType(pNode)
+      elseif isofclass(IJmlVoidType,pNode) then visitVoidType(pNode)
+      elseif isofclass(IJmlExistsExpression,pNode) then visitExistsExpression(pNode)
+      elseif isofclass(IJmlClassInheritanceClause,pNode) then visitClassInheritanceClause(pNode)
+      elseif isofclass(IJmlNullKeyword,pNode) then visitNullKeyword(pNode)
+      elseif isofclass(IJmlMethodSpecifications,pNode) then visitMethodSpecifications(pNode)
+      elseif isofclass(IJmlException,pNode) then visitException(pNode)
+      elseif isofclass(IJmlExpression,pNode) then visitExpression(pNode)
+      elseif isofclass(IJmlBinaryOperator,pNode) then visitBinaryOperator(pNode)
+      elseif isofclass(IJmlNormalSpec,pNode) then visitNormalSpec(pNode)
+      elseif isofclass(IJmlPrimaryExpressionLiteral,pNode) then visitPrimaryExpressionLiteral(pNode)
+      elseif isofclass(IJmlIntegerType,pNode) then visitIntegerType(pNode)
+      elseif isofclass(IJmlBlockExpression,pNode) then visitBlockExpression(pNode)
+      elseif isofclass(IJmlSeqValueType,pNode) then visitSeqValueType(pNode)
+      elseif isofclass(IJmlSignalsClause,pNode) then visitSignalsClause(pNode)
+      elseif isofclass(IJmlBoolType,pNode) then visitBoolType(pNode)
+      elseif isofclass(IJmlThisKeywordSuffix,pNode) then visitThisKeywordSuffix(pNode)
+      else error );
+
+  public visitType: IJmlType ==> ()
+  visitType (pNode) ==
+    ( if isofclass(IJmlNatType,pNode) then visitNatType(pNode)
+      elseif isofclass(IJmlFloatType,pNode) then visitFloatType(pNode)
+      elseif isofclass(IJmlObjectType,pNode) then visitObjectType(pNode)
+      elseif isofclass(IJmlVoidType,pNode) then visitVoidType(pNode)
+      elseif isofclass(IJmlTupleType,pNode) then visitTupleType(pNode)
+      elseif isofclass(IJmlMapValueToValueType,pNode) then visitMapValueToValueType(pNode)
+      elseif isofclass(IJmlSetValueType,pNode) then visitSetValueType(pNode)
+      elseif isofclass(IJmlCharType,pNode) then visitCharType(pNode)
+      elseif isofclass(IJmlClassType,pNode) then visitClassType(pNode)
+      elseif isofclass(IJmlEnumerationType,pNode) then visitEnumerationType(pNode)
+      elseif isofclass(IJmlIntegerType,pNode) then visitIntegerType(pNode)
+      elseif isofclass(IJmlSeqValueType,pNode) then visitSeqValueType(pNode)
+      elseif isofclass(IJmlClassName,pNode) then visitClassName(pNode)
+      elseif isofclass(IJmlBoolType,pNode) then visitBoolType(pNode)
+      else error );
+
+  public visitPrimaryExpressionOption: IJmlPrimaryExpressionOption ==> ()
+  visitPrimaryExpressionOption (pNode) ==
+    ( if isofclass(IJmlNotAssignedKeyword,pNode) then visitNotAssignedKeyword(pNode)
+      elseif isofclass(IJmlNameId,pNode) then visitNameId(pNode)
+      elseif isofclass(IJmlOldKeyword,pNode) then visitOldKeyword(pNode)
+      elseif isofclass(IJmlSuperKeyword,pNode) then visitSuperKeyword(pNode)
+      elseif isofclass(IJmlThisKeyword,pNode) then visitThisKeyword(pNode)
+      elseif isofclass(IJmlResultKeyword,pNode) then visitResultKeyword(pNode)
+      elseif isofclass(IJmlNullKeyword,pNode) then visitNullKeyword(pNode)
+      else error );
+
+  public visitTrailers: IJmlTrailers ==> ()
+  visitTrailers (pNode) ==
+    ( if isofclass(IJmlEnsuresClause,pNode) then visitEnsuresClause(pNode)
+      elseif isofclass(IJmlSignalsClause,pNode) then visitSignalsClause(pNode)
+      elseif isofclass(IJmlAssignableClause,pNode) then visitAssignableClause(pNode)
+      elseif isofclass(IJmlRequiresClause,pNode) then visitRequiresClause(pNode)
+      else error );
+
+  public visitDefinitionBlock: IJmlDefinitionBlock ==> ()
+  visitDefinitionBlock (pNode) ==
+    ( if isofclass(IJmlValueDefinitions,pNode) then visitValueDefinitions(pNode)
+      elseif isofclass(IJmlInstanceVariableDefinitions,pNode) then visitInstanceVariableDefinitions(pNode)
+      elseif isofclass(IJmlOtherDefinitions,pNode) then visitOtherDefinitions(pNode)
+      elseif isofclass(IJmlOperationDefinitions,pNode) then visitOperationDefinitions(pNode)
+      elseif isofclass(IJmlInvariantDefinitions,pNode) then visitInvariantDefinitions(pNode)
+      else error );
+
+  public visitPostfixOperation: IJmlPostfixOperation ==> ()
+  visitPostfixOperation (-) == skip;
+
+  public visitBinaryOperator: IJmlBinaryOperator ==> ()
+  visitBinaryOperator (-) == skip;
+
+  public visitExpression: IJmlExpression ==> ()
+  visitExpression (pNode) ==
+    ( if isofclass(IJmlThisExpression,pNode) then visitThisExpression(pNode)
+      elseif isofclass(IJmlApplyExpression,pNode) then visitApplyExpression(pNode)
+      elseif isofclass(IJmlMapEnumeration,pNode) then visitMapEnumeration(pNode)
+      elseif isofclass(IJmlExistsExpression,pNode) then visitExistsExpression(pNode)
+      elseif isofclass(IJmlSetEnumeration,pNode) then visitSetEnumeration(pNode)
+      elseif isofclass(IJmlBinaryExpression,pNode) then visitBinaryExpression(pNode)
+      elseif isofclass(IJmlPostfixExpression,pNode) then visitPostfixExpression(pNode)
+      elseif isofclass(IJmlOldName,pNode) then visitOldName(pNode)
+      elseif isofclass(IJmlForAllExpression,pNode) then visitForAllExpression(pNode)
+      elseif isofclass(IJmlLiteralExpression,pNode) then visitLiteralExpression(pNode)
+      elseif isofclass(IJmlBracketedExpression,pNode) then visitBracketedExpression(pNode)
+      elseif isofclass(IJmlFieldSelectExpression,pNode) then visitFieldSelectExpression(pNode)
+      elseif isofclass(IJmlUndefinedExpression,pNode) then visitUndefinedExpression(pNode)
+      elseif isofclass(IJmlIfExpression,pNode) then visitIfExpression(pNode)
+      elseif isofclass(IJmlNewExpression,pNode) then visitNewExpression(pNode)
+      elseif isofclass(IJmlBlockExpression,pNode) then visitBlockExpression(pNode)
+      elseif isofclass(IJmlInstanceOfExpression,pNode) then visitInstanceOfExpression(pNode)
+      elseif isofclass(IJmlSequenceEnumeration,pNode) then visitSequenceEnumeration(pNode)
+      elseif isofclass(IJmlName,pNode) then visitName(pNode)
+      elseif isofclass(IJmlUnaryExpression,pNode) then visitUnaryExpression(pNode)
+      else error );
+
+  public visitLiteral: IJmlLiteral ==> ()
+  visitLiteral (pNode) ==
+    ( if isofclass(IJmlBooleanLiteral,pNode) then visitBooleanLiteral(pNode)
+      elseif isofclass(IJmlStringLiteral,pNode) then visitStringLiteral(pNode)
+      elseif isofclass(IJmlEnumLiteral,pNode) then visitEnumLiteral(pNode)
+      elseif isofclass(IJmlFloatLiteral,pNode) then visitFloatLiteral(pNode)
+      elseif isofclass(IJmlNullLiteral,pNode) then visitNullLiteral(pNode)
+      elseif isofclass(IJmlCharacterLiteral,pNode) then visitCharacterLiteral(pNode)
+      elseif isofclass(IJmlNumericalLiteral,pNode) then visitNumericalLiteral(pNode)
+      else error );
+
+  public visitPrimaryExpression: IJmlPrimaryExpression ==> ()
+  visitPrimaryExpression (pNode) ==
+    ( if isofclass(IJmlPrimaryExpressionKeyword,pNode) then visitPrimaryExpressionKeyword(pNode)
+      elseif isofclass(IJmlPrimaryExpressionLiteral,pNode) then visitPrimaryExpressionLiteral(pNode)
+      else error );
+
+  public visitScope: IJmlScope ==> ()
+  visitScope (-) == skip;
+
+  public visitUnaryOperator: IJmlUnaryOperator ==> ()
+  visitUnaryOperator (-) == skip;
+
+  public visitBoundModifiers: IJmlBoundModifiers ==> ()
+  visitBoundModifiers (-) == skip;
+
+  public visitOperationTrailer: IJmlOperationTrailer ==> ()
+  visitOperationTrailer (pNode) ==
+    ( if isofclass(IJmlExceptionalSpec,pNode) then visitExceptionalSpec(pNode)
+      elseif isofclass(IJmlNormalSpec,pNode) then visitNormalSpec(pNode)
+      elseif isofclass(IJmlBehaviourSpec,pNode) then visitBehaviourSpec(pNode)
+      else error );
+
+  public visitClassKind: IJmlClassKind ==> ()
+  visitClassKind (-) == skip;
+
+  public visitPrimarySuffix: IJmlPrimarySuffix ==> ()
+  visitPrimarySuffix (pNode) ==
+    ( if isofclass(IJmlSuperKeywordSuffix,pNode) then visitSuperKeywordSuffix(pNode)
+      elseif isofclass(IJmlExpressionsList,pNode) then visitExpressionsList(pNode)
+      elseif isofclass(IJmlClassKeyword,pNode) then visitClassKeyword(pNode)
+      elseif isofclass(IJmlThisKeywordSuffix,pNode) then visitThisKeywordSuffix(pNode)
+      else error );
+
+end JmlVisitor
+\end{vdm_al}
+\begin{vdm_al}
+class JmlVoidType is subclass of IJmlVoidType
+operations
+  public identity: () ==> seq of char
+  identity () == return "VoidType";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitVoidType(self);
+
+  public JmlVoidType:
+    () ==> JmlVoidType
+  JmlVoidType () == 
+    skip;
+
+  public JmlVoidType:
+    nat *
+    nat ==> JmlVoidType
+  JmlVoidType (line,column) == 
+    setPosition(line, column);
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (-) == skip;
+
+end JmlVoidType
+\end{vdm_al}
+
+\begin{vdm_al}
+class JmlWrappedJmlClass is subclass of IJmlWrappedJmlClass
+operations
+  public identity: () ==> seq of char
+  identity () == return "WrappedJmlClass";
+
+  public accept: IJmlVisitor ==> ()
+  accept (pVisitor) == pVisitor.visitWrappedJmlClass(self);
+
+  public JmlWrappedJmlClass:
+    (seq of char) *
+    (seq of char) *
+    (seq of IJmlImport) *
+    (seq of IJmlModelImport) *
+    (IJmlClass) ==> JmlWrappedJmlClass
+  JmlWrappedJmlClass (p1,p2,p3,p4,p5) == 
+    ( setPackage(p1);
+      setRefine(p2);
+      setImportsJava(p3);
+      setImportsJml(p4);
+      setClassVal(p5) );
+
+  public JmlWrappedJmlClass:
+    (seq of char) *
+    (seq of char) *
+    (seq of IJmlImport) *
+    (seq of IJmlModelImport) *
+    (IJmlClass) *
+    nat *
+    nat ==> JmlWrappedJmlClass
+  JmlWrappedJmlClass (p1,p2,p3,p4,p5,line,column) == 
+    ( setPackage(p1);
+      setRefine(p2);
+      setImportsJava(p3);
+      setImportsJml(p4);
+      setClassVal(p5);
+      setPosition(line, column) );
+
+  public init: map seq of char to [FieldValue] ==> ()
+  init (data) ==
+    ( let fname = "package" in
+        if fname in set dom data
+        then setPackage(data(fname));
+      let fname = "refine" in
+        if fname in set dom data
+        then setRefine(data(fname));
+      let fname = "imports_java" in
+        if fname in set dom data
+        then setImportsJava(data(fname));
+      let fname = "imports_jml" in
+        if fname in set dom data
+        then setImportsJml(data(fname));
+      let fname = "class_val" in
+        if fname in set dom data
+        then setClassVal(data(fname)) );
+
+instance variables
+  private ivPackage : seq of char := []
+
+operations
+  public getPackage: () ==> seq of char
+  getPackage() == return ivPackage;
+
+  public setPackage: seq of char ==> ()
+  setPackage(parg) == ivPackage := parg;
+
+instance variables
+  private ivRefine : seq of char := []
+
+operations
+  public getRefine: () ==> seq of char
+  getRefine() == return ivRefine;
+
+  public setRefine: seq of char ==> ()
+  setRefine(parg) == ivRefine := parg;
+
+instance variables
+  private ivImportsJava : seq of IJmlImport := []
+
+operations
+  public getImportsJava: () ==> seq of IJmlImport
+  getImportsJava() == return ivImportsJava;
+
+  public setImportsJava: seq of IJmlImport ==> ()
+  setImportsJava(parg) == ivImportsJava := parg;
+
+  public addImportsJava: IJmlNode ==> ()
+  addImportsJava (parg) == ivImportsJava := ivImportsJava ^ [parg];
+
+instance variables
+  private ivImportsJml : seq of IJmlModelImport := []
+
+operations
+  public getImportsJml: () ==> seq of IJmlModelImport
+  getImportsJml() == return ivImportsJml;
+
+  public setImportsJml: seq of IJmlModelImport ==> ()
+  setImportsJml(parg) == ivImportsJml := parg;
+
+  public addImportsJml: IJmlNode ==> ()
+  addImportsJml (parg) == ivImportsJml := ivImportsJml ^ [parg];
+
+instance variables
+  private ivClassVal : [IJmlClass] := nil
+
+operations
+  public getClassVal: () ==> IJmlClass
+  getClassVal() == return ivClassVal;
+
+  public setClassVal: IJmlClass ==> ()
+  setClassVal(parg) == ivClassVal := parg;
+
+end JmlWrappedJmlClass
+\end{vdm_al}
+

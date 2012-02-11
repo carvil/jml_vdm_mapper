@@ -1,0 +1,20 @@
+class Alarm
+
+instance variables 
+
+descr    : seq of char;
+reqQuali : Expert`Qualification;
+
+operations
+
+public Alarm: Expert`Qualification * seq of char ==> Alarm
+Alarm(quali,str) ==
+( descr := str;
+  reqQuali := quali
+);
+
+public GetReqQuali: () ==> Expert`Qualification
+GetReqQuali() ==
+  return reqQuali;
+  
+end Alarm

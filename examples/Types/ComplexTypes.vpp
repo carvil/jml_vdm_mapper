@@ -1,0 +1,14 @@
+class ComplexTypes
+
+types
+
+public NatPair ::
+  fst : nat
+  snd : nat
+inv p == p.fst > p.snd;
+
+public NatTuple ::
+  max   : nat
+  elms : seq of nat;
+
+end ComplexTypes

@@ -1,0 +1,14 @@
+class IOStream is subclass of InputStream, OutputStream
+
+operations
+
+public read : seq of nat ==> nat
+read(b) == is not yet specified;
+
+public write : seq of nat ==> ()
+write(b) == is subclass responsibility;
+
+public close : () ==> ()
+close() == is not yet specified;
+
+end IOStream
